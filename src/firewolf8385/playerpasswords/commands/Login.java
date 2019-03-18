@@ -18,14 +18,21 @@ public class Login implements CommandExecutor
 
         if(!(PlayerPasswords.verified.contains(p)))
         {
-            if(args[0].equals(settings.getConfig().getString("passwords." + p.getName() + ".password")))
+            if(args[0].equals(settings.getData().getString("passwords." + p.getName() + ".password")))
             {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("LogInSuccessful")));
                 PlayerPasswords.verified.add(p);
             }
             else
             {
-                p.kickPlayer(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("KickMessage")));
+                if(settings.getConfig().getString("WrongPassword").toLowerCase().equals("tryagain"))
+                {
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordIncorrect")));
+                }
+                else
+                {
+                    p.kickPlayer(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("KickMessage")));
+                }
             }
         }
         else
