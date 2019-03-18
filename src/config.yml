@@ -1,0 +1,55 @@
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
+#--------------------------- PlayerPasswords ----------------------------
+#------------------------------------------------------------------------
+#------------------------------------------------------------------------
+
+# This is used when an update modifies the config. If checks this value and
+#warns you when the config file does not match the version needed. This number
+# may be changed when the correct additions to the config are made.
+
+ConfigVersion: 1
+
+
+
+#------------------------------------------------------------------------
+# Settings
+#------------------------------------------------------------------------
+
+# This allows players to decide if they want to use a password.
+Optional: true
+
+# This modifies the minimum and maximum character length of a password.
+MinimumPasswordLength: 1
+MaximumPasswordLength: 256
+
+#------------------------------------------------------------------------
+# Messages
+#------------------------------------------------------------------------
+
+Login: "&6&lLogin &8- &7You must log in to continue! &e/login [password]"
+Register: "&6&lRegister &8- &7You must register to continue! &e/setpassword [password]"
+
+PasswordEnabled: "&6&lPassword &8- &7You have &aenabled &7password protection."
+PasswordDisabled: "&6&lPassword &8- &7You have &cdisabled &7password protection."
+PasswordSet: "&6&lPassword &8- &7Your password has been set to &e%password%&7."
+
+LogInSuccessful: "&6&lLogin &8- &7You have logged in successfully."
+SetPasswordSuccessful: "&6&lPassword &8- &7You have successfully set your password."
+
+KickMessage: "&cYou entered your password incorrectly."
+
+AlreadyLoggedIn: "&6&lError &8- &cYou are already logged in!"
+OptionalPasswordsDisabled: "&6&lError &8- &cOptional Passwords are disabled."
+OutOfBounds: "&6&lError &8- &cPassword must be between 1 and 256 characters long."
+
+SetPasswordUsage: "&6&lUsage &8- &7/setpassword [password]"
+
+
+#------------------------------------------------------------------------
+# Passwords
+#------------------------------------------------------------------------
+passwords:
+  username:
+    password: "password"
+    enabled: true

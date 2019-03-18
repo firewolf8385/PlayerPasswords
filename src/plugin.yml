@@ -1,0 +1,11 @@
+name: PlayerPasswords
+version: 1.0
+author: FireWolf
+main: firewolf8385.playerpasswords.PlayerPasswords
+commands:
+  login:
+    usage: /<command>
+    description: Allows the player to login.
+  setpassword:
+    usage: /<command>
+    description: Allows the player to set their password.
