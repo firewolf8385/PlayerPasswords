@@ -23,24 +23,33 @@ Optional: true
 MinimumPasswordLength: 1
 MaximumPasswordLength: 256
 
+# This sets what happens when the wrong password has been entered.
+# Options: kick, tryagain
+WrongPassword: "kick"
+
 #------------------------------------------------------------------------
 # Messages
 #------------------------------------------------------------------------
 
+# Join Messages
 Login: "&6&lLogin &8- &7You must log in to continue! &e/login [password]"
-Register: "&6&lRegister &8- &7You must register to continue! &e/setpassword [password]"
+Register: "&6&lRegister &8- &7You must register to continue! &e/register [password]"
+LogInSuccessful: "&6&lLogin &8» &7You have logged in successfully."
 
-PasswordEnabled: "&6&lPassword &8- &7You have &aenabled &7password protection."
-PasswordDisabled: "&6&lPassword &8- &7You have &cdisabled &7password protection."
-PasswordSet: "&6&lPassword &8- &7Your password has been set to &e%password%&7."
+# Password
+PasswordEnabled: "&6&lPassword &8» &7You have &aenabled &7password protection."
+PasswordDisabled: "&6&lPassword &8» &7You have &cdisabled &7password protection."
+PasswordSet: "&6&lPassword &8» &7Your password has been set to &e%password%&7."
+SetPasswordSuccessful: "&6&lPassword &8» &7You have successfully set your password."
+OptionalPasswordsDisabled: "&6&lError &8» &cOptional Passwords are disabled."
+SetPasswordUsage: "&6&lUsage &8» &7/setpassword [password]"
+PasswordIncorrect: "&6&lError &8» &cPassword Is Incorrect. Try again."
 
-LogInSuccessful: "&6&lLogin &8- &7You have logged in successfully."
-SetPasswordSuccessful: "&6&lPassword &8- &7You have successfully set your password."
+#Errors
+AlreadyLoggedIn: "&6&lError &8» &cYou are already logged in!"
+NoPermission: "&6&lError &8» &cYou do not have permission to do that."
+OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters long."
 
+#Other
+ConfigReloaded: "&6&lPlayerPasswords &8» &aconfig.yml has been reloaded."
 KickMessage: "&cYou entered your password incorrectly."
-
-AlreadyLoggedIn: "&6&lError &8- &cYou are already logged in!"
-OptionalPasswordsDisabled: "&6&lError &8- &cOptional Passwords are disabled."
-OutOfBounds: "&6&lError &8- &cPassword must be between 1 and 256 characters long."
-
-SetPasswordUsage: "&6&lUsage &8- &7/setpassword [password]"
