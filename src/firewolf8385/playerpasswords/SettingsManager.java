@@ -24,6 +24,9 @@ public class SettingsManager
     FileConfiguration config;
     File configFile;
 
+    FileConfiguration data;
+    File dataFile;
+
 
     /**
      * This allows us to set up the config file if it does not exist.
@@ -35,6 +38,21 @@ public class SettingsManager
         config.options().copyDefaults(true);
         configFile = new File(pl.getDataFolder(), "config.yml");
         pl.saveDefaultConfig();
+
+        dataFile = new File(pl.getDataFolder(), "data.yml");
+        data = YamlConfiguration.loadConfiguration(dataFile);
+
+        if(!dataFile.exists())
+        {
+            try
+            {
+                dataFile.createNewFile();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -67,5 +85,37 @@ public class SettingsManager
     public void reloadConfig()
     {
         config = YamlConfiguration.loadConfiguration(configFile);
+    }
+
+    /**
+     * Allows us to access the data file.
+     * @return data file
+     */
+    public FileConfiguration getData()
+    {
+        return data;
+    }
+
+    /**
+     * Allows us to save the config file after changes are made.
+     */
+    public void saveData()
+    {
+        try
+        {
+            data.save(dataFile);
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * This updates the data in case changes are made.
+     */
+    public void reloadData()
+    {
+        data = YamlConfiguration.loadConfiguration(dataFile);
     }
 }

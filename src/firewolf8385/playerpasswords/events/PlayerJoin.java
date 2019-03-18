@@ -18,19 +18,19 @@ public class PlayerJoin implements Listener
         Player p = e.getPlayer();
         String pName = p.getName();
 
-        if(!(settings.getConfig().contains("passwords." + pName)))
+        if(!(settings.getData().contains("passwords." + pName)))
         {
-            settings.getConfig().set("passwords." + pName + ".password", "");
-            settings.getConfig().set("passwords." + pName + ".enabled", false);
-            settings.saveConfig();
-            settings.reloadConfig();
+            settings.getData().set("passwords." + pName + ".password", "");
+            settings.getData().set("passwords." + pName + ".enabled", false);
+            settings.saveData();
+            settings.reloadData();
         }
 
-        if(!(settings.getConfig().getBoolean("Optional")) && !(settings.getConfig().getBoolean("passwords." + pName + "enabled")))
+        if(!(settings.getConfig().getBoolean("Optional")) && !(settings.getData().getBoolean("passwords." + pName + "enabled")))
         {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Register")));
         }
-        else if(settings.getConfig().getBoolean("passwords." + pName + "enabled"))
+        else if(settings.getData().getBoolean("passwords." + pName + "enabled"))
         {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Login")));
         }

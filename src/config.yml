@@ -44,12 +44,3 @@ OptionalPasswordsDisabled: "&6&lError &8- &cOptional Passwords are disabled."
 OutOfBounds: "&6&lError &8- &cPassword must be between 1 and 256 characters long."
 
 SetPasswordUsage: "&6&lUsage &8- &7/setpassword [password]"
-
-
-#------------------------------------------------------------------------
-# Passwords
-#------------------------------------------------------------------------
-passwords:
-  username:
-    password: "password"
-    enabled: true
