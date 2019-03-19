@@ -1,7 +1,9 @@
 package firewolf8385.playerpasswords;
 
 import firewolf8385.playerpasswords.commands.Login;
-import firewolf8385.playerpasswords.commands.SetPassword;
+import firewolf8385.playerpasswords.commands.PP;
+import firewolf8385.playerpasswords.commands.Password;
+import firewolf8385.playerpasswords.commands.Register;
 import firewolf8385.playerpasswords.events.PlayerChat;
 import firewolf8385.playerpasswords.events.PlayerJoin;
 import firewolf8385.playerpasswords.events.PlayerMove;
@@ -34,7 +36,9 @@ public class PlayerPasswords extends JavaPlugin
     private void registerCommands()
     {
         getCommand("login").setExecutor(new Login());
-        getCommand("setpassword").setExecutor(new SetPassword());
+        getCommand("register").setExecutor(new Register());
+        getCommand("playerpasswords").setExecutor(new PP());
+        getCommand("password").setExecutor(new Password());
     }
 
     /**

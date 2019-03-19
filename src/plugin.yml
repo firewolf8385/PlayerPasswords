@@ -6,6 +6,13 @@ commands:
   login:
     usage: /<command>
     description: Allows the player to login.
-  setpassword:
+  register:
     usage: /<command>
     description: Allows the player to set their password.
+  playerpasswords:
+    usage: /<command>
+    description: Main plugin command.
+    aliases: [playerpassword, pp]
+  password:
+    usage: /<command>
+    description: Player password settings
