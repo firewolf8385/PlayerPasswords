@@ -24,6 +24,9 @@ public class PlayerPasswords extends JavaPlugin
      */
     public void onEnable()
     {
+        // Enables bStats
+        Metrics metrics = new Metrics(this);
+
          settings.setup(this);
 
          registerCommands();
