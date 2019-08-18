@@ -1,20 +1,41 @@
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
-#--------------------------- PlayerPasswords ----------------------------
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
+#     _____  _                       _____                                    _
+#    |  __ \| |                     |  __ \                                  | |
+#    | |__) | | __ _ _   _  ___ _ __| |__) |_ _ ___ _____      _____  _ __ __| |___
+#    |  ___/| |/ _` | | | |/ _ \ '__|  ___/ _` / __/ __\ \ /\ / / _ \| '__/ _` / __|
+#    | |    | | (_| | |_| |  __/ |  | |  | (_| \__ \__ \\ V  V / (_) | | | (_| \__ \
+#    |_|    |_|\__,_|\__, |\___|_|  |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
+#                     __/ |
+#                    |___/
+#                                Version 1.0
+
 
 # This is used when an update modifies the config. If checks this value and
 #warns you when the config file does not match the version needed. This number
 # may be changed when the correct additions to the config are made.
-
 ConfigVersion: 1
 
 
 
-#------------------------------------------------------------------------
-# Settings
-#------------------------------------------------------------------------
+# -----------------------------------------
+#                 Theme
+# -----------------------------------------
+
+# Theme modifies the colors for all text
+# used by the plugin that cannot be modified
+# under Messages.
+
+# Default: "&2"
+color1: "&2"
+
+# Default: "&a"
+color2: "&a"
+
+# Default: "&8"
+color3: "&8"
+
+# -----------------------------------------
+#               Settings
+# -----------------------------------------
 
 # This allows players to decide if they want to use a password.
 Optional: true
@@ -27,13 +48,13 @@ MaximumPasswordLength: 256
 # Options: kick, tryagain
 WrongPassword: "kick"
 
-#------------------------------------------------------------------------
-# Messages
-#------------------------------------------------------------------------
+# -----------------------------------------
+#               Messages
+# -----------------------------------------
 
 # Join Messages
-Login: "&6&lLogin &8- &7You must log in to continue! &e/login [password]"
-Register: "&6&lRegister &8- &7You must register to continue! &e/register [password]"
+Login: "&6&lLogin &8» &7You must log in to continue! &e/login [password]"
+Register: "&6&lRegister &8» &7You must register to continue! &e/register [password]"
 LogInSuccessful: "&6&lLogin &8» &7You have logged in successfully."
 
 # Password
@@ -45,13 +66,12 @@ RegisterUsage: "&6&lUsage &8» &7/register [password]"
 PasswordIncorrect: "&6&lError &8» &cPassword Is Incorrect. Try again."
 PasswordSetUsage: "&6&lUsage &8» &7/password set [password]"
 
-#Errors
+# Errors
 AlreadyLoggedIn: "&6&lError &8» &cYou are already logged in!"
 NoPermission: "&6&lError &8» &cYou do not have permission to do that."
 OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters long."
 MustBeLoggedIn: "&6&lError &8» &cYou must be logged in to do that."
 OptionalPasswordsDisabled: "&6&lError &8» &cOptional Passwords are disabled."
 
-#Other
-ConfigReloaded: "&6&lPlayerPasswords &8» &aconfig.yml has been reloaded."
+# Other
 KickMessage: "&cYou entered your password incorrectly."
