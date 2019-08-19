@@ -16,6 +16,11 @@ public class Login implements CommandExecutor
     {
         Player p = (Player) sender;
 
+        if(args.length == 0)
+        {
+            return true;
+        }
+
         if(!(PlayerPasswords.verified.contains(p)))
         {
             if(args[0].equals(settings.getData().getString("passwords." + p.getName() + ".password")))
