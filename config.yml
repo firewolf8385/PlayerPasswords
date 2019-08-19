@@ -68,6 +68,7 @@ PasswordSetUsage: "&6&lUsage &8» &7/password set [password]"
 
 # Errors
 AlreadyLoggedIn: "&6&lError &8» &cYou are already logged in!"
+AlreadyRegistered: "&6&lError &8» &cYou are already registered!"
 NoPermission: "&6&lError &8» &cYou do not have permission to do that."
 OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters long."
 MustBeLoggedIn: "&6&lError &8» &cYou must be logged in to do that."
