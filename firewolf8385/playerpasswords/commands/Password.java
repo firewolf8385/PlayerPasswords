@@ -28,6 +28,11 @@ public class Password implements CommandExecutor
                         break;
 
                     case "enable":
+                        if(!sender.hasPermission("playerpasswords.enable"))
+                        {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("NoPermission")));
+                            return true;
+                        }
                         settings.getData().set("passwords." + p.getName() + ".enabled", true);
                         settings.saveData();
                         settings.reloadData();
@@ -35,6 +40,11 @@ public class Password implements CommandExecutor
                         break;
 
                     case "disable":
+                        if(!sender.hasPermission("playerpasswords.disable"))
+                        {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("NoPermission")));
+                            return true;
+                        }
                         if(settings.getConfig().getBoolean("Optional"))
                         {
                             settings.getData().set("passwords." + p.getName() + ".enabled", false);
@@ -49,6 +59,11 @@ public class Password implements CommandExecutor
                         break;
 
                     case "set":
+                        if(!sender.hasPermission("playerpasswords.set"))
+                        {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("NoPermission")));
+                            return true;
+                        }
                         if(args.length > 1)
                         {
                             settings.getData().set("passwords." + p.getName() + ".password", args[1]);
