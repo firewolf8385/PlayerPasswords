@@ -18,6 +18,11 @@ public class PlayerJoin implements Listener
         Player p = e.getPlayer();
         String pName = p.getName();
 
+        boolean passwordRequired = settings.getConfig().getBoolean("Optional");
+        boolean passwordEnabled = settings.getData().getBoolean("passwords." + pName + ".enabled");
+        boolean playerRequired = e.getPlayer().hasPermission("playerpasswords.required");
+        boolean playerBypass = e.getPlayer().hasPermission("playerpasswords.bypass");
+
         if(!(settings.getData().contains("passwords." + pName)))
         {
             settings.getData().set("passwords." + pName + ".password", "");
@@ -26,13 +31,16 @@ public class PlayerJoin implements Listener
             settings.reloadData();
         }
 
-        if(!(settings.getConfig().getBoolean("Optional")) && !(settings.getData().getBoolean("passwords." + pName + "enabled")))
+        if((!passwordRequired && !passwordEnabled && !playerBypass) || playerRequired)
         {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Register")));
-        }
-        else if(settings.getData().getBoolean("passwords." + pName + "enabled"))
-        {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Login")));
+            if(settings.getData().getString("passwords." + pName + ".password").equals(""))
+            {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Register")));
+            }
+            else
+            {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Login")));
+            }
         }
         else
         {
