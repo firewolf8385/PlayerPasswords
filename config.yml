@@ -24,11 +24,11 @@ ConfigVersion: 1
 # used by the plugin that cannot be modified
 # under Messages.
 
-# Default: "&2"
-color1: "&2"
+# Default: "&6"
+color1: "&6"
 
-# Default: "&a"
-color2: "&a"
+# Default: "&e"
+color2: "&e"
 
 # Default: "&8"
 color3: "&8"
