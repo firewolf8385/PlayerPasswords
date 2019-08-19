@@ -54,7 +54,7 @@ public class Password implements CommandExecutor
                             settings.getData().set("passwords." + p.getName() + ".password", args[1]);
                             settings.saveData();
                             settings.reloadData();
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordSet")));
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordSet").replace("%password%", args[1])));
                         }
                         else
                         {
