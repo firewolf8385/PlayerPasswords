@@ -11,6 +11,9 @@ import org.bukkit.entity.Player;
 public class Password implements CommandExecutor
 {
     SettingsManager settings = SettingsManager.getInstance();
+    String gold = settings.getConfig().getString("color1");
+    String yellow = settings.getConfig().getString("color2");
+    String gray = settings.getConfig().getString("color3");
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
@@ -62,11 +65,11 @@ public class Password implements CommandExecutor
             }
             else
             {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l]&8&m-------------&6&lPasswords&8&m--------------&6&l["));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8» &6/password enable &8- &eEnables Your Password"));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8» &6/password disable &8- &eDisables Your Password"));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8» &6/password set [password] &8- &eChanges Your Password"));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l]&8&m--------------------------------------&6&l["));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m--------------------" + gold + "&lPasswords" + gray + "&m--------------------" + gold +"&l["));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "/password set [password] " + gray + "- " + yellow + "Changes Your Password"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
             }
         }
         else
