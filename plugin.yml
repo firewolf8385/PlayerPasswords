@@ -1,6 +1,6 @@
 name: PlayerPasswords
 version: 1.0
-author: FireWolf
+author: firewolf8385
 main: firewolf8385.playerpasswords.PlayerPasswords
 commands:
   login:
@@ -16,3 +16,11 @@ commands:
   password:
     usage: /<command>
     description: Player password settings
+
+permissions:
+  playerpasswords.use:
+    default: true
+    children:
+      playerpasswords.enable: true
+      playerpasswords.disable: true
+      playerpasswords.set: true
