@@ -7,6 +7,7 @@ import firewolf8385.playerpasswords.commands.Register;
 import firewolf8385.playerpasswords.events.PlayerChat;
 import firewolf8385.playerpasswords.events.PlayerJoin;
 import firewolf8385.playerpasswords.events.PlayerMove;
+import firewolf8385.playerpasswords.events.PlayerQuit;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -52,5 +53,6 @@ public class PlayerPasswords extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerChat(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
     }
 }
