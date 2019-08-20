@@ -18,6 +18,8 @@ public class Password implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
         Player p = (Player) sender;
+        String uuid = p.getUniqueId().toString();
+
         if(PlayerPasswords.verified.contains(p))
         {
             if(args.length != 0)
@@ -33,7 +35,7 @@ public class Password implements CommandExecutor
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("NoPermission")));
                             return true;
                         }
-                        settings.getData().set("passwords." + p.getName() + ".enabled", true);
+                        settings.getData().set("passwords." + uuid + ".enabled", true);
                         settings.saveData();
                         settings.reloadData();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordEnabled")));
@@ -47,7 +49,7 @@ public class Password implements CommandExecutor
                         }
                         if(settings.getConfig().getBoolean("Optional"))
                         {
-                            settings.getData().set("passwords." + p.getName() + ".enabled", false);
+                            settings.getData().set("passwords." + uuid + ".enabled", false);
                             settings.saveData();
                             settings.reloadData();
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordDisabled")));
@@ -66,7 +68,7 @@ public class Password implements CommandExecutor
                         }
                         if(args.length > 1)
                         {
-                            settings.getData().set("passwords." + p.getName() + ".password", args[1]);
+                            settings.getData().set("passwords." + uuid + ".password", args[1]);
                             settings.saveData();
                             settings.reloadData();
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("PasswordSet").replace("%password%", args[1])));

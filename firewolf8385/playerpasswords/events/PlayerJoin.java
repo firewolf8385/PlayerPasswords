@@ -16,24 +16,25 @@ public class PlayerJoin implements Listener
     public void onJoin(PlayerJoinEvent e)
     {
         Player p = e.getPlayer();
-        String pName = p.getName();
-
+        String uuid = p.getUniqueId().toString();
         boolean passwordRequired = settings.getConfig().getBoolean("Optional");
-        boolean passwordEnabled = settings.getData().getBoolean("passwords." + pName + ".enabled");
+        boolean passwordEnabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         boolean playerRequired = e.getPlayer().hasPermission("playerpasswords.required");
         boolean playerBypass = e.getPlayer().hasPermission("playerpasswords.bypass");
 
-        if(!(settings.getData().contains("passwords." + pName)))
+        // Creates a new section if the player has not joined before.
+        if(!settings.getData().contains("passwords." + uuid))
         {
-            settings.getData().set("passwords." + pName + ".password", "");
-            settings.getData().set("passwords." + pName + ".enabled", false);
+            settings.getData().set("passwords." + uuid + ".password", "");
+            settings.getData().set("passwords." + uuid + ".enabled", false);
             settings.saveData();
             settings.reloadData();
         }
 
+
         if((!passwordRequired && !passwordEnabled && !playerBypass) || playerRequired)
         {
-            if(settings.getData().getString("passwords." + pName + ".password").equals(""))
+            if(settings.getData().getString("passwords." + uuid + ".password").equals(""))
             {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Register")));
             }

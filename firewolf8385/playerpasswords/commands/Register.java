@@ -15,9 +15,11 @@ public class Register implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
         Player p = (Player) sender;
-
+        String uuid = p.getUniqueId().toString();
         boolean verified = PlayerPasswords.verified.contains(p);
-        boolean enabled = settings.getData().getBoolean("passwords." + p.getName() + ".enabled");
+        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
+        int minimum = settings.getConfig().getInt("MinimumPasswordLength");
+        int maximum = settings.getConfig().getInt("MaximumPasswordLength");
 
         // If the player is already logged in, the command will end.
         if(verified)
@@ -40,32 +42,29 @@ public class Register implements CommandExecutor
             return true;
         }
 
-
-        int minimum = settings.getConfig().getInt("MinimumPasswordLength");
-        int maximum = settings.getConfig().getInt("MaximumPasswordLength");
-
-        if(args[0].length() >= minimum && args[0].length() <= maximum)
-        {
-            settings.getData().set("passwords." + p.getName() + ".password", args[0]);
-
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("SetPasswordSuccessful")));
-            if(!(PlayerPasswords.verified.contains(p)))
-            {
-                PlayerPasswords.verified.add(p);
-            }
-
-            if(!(settings.getData().getBoolean("passwords." + p.getName() + ".enabled")))
-            {
-                settings.getData().set("passwords." + p.getName() + ".enabled", true);
-            }
-
-            settings.saveData();
-            settings.reloadData();
-        }
-        else
+        // Shows the player a message if their password does not fit the requirements.
+        if(!(args[0].length() >= minimum && args[0].length() <= maximum))
         {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("OutOfBounds")));
+            return true;
         }
+
+
+        settings.getData().set("passwords." + uuid + ".password", args[0]);
+
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("SetPasswordSuccessful")));
+        if(!(PlayerPasswords.verified.contains(p)))
+        {
+            PlayerPasswords.verified.add(p);
+        }
+
+        if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled")))
+        {
+            settings.getData().set("passwords." + uuid + ".enabled", true);
+        }
+
+        settings.saveData();
+        settings.reloadData();
 
         return true;
     }

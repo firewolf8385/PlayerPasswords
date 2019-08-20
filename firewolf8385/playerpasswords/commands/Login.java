@@ -15,6 +15,7 @@ public class Login implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
         Player p = (Player) sender;
+        String uuid = p.getUniqueId().toString();
 
         if(args.length == 0)
         {
@@ -23,7 +24,7 @@ public class Login implements CommandExecutor
 
         if(!(PlayerPasswords.verified.contains(p)))
         {
-            if(args[0].equals(settings.getData().getString("passwords." + p.getName() + ".password")))
+            if(args[0].equals(settings.getData().getString("passwords." + uuid + ".password")))
             {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("LogInSuccessful")));
                 PlayerPasswords.verified.add(p);
