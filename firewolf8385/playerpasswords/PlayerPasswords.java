@@ -4,10 +4,7 @@ import firewolf8385.playerpasswords.commands.Login;
 import firewolf8385.playerpasswords.commands.PP;
 import firewolf8385.playerpasswords.commands.Password;
 import firewolf8385.playerpasswords.commands.Register;
-import firewolf8385.playerpasswords.events.PlayerChat;
-import firewolf8385.playerpasswords.events.PlayerJoin;
-import firewolf8385.playerpasswords.events.PlayerMove;
-import firewolf8385.playerpasswords.events.PlayerQuit;
+import firewolf8385.playerpasswords.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,7 +18,7 @@ public class PlayerPasswords extends JavaPlugin
      *    Title: PlayerPasswords
      *    Author: firewolf8385
      *    Date: August 20th, 2019
-     *    Code version: 1.1
+     *    Code version: 1.2
      ***************************************************************************************/
     SettingsManager settings = SettingsManager.getInstance();
     public static List<Player> verified = new ArrayList<>();
@@ -60,5 +57,6 @@ public class PlayerPasswords extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcess(), this);
     }
 }
