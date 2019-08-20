@@ -17,6 +17,12 @@ import java.util.List;
 
 public class PlayerPasswords extends JavaPlugin
 {
+    /***************************************************************************************
+     *    Title: PlayerPasswords
+     *    Author: firewolf8385
+     *    Date: August 20th, 2019
+     *    Code version: 1.1
+     ***************************************************************************************/
     SettingsManager settings = SettingsManager.getInstance();
     public static List<Player> verified = new ArrayList<>();
 
@@ -28,10 +34,10 @@ public class PlayerPasswords extends JavaPlugin
         // Enables bStats
         Metrics metrics = new Metrics(this);
 
-         settings.setup(this);
+        settings.setup(this);
 
-         registerCommands();
-         registerEvents();
+        registerCommands();
+        registerEvents();
     }
 
     /**
