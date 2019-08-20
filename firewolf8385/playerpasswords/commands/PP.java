@@ -2,6 +2,7 @@ package firewolf8385.playerpasswords.commands;
 
 import firewolf8385.playerpasswords.PlayerPasswords;
 import firewolf8385.playerpasswords.SettingsManager;
+import firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,58 +18,59 @@ public class PP implements CommandExecutor
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if(args.length != 0)
+        // If no arguments, show plugin help.
+        if(args.length == 0)
         {
-            switch(args[0])
-            {
-                default:
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "FireWolf"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.0"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "Coming Soon"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
-                    break;
-
-                case "version":
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.0"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
-                    break;
-
-                case "support":
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "Discord " + gray + "- " + yellow + "https://discord.gg/FtBteC8"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
-                    break;
-
-                case "disable":
-                    break;
-
-                case "help":
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info."));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "&6/pp support " + gray + "- " + yellow + "Display's the support discord link."));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
-                    break;
-
-                case "verified":
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-                    for(Player p : PlayerPasswords.verified)
-                    {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + yellow + p.getName()));
-                    }
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
-                    break;
-
-            }
+            Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+            Utils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
+            Utils.chat(sender, "  " + gray + "» " + gold + "&6/pp support " + gray + "- " + yellow + "Display's the support discord link.");
+            Utils.chat(sender, "  " + gray + "» " + gold + "&6/pp verified " + gray + "- " + yellow + "List all verified players.");
+            Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+            return true;
         }
-        else
+
+        switch(args[0])
         {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l["));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info."));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "&6/pp support " + gray + "- " + yellow + "Display's the support discord link."));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  " + gray + "» " + gold + "&6/pp verified " + gray + "- " + yellow + "List all verified players."));
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l["));
+            default:
+                Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.0");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "Coming Soon");
+                Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
+            case "version":
+                Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.0");
+                Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
+            case "support":
+                Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Discord " + gray + "- " + yellow + "https://discord.gg/FtBteC8");
+                Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
+            case "disable":
+                break;
+
+            case "help":
+                Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+                Utils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
+                Utils.chat(sender, "  " + gray + "» " + gold + "&6/pp support " + gray + "- " + yellow + "Display's the support discord link.");
+                Utils.chat(sender, "  " + gray + "» " + gold + "&6/pp verified " + gray + "- " + yellow + "List all verified players.");
+                Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
+            case "verified":
+                Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
+                for(Player p : PlayerPasswords.verified)
+                {
+                    Utils.chat(sender, "  " + gray + "» " + yellow + p.getName());
+                }
+                Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
         }
 
         return true;

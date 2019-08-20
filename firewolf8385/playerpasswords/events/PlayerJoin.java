@@ -2,6 +2,7 @@ package firewolf8385.playerpasswords.events;
 
 import firewolf8385.playerpasswords.PlayerPasswords;
 import firewolf8385.playerpasswords.SettingsManager;
+import firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,11 +37,11 @@ public class PlayerJoin implements Listener
         {
             if(settings.getData().getString("passwords." + uuid + ".password").equals(""))
             {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Register")));
+                Utils.chat(p, settings.getConfig().getString("Register"));
             }
             else
             {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("Login")));
+                Utils.chat(p, settings.getConfig().getString("Login"));
             }
         }
         else

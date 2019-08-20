@@ -2,6 +2,7 @@ package firewolf8385.playerpasswords.commands;
 
 import firewolf8385.playerpasswords.PlayerPasswords;
 import firewolf8385.playerpasswords.SettingsManager;
+import firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,35 +25,35 @@ public class Register implements CommandExecutor
         // If the player is already logged in, the command will end.
         if(verified)
         {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("AlreadyLoggedIn")));
+            Utils.chat(p, settings.getConfig().getString("AlreadyLoggedIn"));
             return true;
         }
 
         // If the player already set their password, the command will end.
         if(enabled)
         {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("AlreadyRegistered")));
+            Utils.chat(p, settings.getConfig().getString("AlreadyRegistered"));
             return true;
         }
 
         // If the player did not enter a password, the command will end.
         if(args.length == 0)
         {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("RegisterUsage")));
+            Utils.chat(p, settings.getConfig().getString("RegisterUsage"));
             return true;
         }
 
         // Shows the player a message if their password does not fit the requirements.
         if(!(args[0].length() >= minimum && args[0].length() <= maximum))
         {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("OutOfBounds")));
+            Utils.chat(p, settings.getConfig().getString("OutOfBounds"));
             return true;
         }
 
 
         settings.getData().set("passwords." + uuid + ".password", args[0]);
+        Utils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
-        p.sendMessage(ChatColor.translateAlternateColorCodes('&', settings.getConfig().getString("SetPasswordSuccessful")));
         if(!(PlayerPasswords.verified.contains(p)))
         {
             PlayerPasswords.verified.add(p);
