@@ -19,10 +19,10 @@ public class PlayerJoin implements Listener
     {
         Player p = e.getPlayer();
         String uuid = p.getUniqueId().toString();
-        boolean passwordRequired = settings.getConfig().getBoolean("Optional");
-        boolean passwordEnabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
-        boolean playerRequired = e.getPlayer().hasPermission("playerpasswords.required");
-        boolean playerBypass = e.getPlayer().hasPermission("playerpasswords.bypass");
+        boolean option = !settings.getConfig().getBoolean("Optional");
+        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
+        boolean required = e.getPlayer().hasPermission("playerpasswords.required");
+        boolean bypass = e.getPlayer().hasPermission("playerpasswords.bypass") && !enabled;
 
         // Creates a new section if the player has not joined before.
         if(!settings.getData().contains("passwords." + uuid))
@@ -34,7 +34,7 @@ public class PlayerJoin implements Listener
         }
 
 
-        if((!passwordRequired && !passwordEnabled && !playerBypass) || playerRequired)
+        if((!option || required || enabled) && !bypass)
         {
             if(settings.getData().getString("passwords." + uuid + ".password").equals(""))
             {
