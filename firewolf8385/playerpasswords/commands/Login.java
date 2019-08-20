@@ -31,7 +31,7 @@ public class Login implements CommandExecutor
             return true;
         }
 
-        if(args[0].equals(settings.getData().getString("passwords." + uuid + ".password")))
+        if(Utils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password")))
         {
             Utils.chat(p, settings.getConfig().getString("LogInSuccessful"));
             PlayerPasswords.verified.add(p);

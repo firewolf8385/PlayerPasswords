@@ -51,7 +51,7 @@ public class Register implements CommandExecutor
         }
 
 
-        settings.getData().set("passwords." + uuid + ".password", args[0]);
+        settings.getData().set("passwords." + uuid + ".password", Utils.hash(args[0]));
         Utils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
         if(!(PlayerPasswords.verified.contains(p)))

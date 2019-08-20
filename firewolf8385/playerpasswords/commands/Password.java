@@ -90,7 +90,7 @@ public class Password implements CommandExecutor
                 }
                 if(args.length > 1)
                 {
-                    settings.getData().set("passwords." + uuid + ".password", args[1]);
+                    settings.getData().set("passwords." + uuid + ".password", Utils.hash(args[1]));
                     settings.saveData();
                     settings.reloadData();
                     Utils.chat(p, settings.getConfig().getString("PasswordSet").replace("%password%", args[1]));
