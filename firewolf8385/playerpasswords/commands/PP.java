@@ -35,7 +35,7 @@ public class PP implements CommandExecutor
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 Utils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
                 Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.0");
-                Utils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "Coming Soon");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "https://www.spigotmc.org/resources/70520/");
                 Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
 
