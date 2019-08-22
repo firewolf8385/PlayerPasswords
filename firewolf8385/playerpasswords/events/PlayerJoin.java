@@ -58,6 +58,11 @@ public class PlayerJoin implements Listener
             {
                 Utils.chat(p, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
             }
+
+            if(settings.getConfig().getInt("configVersion") != 2)
+            {
+                Utils.chat(p, settings.getConfig().getString("OutdatedConfig"));
+            }
         }
 
     }
