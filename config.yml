@@ -48,6 +48,18 @@ MaximumPasswordLength: 256
 # Options: kick, tryagain
 WrongPassword: "kick"
 
+# Block chat when not logged in.
+BlockChat: true
+
+# Block commands when not logged in.
+BlockCommands: true
+
+# Block item drop when not logged in.
+BlockItemDrop: true
+
+# Block movement when not logged in.
+BlockMovement: true
+
 # -----------------------------------------
 #               Messages
 # -----------------------------------------
