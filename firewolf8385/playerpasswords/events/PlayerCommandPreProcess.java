@@ -28,7 +28,10 @@ public class PlayerCommandPreProcess implements Listener
         {
             if(!args[0].equalsIgnoreCase("/login") && !args[0].equalsIgnoreCase("/register"))
             {
-                e.setCancelled(true);
+                if(settings.getConfig().getBoolean("BlockCommands"))
+                {
+                    e.setCancelled(true);
+                }
             }
         }
     }
