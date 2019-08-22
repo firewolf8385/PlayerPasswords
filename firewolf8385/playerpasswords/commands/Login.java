@@ -21,6 +21,7 @@ public class Login implements CommandExecutor
         // If The Command Is Run Without Args, Show Error Message
         if(args.length == 0)
         {
+            Utils.chat(p, settings.getConfig().getString("LoginUsage"));
             return true;
         }
 
