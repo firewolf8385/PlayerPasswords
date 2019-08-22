@@ -15,7 +15,10 @@ public class PlayerMove implements Listener
     {
         if(!(PlayerPasswords.verified.contains(e.getPlayer())))
         {
-            e.setCancelled(true);
+            if(settings.getConfig().getBoolean("BlockMovement"))
+            {
+                e.setCancelled(true);
+            }
         }
     }
 }
