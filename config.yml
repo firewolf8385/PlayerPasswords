@@ -54,6 +54,9 @@ BlockChat: true
 # Block commands when not logged in.
 BlockCommands: true
 
+# Block interactions with items and blocks while not logged in.
+BlockInteract: true
+
 # Block item drop when not logged in.
 BlockItemDrop: true
 
