@@ -15,7 +15,10 @@ public class PlayerChat implements Listener
     {
         if(!(PlayerPasswords.verified.contains(e.getPlayer())))
         {
-            e.setCancelled(true);
+            if(settings.getConfig().getBoolean("BlockChat"))
+            {
+                e.setCancelled(true);
+            }
         }
     }
 }
