@@ -29,7 +29,6 @@ public class PlayerCommandPreProcess implements Listener
             if(!args[0].equalsIgnoreCase("/login") && !args[0].equalsIgnoreCase("/register"))
             {
                 e.setCancelled(true);
-                Utils.chat(p, "Blocked: " + args[0]);
             }
         }
     }
