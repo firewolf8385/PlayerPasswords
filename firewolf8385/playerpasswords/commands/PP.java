@@ -3,7 +3,6 @@ package firewolf8385.playerpasswords.commands;
 import firewolf8385.playerpasswords.PlayerPasswords;
 import firewolf8385.playerpasswords.SettingsManager;
 import firewolf8385.playerpasswords.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -34,14 +33,14 @@ public class PP implements CommandExecutor
             default:
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 Utils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
-                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.2");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.3");
                 Utils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "https://www.spigotmc.org/resources/70520/");
                 Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
 
             case "version":
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
-                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.2");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.3");
                 Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
 

@@ -17,8 +17,8 @@ public class PlayerPasswords extends JavaPlugin
     /***************************************************************************************
      *    Title: PlayerPasswords
      *    Author: firewolf8385
-     *    Date: August 20th, 2019
-     *    Code version: 1.2
+     *    Date: August 22th, 2019
+     *    Code version: 1.3
      ***************************************************************************************/
     SettingsManager settings = SettingsManager.getInstance();
     public static List<Player> verified = new ArrayList<>();
