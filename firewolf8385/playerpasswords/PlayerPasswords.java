@@ -35,6 +35,9 @@ public class PlayerPasswords extends JavaPlugin
 
         registerCommands();
         registerEvents();
+
+        // Checks for any new updates.
+        UpdateChecker update = new UpdateChecker(this.getDescription().getVersion());
     }
 
     /**

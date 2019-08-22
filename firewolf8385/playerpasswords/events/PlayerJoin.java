@@ -2,6 +2,7 @@ package firewolf8385.playerpasswords.events;
 
 import firewolf8385.playerpasswords.PlayerPasswords;
 import firewolf8385.playerpasswords.SettingsManager;
+import firewolf8385.playerpasswords.UpdateChecker;
 import firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -48,6 +49,15 @@ public class PlayerJoin implements Listener
         else
         {
             PlayerPasswords.verified.add(p);
+        }
+
+
+        if(p.hasPermission("playerpasswords.admin"))
+        {
+            if(UpdateChecker.update)
+            {
+                Utils.chat(p, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
+            }
         }
 
     }
