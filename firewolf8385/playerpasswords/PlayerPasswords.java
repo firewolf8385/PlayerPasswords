@@ -68,5 +68,6 @@ public class PlayerPasswords extends JavaPlugin
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcess(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDropItem(), this);
     }
 }
