@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Password implements CommandExecutor
 {
@@ -90,7 +91,7 @@ public class Password implements CommandExecutor
                 }
                 if(args.length > 1)
                 {
-                    settings.getData().set("passwords." + uuid + ".password", Utils.hash(args[1]));
+                    settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
                     settings.saveData();
                     settings.reloadData();
                     Utils.chat(p, settings.getConfig().getString("PasswordSet").replace("%password%", args[1]));

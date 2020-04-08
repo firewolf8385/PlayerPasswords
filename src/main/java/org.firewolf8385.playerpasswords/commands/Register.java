@@ -1,6 +1,5 @@
 package org.firewolf8385.playerpasswords.commands;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
@@ -8,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Register implements CommandExecutor
 {
@@ -51,7 +51,7 @@ public class Register implements CommandExecutor
         }
 
 
-        settings.getData().set("passwords." + uuid + ".password", Utils.hash(args[0]));
+        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
         Utils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
         if(!pl.isVerified())

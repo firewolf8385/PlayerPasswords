@@ -1,6 +1,5 @@
 package org.firewolf8385.playerpasswords.commands;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
@@ -9,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Login implements CommandExecutor
 {
@@ -40,7 +40,7 @@ public class Login implements CommandExecutor
             return true;
         }
 
-        if(Utils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password")))
+        if(StringUtils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password")))
         {
             Utils.chat(p, settings.getConfig().getString("LogInSuccessful"));
             pl.setVerified(true);
