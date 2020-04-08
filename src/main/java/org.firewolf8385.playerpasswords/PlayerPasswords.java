@@ -16,19 +16,16 @@ import org.firewolf8385.playerpasswords.listeners.PlayerMove;
 import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerPasswords extends JavaPlugin
 {
     /***************************************************************************************
      *    Title: PlayerPasswords
      *    Author: firewolf8385
-     *    Date: August 22th, 2019
-     *    Code version: 1.3
+     *    Date: April 48th, 2020
+     *    Code version: 1.4
      ***************************************************************************************/
     SettingsManager settings = SettingsManager.getInstance();
-    //public static List<Player> verified = new ArrayList<>();
 
     /**
      * This runs necessary tasks when the plugin is enabled.
