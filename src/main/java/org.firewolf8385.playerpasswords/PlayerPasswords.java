@@ -14,6 +14,7 @@ import org.firewolf8385.playerpasswords.listeners.PlayerInteract;
 import org.firewolf8385.playerpasswords.listeners.PlayerJoin;
 import org.firewolf8385.playerpasswords.listeners.PlayerMove;
 import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class PlayerPasswords extends JavaPlugin
      *    Code version: 1.3
      ***************************************************************************************/
     SettingsManager settings = SettingsManager.getInstance();
-    public static List<Player> verified = new ArrayList<>();
+    //public static List<Player> verified = new ArrayList<>();
 
     /**
      * This runs necessary tasks when the plugin is enabled.
@@ -49,7 +50,8 @@ public class PlayerPasswords extends JavaPlugin
         // This fixes issues with reloading.
         for(Player p : Bukkit.getOnlinePlayers())
         {
-            verified.add(p);
+            PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
+            pl.setVerified(true);
         }
     }
 

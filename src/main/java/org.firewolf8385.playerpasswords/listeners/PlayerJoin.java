@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerJoin implements Listener
 {
@@ -19,10 +20,12 @@ public class PlayerJoin implements Listener
     {
         Player p = e.getPlayer();
         String uuid = p.getUniqueId().toString();
-        boolean option = !settings.getConfig().getBoolean("Optional");
+
+        PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
+        p.sendMessage("Required: " + pl.isRequired());
+        p.sendMessage("Verified: " + pl.isVerified());
+
         boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
-        boolean required = e.getPlayer().hasPermission("playerpasswords.required");
-        boolean bypass = e.getPlayer().hasPermission("playerpasswords.bypass") && !enabled;
 
         // Creates a new section if the player has not joined before.
         if(!settings.getData().contains("passwords." + uuid))
@@ -34,7 +37,7 @@ public class PlayerJoin implements Listener
         }
 
 
-        if((!option || required || enabled) && !bypass)
+        if(pl.isRequired())
         {
             if(settings.getData().getString("passwords." + uuid + ".password").equals(""))
             {
@@ -44,10 +47,6 @@ public class PlayerJoin implements Listener
             {
                 Utils.chat(p, settings.getConfig().getString("Login"));
             }
-        }
-        else
-        {
-            PlayerPasswords.verified.add(p);
         }
 
 

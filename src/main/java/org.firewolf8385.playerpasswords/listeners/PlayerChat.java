@@ -1,10 +1,10 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerChat implements Listener
 {
@@ -13,12 +13,21 @@ public class PlayerChat implements Listener
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e)
     {
-        if(!(PlayerPasswords.verified.contains(e.getPlayer())))
+        PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
+
+        // Return if Verified
+        if(p.isVerified())
         {
-            if(settings.getConfig().getBoolean("BlockChat"))
-            {
-                e.setCancelled(true);
-            }
+            return;
         }
+
+        // Exit if BlockChat is false.
+        if(!settings.getConfig().getBoolean("BlockChat"))
+        {
+            return;
+        }
+
+        // Cancel Event.
+        e.setCancelled(true);
     }
 }

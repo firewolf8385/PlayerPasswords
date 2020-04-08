@@ -1,10 +1,10 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerMove implements Listener
 {
@@ -13,12 +13,20 @@ public class PlayerMove implements Listener
     @EventHandler
     public void onChat(PlayerMoveEvent e)
     {
-        if(!(PlayerPasswords.verified.contains(e.getPlayer())))
+        PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
+
+        // Exit if player is verified.
+        if(p.isVerified())
         {
-            if(settings.getConfig().getBoolean("BlockMovement"))
-            {
-                e.setCancelled(true);
-            }
+            return;
         }
+
+        // Exit if BlockMovement is disabled.
+        if(!settings.getConfig().getBoolean("BlockMovement"))
+        {
+            return;
+        }
+
+        e.setCancelled(true);
     }
 }

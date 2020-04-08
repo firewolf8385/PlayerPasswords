@@ -1,13 +1,12 @@
 package org.firewolf8385.playerpasswords.commands;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class Password implements CommandExecutor
 {
@@ -20,9 +19,10 @@ public class Password implements CommandExecutor
     {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
+        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
 
         // Player cannot use command if they aren't logged in.
-        if(!PlayerPasswords.verified.contains(p))
+        if(pl.isVerified())
         {
             Utils.chat(p, settings.getConfig().getString("MustBeLoggedIn"));
             return true;

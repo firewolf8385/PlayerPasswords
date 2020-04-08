@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class Login implements CommandExecutor
 {
@@ -15,8 +16,15 @@ public class Login implements CommandExecutor
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
+        // Exit if not a player.
+        if(!(sender instanceof Player))
+        {
+            return true;
+        }
+
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
+        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
 
         // If The Command Is Run Without Args, Show Error Message
         if(args.length == 0)
@@ -26,7 +34,7 @@ public class Login implements CommandExecutor
         }
 
         // If the player is already logged in, they can't log in again.
-        if(PlayerPasswords.verified.contains(p))
+        if(pl.isVerified())
         {
             Utils.chat(p, settings.getConfig().getString("AlreadyLoggedIn"));
             return true;
@@ -35,7 +43,7 @@ public class Login implements CommandExecutor
         if(Utils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password")))
         {
             Utils.chat(p, settings.getConfig().getString("LogInSuccessful"));
-            PlayerPasswords.verified.add(p);
+            pl.setVerified(true);
         }
         else
         {

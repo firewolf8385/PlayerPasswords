@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.commands;
 
+import org.bukkit.Bukkit;
 import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
@@ -7,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PP implements CommandExecutor
 {
@@ -40,7 +42,7 @@ public class PP implements CommandExecutor
 
             case "version":
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
-                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.3.1");
+                Utils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.4");
                 Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
 
@@ -63,9 +65,14 @@ public class PP implements CommandExecutor
 
             case "verified":
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
-                for(Player p : PlayerPasswords.verified)
+                for(Player p : Bukkit.getOnlinePlayers())
                 {
-                    Utils.chat(sender, "  " + gray + "» " + yellow + p.getName());
+                    PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
+
+                    if(pl.isVerified())
+                    {
+                        Utils.chat(sender, "  " + gray + "» " + yellow + p.getName());
+                    }
                 }
                 Utils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;

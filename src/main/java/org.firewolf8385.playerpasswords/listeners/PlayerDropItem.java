@@ -1,11 +1,10 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerDropItem implements Listener
 {
@@ -14,15 +13,21 @@ public class PlayerDropItem implements Listener
     @EventHandler
     public void onItemDrop(PlayerDropItemEvent e)
     {
-        Player p = e.getPlayer();
+        PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
 
-        if(!PlayerPasswords.verified.contains(p))
+        // Exit if player is verified.
+        if(p.isVerified())
         {
-            if(settings.getConfig().getBoolean("BlockItemDrop"))
-            {
-                e.setCancelled(true);
-            }
+            return;
         }
+
+        // Exit if BlockItemDrop is disabled.
+        if(!settings.getConfig().getBoolean("BlockItemDrop"))
+        {
+            return;
+        }
+
+        e.setCancelled(true);
     }
 
 }

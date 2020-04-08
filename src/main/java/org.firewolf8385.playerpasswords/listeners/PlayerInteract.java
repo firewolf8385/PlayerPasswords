@@ -1,11 +1,10 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerInteract implements Listener
 {
@@ -14,14 +13,20 @@ public class PlayerInteract implements Listener
     @EventHandler
     public void onInteract(PlayerInteractEvent e)
     {
-        Player p = e.getPlayer();
+        PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
 
-        if(!PlayerPasswords.verified.contains(p))
+        // Exit if player is verified.
+        if(p.isVerified())
         {
-            if(settings.getConfig().getBoolean("BlockInteract"))
-            {
-                e.setCancelled(true);
-            }
+            return;
         }
+
+        // Exit if BlockInteract is disabled.
+        if(!settings.getConfig().getBoolean("BlockInteract"))
+        {
+            return;
+        }
+
+        e.setCancelled(true);
     }
 }

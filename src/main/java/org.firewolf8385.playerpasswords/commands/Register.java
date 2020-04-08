@@ -3,11 +3,11 @@ package org.firewolf8385.playerpasswords.commands;
 import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class Register implements CommandExecutor
 {
@@ -17,13 +17,13 @@ public class Register implements CommandExecutor
     {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        boolean verified = PlayerPasswords.verified.contains(p);
+        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
         boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         int minimum = settings.getConfig().getInt("MinimumPasswordLength");
         int maximum = settings.getConfig().getInt("MaximumPasswordLength");
 
         // If the player is already logged in, the command will end.
-        if(verified)
+        if(pl.isVerified())
         {
             Utils.chat(p, settings.getConfig().getString("AlreadyLoggedIn"));
             return true;
@@ -54,9 +54,9 @@ public class Register implements CommandExecutor
         settings.getData().set("passwords." + uuid + ".password", Utils.hash(args[0]));
         Utils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
-        if(!(PlayerPasswords.verified.contains(p)))
+        if(!pl.isVerified())
         {
-            PlayerPasswords.verified.add(p);
+            pl.setVerified(true);
         }
 
         if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled")))

@@ -1,10 +1,9 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerQuit implements Listener
 {
@@ -12,12 +11,8 @@ public class PlayerQuit implements Listener
     @EventHandler
     public void onLeave(PlayerQuitEvent e)
     {
-        Player p = e.getPlayer();
-
-        if(PlayerPasswords.verified.contains(p))
-        {
-            PlayerPasswords.verified.remove(p);
-        }
+        // Remove player from list of players.
+        PasswordPlayer.getPlayers().remove(e.getPlayer().getUniqueId());
     }
 
 }
