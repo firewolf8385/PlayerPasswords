@@ -13,7 +13,7 @@ PlayerPasswords is a lightweight security plugin for the latest versions of Spig
   * Server Software with Bukkit API.
   
 ## Configuration
-PlayerPasswords is designed to be customizable. All cusotmization options can be found [`here`](https://github.com/firewolf8385/FlamePerms/blob/master/main/resources/config.yml).
+PlayerPasswords is designed to be customizable. All cusotmization options can be found [`here`](https://github.com/firewolf8385/PlayerPasswords/blob/master/src/main/resources/config.yml).
 
 ## Wiki
 Coming Soon.
