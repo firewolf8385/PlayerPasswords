@@ -1,4 +1,4 @@
-package firewolf8385.playerpasswords;
+package org.firewolf8385.playerpasswords;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

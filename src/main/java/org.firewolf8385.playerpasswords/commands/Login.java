@@ -1,8 +1,8 @@
-package firewolf8385.playerpasswords.commands;
+package org.firewolf8385.playerpasswords.commands;
 
-import firewolf8385.playerpasswords.PlayerPasswords;
-import firewolf8385.playerpasswords.SettingsManager;
-import firewolf8385.playerpasswords.Utils;
+import org.firewolf8385.playerpasswords.PlayerPasswords;
+import org.firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

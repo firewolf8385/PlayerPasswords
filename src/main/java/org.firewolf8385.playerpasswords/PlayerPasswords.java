@@ -1,13 +1,19 @@
-package firewolf8385.playerpasswords;
+package org.firewolf8385.playerpasswords;
 
-import firewolf8385.playerpasswords.commands.Login;
-import firewolf8385.playerpasswords.commands.PP;
-import firewolf8385.playerpasswords.commands.Password;
-import firewolf8385.playerpasswords.commands.Register;
-import firewolf8385.playerpasswords.events.*;
+import org.firewolf8385.playerpasswords.commands.Login;
+import org.firewolf8385.playerpasswords.commands.PP;
+import org.firewolf8385.playerpasswords.commands.Password;
+import org.firewolf8385.playerpasswords.commands.Register;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.firewolf8385.playerpasswords.listeners.PlayerChat;
+import org.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcess;
+import org.firewolf8385.playerpasswords.listeners.PlayerDropItem;
+import org.firewolf8385.playerpasswords.listeners.PlayerInteract;
+import org.firewolf8385.playerpasswords.listeners.PlayerJoin;
+import org.firewolf8385.playerpasswords.listeners.PlayerMove;
+import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
 
 import java.util.ArrayList;
 import java.util.List;
