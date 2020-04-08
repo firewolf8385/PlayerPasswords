@@ -1,4 +1,4 @@
-[![PlayerPasswords Logo](https://proxy.spigotmc.org/06eca31a69961f737c07ba958f00f513d1269c8a?url=https%3A%2F%2Fi.imgur.com%2Fk8IZjhu.png)]
+![PlayerPasswords Logo](https://proxy.spigotmc.org/06eca31a69961f737c07ba958f00f513d1269c8a?url=https%3A%2F%2Fi.imgur.com%2Fk8IZjhu.png)
 # PlayerPasswords &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/firewolf8385/flameperms/blob/master/LICENSE)
 > Allow Players To Optionally Protect Their Account
 
