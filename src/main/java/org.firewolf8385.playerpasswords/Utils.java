@@ -1,4 +1,4 @@
-package firewolf8385.playerpasswords;
+package org.firewolf8385.playerpasswords;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

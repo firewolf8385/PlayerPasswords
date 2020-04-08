@@ -1,10 +1,9 @@
-package firewolf8385.playerpasswords.events;
+package org.firewolf8385.playerpasswords.listeners;
 
-import firewolf8385.playerpasswords.PlayerPasswords;
-import firewolf8385.playerpasswords.SettingsManager;
-import firewolf8385.playerpasswords.UpdateChecker;
-import firewolf8385.playerpasswords.Utils;
-import org.bukkit.ChatColor;
+import org.firewolf8385.playerpasswords.PlayerPasswords;
+import org.firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.UpdateChecker;
+import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

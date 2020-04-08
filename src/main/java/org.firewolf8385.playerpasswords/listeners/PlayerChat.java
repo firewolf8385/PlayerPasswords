@@ -1,7 +1,7 @@
-package firewolf8385.playerpasswords.events;
+package org.firewolf8385.playerpasswords.listeners;
 
-import firewolf8385.playerpasswords.PlayerPasswords;
-import firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.PlayerPasswords;
+import org.firewolf8385.playerpasswords.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
