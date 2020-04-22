@@ -22,8 +22,6 @@ public class PlayerJoin implements Listener
         String uuid = p.getUniqueId().toString();
 
         PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
-        p.sendMessage("Required: " + pl.isRequired());
-        p.sendMessage("Verified: " + pl.isVerified());
 
         boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
 
