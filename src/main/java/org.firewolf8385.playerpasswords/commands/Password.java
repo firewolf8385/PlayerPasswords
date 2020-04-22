@@ -23,7 +23,7 @@ public class Password implements CommandExecutor
         PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
 
         // Player cannot use command if they aren't logged in.
-        if(pl.isVerified())
+        if(!pl.isVerified())
         {
             Utils.chat(p, settings.getConfig().getString("MustBeLoggedIn"));
             return true;
