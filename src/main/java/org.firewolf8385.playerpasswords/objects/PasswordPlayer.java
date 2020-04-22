@@ -27,9 +27,10 @@ public class PasswordPlayer
         boolean two = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         boolean three = getPlayer().hasPermission("playerpasswords.required");
 
-        required = one || two || !three;
+        required = one || two || three;
 
-        verified = !one && ((!two && !three) || getPlayer().hasPermission("playerpasswords.bypass"));
+        verified = !required;
+        //verified = !one && ((!two && !three) || getPlayer().hasPermission("playerpasswords.bypass"));
 
         players.put(uuid, this);
     }
