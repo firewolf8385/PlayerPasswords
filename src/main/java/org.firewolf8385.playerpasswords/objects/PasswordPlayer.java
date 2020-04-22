@@ -29,8 +29,7 @@ public class PasswordPlayer
 
         required = one || two || three;
 
-        verified = !required;
-        //verified = !one && ((!two && !three) || getPlayer().hasPermission("playerpasswords.bypass"));
+        verified = !required || getPlayer().hasPermission("playerpasswords.bypass");
 
         players.put(uuid, this);
     }
