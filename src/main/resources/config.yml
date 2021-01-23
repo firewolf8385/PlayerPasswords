@@ -6,13 +6,13 @@
 #    |_|    |_|\__,_|\__, |\___|_|  |_|   \__,_|___/___/ \_/\_/ \___/|_|  \__,_|___/
 #                     __/ |
 #                    |___/
-#                                Version 1.3
+#                                Version 2.0
 
 
 # This is used when an update modifies the config. If checks this value and
 #warns you when the config file does not match the version needed. This number
 # may be changed when the correct additions to the config are made.
-ConfigVersion: 2
+ConfigVersion: 3
 
 
 
