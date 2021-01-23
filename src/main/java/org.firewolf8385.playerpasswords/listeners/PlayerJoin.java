@@ -2,7 +2,6 @@ package org.firewolf8385.playerpasswords.listeners;
 
 import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.SettingsManager;
-import org.firewolf8385.playerpasswords.UpdateChecker;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,11 +49,6 @@ public class PlayerJoin implements Listener
 
         if(p.hasPermission("playerpasswords.admin"))
         {
-            if(UpdateChecker.update)
-            {
-                Utils.chat(p, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
-            }
-
             if(settings.getConfig().getInt("ConfigVersion") != 2)
             {
                 Utils.chat(p, settings.getConfig().getString("OutdatedConfig"));

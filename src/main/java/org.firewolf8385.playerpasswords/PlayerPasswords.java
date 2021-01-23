@@ -40,9 +40,6 @@ public class PlayerPasswords extends JavaPlugin
         registerCommands();
         registerEvents();
 
-        // Checks for any new updates.
-        UpdateChecker update = new UpdateChecker(this.getDescription().getVersion());
-
         // Adds all online players to the verified list.
         // This fixes issues with reloading.
         for(Player p : Bukkit.getOnlinePlayers())
