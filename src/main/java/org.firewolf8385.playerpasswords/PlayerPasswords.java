@@ -16,24 +16,15 @@ import org.firewolf8385.playerpasswords.listeners.PlayerMove;
 import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-
-public class PlayerPasswords extends JavaPlugin
-{
-    /***************************************************************************************
-     *    Title: PlayerPasswords
-     *    Author: firewolf8385
-     *    Date: January 23rd, 2021
-     *    Code version: 2.0
-     ***************************************************************************************/
-    SettingsManager settings = SettingsManager.getInstance();
+public class PlayerPasswords extends JavaPlugin {
+    private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
      * This runs necessary tasks when the plugin is enabled.
      */
-    public void onEnable()
-    {
+    public void onEnable() {
         // Enables bStats
-        Metrics metrics = new Metrics(this);
+        new MetricsLite(this, 5190);
 
         settings.setup(this);
 
@@ -42,8 +33,7 @@ public class PlayerPasswords extends JavaPlugin
 
         // Adds all online players to the verified list.
         // This fixes issues with reloading.
-        for(Player p : Bukkit.getOnlinePlayers())
-        {
+        for(Player p : Bukkit.getOnlinePlayers()) {
             PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
             pl.setVerified(true);
         }
@@ -52,8 +42,7 @@ public class PlayerPasswords extends JavaPlugin
     /**
      * This registers the plugin's commands.
      */
-    private void registerCommands()
-    {
+    private void registerCommands() {
         getCommand("login").setExecutor(new Login());
         getCommand("register").setExecutor(new Register());
         getCommand("playerpasswords").setExecutor(new PP());
@@ -63,8 +52,7 @@ public class PlayerPasswords extends JavaPlugin
     /**
      * This registers events the plugin uses.
      */
-    private void registerEvents()
-    {
+    private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new PlayerChat(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
