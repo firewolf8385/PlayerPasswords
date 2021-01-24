@@ -3,13 +3,13 @@ package org.firewolf8385.playerpasswords.listeners;
 import org.bukkit.Bukkit;
 import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
-import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import org.firewolf8385.playerpasswords.utils.ChatUtils;
 
 public class PlayerJoin implements Listener {
     private final PlayerPasswords plugin;
@@ -40,17 +40,17 @@ public class PlayerJoin implements Listener {
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if(pl.isRequired()) {
                 if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
-                    Utils.chat(p, settings.getConfig().getString("Register"));
+                    ChatUtils.chat(p, settings.getConfig().getString("Register"));
                 }
                 else {
-                    Utils.chat(p, settings.getConfig().getString("Login"));
+                    ChatUtils.chat(p, settings.getConfig().getString("Login"));
                 }
             }
 
 
             if(p.hasPermission("playerpasswords.admin")) {
                 if(settings.getConfig().getInt("ConfigVersion") != 4) {
-                    Utils.chat(p, settings.getConfig().getString("OutdatedConfig"));
+                    ChatUtils.chat(p, settings.getConfig().getString("OutdatedConfig"));
                 }
             }
         }, 5);
