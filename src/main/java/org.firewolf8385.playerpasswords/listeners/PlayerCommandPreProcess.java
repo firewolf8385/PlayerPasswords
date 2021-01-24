@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.listeners;
 
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,11 +9,16 @@ import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 
 public class PlayerCommandPreProcess implements Listener {
+    private final PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
+
+    public PlayerCommandPreProcess(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
-        PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
+        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer().getUniqueId());
 
         // Exit if player is verified.
         if(p.isVerified()) {

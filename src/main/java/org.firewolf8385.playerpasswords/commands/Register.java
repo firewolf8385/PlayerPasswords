@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.commands;
 
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
@@ -10,12 +11,17 @@ import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Register implements CommandExecutor {
+    private final PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
+
+    public Register(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
         boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         int minimum = settings.getConfig().getInt("MinimumPasswordLength");
         int maximum = settings.getConfig().getInt("MaximumPasswordLength");

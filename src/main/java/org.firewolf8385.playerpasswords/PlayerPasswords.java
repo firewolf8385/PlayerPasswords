@@ -14,10 +14,12 @@ import org.firewolf8385.playerpasswords.listeners.PlayerInteract;
 import org.firewolf8385.playerpasswords.listeners.PlayerJoin;
 import org.firewolf8385.playerpasswords.listeners.PlayerMove;
 import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
+import org.firewolf8385.playerpasswords.managers.PlayerManager;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerPasswords extends JavaPlugin {
+    private PlayerManager playerManager;
     private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
@@ -29,37 +31,43 @@ public class PlayerPasswords extends JavaPlugin {
 
         settings.setup(this);
 
+        playerManager = new PlayerManager();
+
         registerCommands();
         registerEvents();
 
         // Adds all online players to the verified list.
         // This fixes issues with reloading.
         for(Player p : Bukkit.getOnlinePlayers()) {
-            PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
+            PasswordPlayer pl = playerManager.get(p.getUniqueId());
             pl.setVerified(true);
         }
+    }
+
+    public PlayerManager getPlayerManager() {
+        return playerManager;
     }
 
     /**
      * This registers the plugin's commands.
      */
     private void registerCommands() {
-        getCommand("login").setExecutor(new Login());
-        getCommand("register").setExecutor(new Register());
-        getCommand("playerpasswords").setExecutor(new PP());
-        getCommand("password").setExecutor(new Password());
+        getCommand("login").setExecutor(new Login(this));
+        getCommand("register").setExecutor(new Register(this));
+        getCommand("playerpasswords").setExecutor(new PP(this));
+        getCommand("password").setExecutor(new Password(this));
     }
 
     /**
      * This registers events the plugin uses.
      */
     private void registerEvents() {
-        Bukkit.getPluginManager().registerEvents(new PlayerChat(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcess(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerDropItem(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerChat(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMove(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuit(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcess(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDropItem(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteract(this), this);
     }
 }

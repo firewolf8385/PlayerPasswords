@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.commands;
 
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
@@ -10,15 +11,20 @@ import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Password implements CommandExecutor {
+    private final PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
     private final String gold = settings.getConfig().getString("color1");
     private final String yellow = settings.getConfig().getString("color2");
     private final String gray = settings.getConfig().getString("color3");
 
+    public Password(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
 
         // Player cannot use command if they aren't logged in.
         if(!pl.isVerified()) {

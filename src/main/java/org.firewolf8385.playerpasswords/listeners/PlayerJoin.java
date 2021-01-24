@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.listeners;
 
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.entity.Player;
@@ -10,16 +11,20 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerJoin implements Listener {
+    private final PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
+
+    public PlayerJoin(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         String uuid = p.getUniqueId().toString();
 
-        PasswordPlayer pl = new PasswordPlayer(p.getUniqueId());
-
-        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
+        plugin.getPlayerManager().add(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
 
         // Creates a new section if the player has not joined before.
         if(!settings.getData().contains("passwords." + uuid)) {

@@ -7,7 +7,6 @@ import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import java.util.*;
 
 public class PasswordPlayer {
-    public static HashMap<UUID, PasswordPlayer> players = new HashMap<>();
     SettingsManager settings = SettingsManager.getInstance();
 
     private boolean required;
@@ -28,8 +27,6 @@ public class PasswordPlayer {
         required = one || two || three;
 
         verified = !required || getPlayer().hasPermission("playerpasswords.bypass");
-
-        players.put(uuid, this);
     }
 
     /**
@@ -38,14 +35,6 @@ public class PasswordPlayer {
      */
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
-    }
-
-    /**
-     * Get a list of all players.
-     * @return Players
-     */
-    public static Map<UUID, PasswordPlayer> getPlayers() {
-        return players;
     }
 
     /**

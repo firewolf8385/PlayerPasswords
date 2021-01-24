@@ -1,5 +1,6 @@
 package org.firewolf8385.playerpasswords.commands;
 
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.ChatColor;
@@ -11,7 +12,12 @@ import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.StringUtils;
 
 public class Login implements CommandExecutor {
+    private final PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
+
+    public Login(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // Exit if not a player.
@@ -22,7 +28,7 @@ public class Login implements CommandExecutor {
 
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
 
         // If the player is already logged in, they can't log in again.
         if(pl.isVerified()) {

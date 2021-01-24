@@ -1,6 +1,7 @@
 package org.firewolf8385.playerpasswords.commands;
 
 import org.bukkit.Bukkit;
+import org.firewolf8385.playerpasswords.PlayerPasswords;
 import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
@@ -10,10 +11,15 @@ import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PP implements CommandExecutor {
+    private PlayerPasswords plugin;
     private final SettingsManager settings = SettingsManager.getInstance();
     String gold = settings.getConfig().getString("color1");
     String yellow = settings.getConfig().getString("color2");
     String gray = settings.getConfig().getString("color3");
+
+    public PP(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // If no arguments, show plugin help.
@@ -61,7 +67,7 @@ public class PP implements CommandExecutor {
             case "verified":
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 for(Player p : Bukkit.getOnlinePlayers()) {
-                    PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
+                    PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
 
                     if(pl.isVerified()) {
                         Utils.chat(sender, "  " + gray + "» " + yellow + p.getName());
