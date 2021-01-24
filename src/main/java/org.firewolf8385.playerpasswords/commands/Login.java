@@ -28,7 +28,7 @@ public class Login implements CommandExecutor {
 
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
         // If the player is already logged in, they can't log in again.
         if(pl.isVerified()) {

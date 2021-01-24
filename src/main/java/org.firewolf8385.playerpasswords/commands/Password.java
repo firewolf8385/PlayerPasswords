@@ -30,7 +30,7 @@ public class Password implements CommandExecutor {
 
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
         // Player cannot use command if they aren't logged in.
         if(!pl.isVerified()) {

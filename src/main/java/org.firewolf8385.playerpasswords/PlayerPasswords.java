@@ -39,7 +39,7 @@ public class PlayerPasswords extends JavaPlugin {
         // Adds all online players to the verified list.
         // This fixes issues with reloading.
         for(Player p : Bukkit.getOnlinePlayers()) {
-            PasswordPlayer pl = playerManager.get(p.getUniqueId());
+            PasswordPlayer pl = playerManager.get(p);
             pl.setVerified(true);
         }
     }

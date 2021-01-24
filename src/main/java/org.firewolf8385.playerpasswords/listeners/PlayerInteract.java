@@ -17,7 +17,7 @@ public class PlayerInteract implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer().getUniqueId());
+        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer());
 
         // Exit if player is verified.
         if(p.isVerified()) {

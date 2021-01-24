@@ -67,7 +67,7 @@ public class PP implements CommandExecutor {
             case "verified":
                 ChatUtils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 for(Player p : Bukkit.getOnlinePlayers()) {
-                    PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
+                    PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
                     if(pl.isVerified()) {
                         ChatUtils.chat(sender, "  " + gray + "» " + yellow + p.getName());

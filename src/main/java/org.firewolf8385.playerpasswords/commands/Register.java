@@ -27,7 +27,7 @@ public class Register implements CommandExecutor {
 
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
-        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
+        PasswordPlayer pl = plugin.getPlayerManager().get(p);
         boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         int minimum = settings.getConfig().getInt("MinimumPasswordLength");
         int maximum = settings.getConfig().getInt("MaximumPasswordLength");
@@ -55,7 +55,6 @@ public class Register implements CommandExecutor {
             ChatUtils.chat(p, settings.getConfig().getString("OutOfBounds"));
             return true;
         }
-
 
         settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
         ChatUtils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));

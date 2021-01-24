@@ -17,7 +17,7 @@ public class PlayerMove implements Listener {
 
     @EventHandler
     public void onChat(PlayerMoveEvent e) {
-        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer().getUniqueId());
+        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer());
 
         // Exit if player is verified.
         if(p.isVerified()) {

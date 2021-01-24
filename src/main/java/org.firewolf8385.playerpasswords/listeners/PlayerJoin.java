@@ -24,8 +24,8 @@ public class PlayerJoin implements Listener {
         Player p = e.getPlayer();
         String uuid = p.getUniqueId().toString();
 
-        plugin.getPlayerManager().add(p.getUniqueId());
-        PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
+        plugin.getPlayerManager().add(p);
+        PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
         // Creates a new section if the player has not joined before.
         if(!settings.getData().contains("passwords." + uuid)) {

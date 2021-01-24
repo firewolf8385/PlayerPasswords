@@ -17,7 +17,7 @@ public class PlayerChat implements Listener {
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
-        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer().getUniqueId());
+        PasswordPlayer p = plugin.getPlayerManager().get(e.getPlayer());
 
         // Return if Verified
         if(p.isVerified()) {
