@@ -14,6 +14,7 @@ import org.firewolf8385.playerpasswords.listeners.PlayerInteract;
 import org.firewolf8385.playerpasswords.listeners.PlayerJoin;
 import org.firewolf8385.playerpasswords.listeners.PlayerMove;
 import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
+import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerPasswords extends JavaPlugin {

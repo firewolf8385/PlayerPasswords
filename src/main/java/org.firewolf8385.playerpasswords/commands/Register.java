@@ -1,6 +1,6 @@
 package org.firewolf8385.playerpasswords.commands;
 
-import org.firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

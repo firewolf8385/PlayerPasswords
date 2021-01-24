@@ -1,6 +1,6 @@
 package org.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.managers.SettingsManager;
 import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -2,7 +2,7 @@ package org.firewolf8385.playerpasswords.objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.firewolf8385.playerpasswords.SettingsManager;
+import org.firewolf8385.playerpasswords.managers.SettingsManager;
 
 import java.util.*;
 
