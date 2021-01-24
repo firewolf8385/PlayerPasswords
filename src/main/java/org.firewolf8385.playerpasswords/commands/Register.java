@@ -62,8 +62,8 @@ public class Register implements CommandExecutor {
             pl.setVerified(true);
         }
 
-        if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
-            settings.getData().set("passwords." + uuid + ".enabled", true);
+        if(!pl.isEnabled()) {
+            pl.setEnabled(true);
         }
 
         settings.saveData();

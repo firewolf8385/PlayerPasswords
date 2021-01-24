@@ -28,18 +28,16 @@ public class PlayerJoin implements Listener {
         PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
         // Creates a new section if the player has not joined before.
-        if(plugin.getPlayerManager().exists(p)) {
-            settings.getData().set("passwords." + uuid + ".password", "");
-            settings.getData().set("passwords." + uuid + ".enabled", false);
-            settings.saveData();
-            settings.reloadData();
+        if(!plugin.getPlayerManager().exists(p)) {
+            pl.setPassword("");
+            pl.setEnabled(false);
         }
 
 
         // Run message tasks later to make plugin messages the most recent.
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if(pl.isRequired()) {
-                if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
+                if(pl.getPassword().length() == 0) {
                     ChatUtils.chat(p, settings.getConfig().getString("Register"));
                 }
                 else {
