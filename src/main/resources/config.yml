@@ -90,6 +90,7 @@ OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters lon
 MustBeLoggedIn: "&6&lError &8» &cYou must be logged in to do that."
 OptionalPasswordsDisabled: "&6&lError &8» &cOptional Passwords are disabled."
 MustBePlay: "&6&lError &8» &cYou must be a player to use that command."
+MustSetPassword: "&6&lError &8» &cYou must set a password first."
 
 # Other
 KickMessage: "&cYou entered your password incorrectly."

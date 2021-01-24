@@ -9,29 +9,25 @@ import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.StringUtils;
 
-public class Password implements CommandExecutor
-{
-    SettingsManager settings = SettingsManager.getInstance();
-    String gold = settings.getConfig().getString("color1");
-    String yellow = settings.getConfig().getString("color2");
-    String gray = settings.getConfig().getString("color3");
+public class Password implements CommandExecutor {
+    private final SettingsManager settings = SettingsManager.getInstance();
+    private final String gold = settings.getConfig().getString("color1");
+    private final String yellow = settings.getConfig().getString("color2");
+    private final String gray = settings.getConfig().getString("color3");
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
         PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
 
         // Player cannot use command if they aren't logged in.
-        if(!pl.isVerified())
-        {
+        if(!pl.isVerified()) {
             Utils.chat(p, settings.getConfig().getString("MustBeLoggedIn"));
             return true;
         }
 
         // Shows default page if no arguments are given.
-        if(args.length == 0)
-        {
+        if(args.length == 0) {
             Utils.chat(p, gold + "&l]" + gray + "&m--------------------" + gold + "&lPasswords" + gray + "&m--------------------" + gold +"&l[");
             Utils.chat(p, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
             Utils.chat(p, "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password");
@@ -41,8 +37,7 @@ public class Password implements CommandExecutor
         }
 
 
-        switch(args[0].toLowerCase())
-        {
+        switch(args[0].toLowerCase()) {
             default:
                 Utils.chat(p, gold + "&l]" + gray + "&m--------------------" + gold + "&lPasswords" + gray + "&m--------------------" + gold +"&l[");
                 Utils.chat(p, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
@@ -52,9 +47,13 @@ public class Password implements CommandExecutor
                 break;
 
             case "enable":
-                if(!sender.hasPermission("playerpasswords.enable"))
-                {
+                if(!sender.hasPermission("playerpasswords.enable")) {
                     Utils.chat(sender, settings.getConfig().getString("NoPermission"));
+                    return true;
+                }
+
+                if(settings.getData().getString("passwords." + uuid + ".password").length() == 0) {
+                    Utils.chat(p, settings.getConfig().getString("MustSetPassword"));
                     return true;
                 }
 
@@ -65,39 +64,33 @@ public class Password implements CommandExecutor
                 break;
 
             case "disable":
-                if(!sender.hasPermission("playerpasswords.disable"))
-                {
+                if(!sender.hasPermission("playerpasswords.disable")) {
                     Utils.chat(p, settings.getConfig().getString("NoPermission"));
                     return true;
                 }
-                if(settings.getConfig().getBoolean("Optional"))
-                {
+                if(settings.getConfig().getBoolean("Optional")) {
                     settings.getData().set("passwords." + uuid + ".enabled", false);
                     settings.saveData();
                     settings.reloadData();
                     Utils.chat(p, settings.getConfig().getString("PasswordDisabled"));
                 }
-                else
-                {
+                else {
                     Utils.chat(p, settings.getConfig().getString("OptionalPasswordDisabled"));
                 }
                 break;
 
             case "set":
-                if(!sender.hasPermission("playerpasswords.set"))
-                {
+                if(!sender.hasPermission("playerpasswords.set")) {
                     Utils.chat(p, settings.getConfig().getString("NoPermission"));
                     return true;
                 }
-                if(args.length > 1)
-                {
+                if(args.length > 1) {
                     settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
                     settings.saveData();
                     settings.reloadData();
                     Utils.chat(p, settings.getConfig().getString("PasswordSet").replace("%password%", args[1]));
                 }
-                else
-                {
+                else {
                     Utils.chat(p, settings.getConfig().getString("PasswordSetUsage"));
                 }
                 break;
