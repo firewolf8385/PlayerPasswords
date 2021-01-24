@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.ChatUtils;
-import org.firewolf8385.playerpasswords.utils.StringUtils;
+import org.firewolf8385.playerpasswords.utils.EncryptionUtils;
 
 public class Register implements CommandExecutor {
     private final PlayerPasswords plugin;
@@ -28,7 +28,6 @@ public class Register implements CommandExecutor {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
         PasswordPlayer pl = plugin.getPlayerManager().get(p);
-        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
         int minimum = settings.getConfig().getInt("MinimumPasswordLength");
         int maximum = settings.getConfig().getInt("MaximumPasswordLength");
 
@@ -39,7 +38,7 @@ public class Register implements CommandExecutor {
         }
 
         // If the player already set their password, the command will end.
-        if(enabled) {
+        if(pl.isEnabled()) {
             ChatUtils.chat(p, settings.getConfig().getString("AlreadyRegistered"));
             return true;
         }
@@ -56,7 +55,7 @@ public class Register implements CommandExecutor {
             return true;
         }
 
-        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
+        pl.setPassword(EncryptionUtils.getSha256(args[0]));
         ChatUtils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
         if(!pl.isVerified()) {

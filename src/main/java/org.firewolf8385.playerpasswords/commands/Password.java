@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.ChatUtils;
-import org.firewolf8385.playerpasswords.utils.StringUtils;
+import org.firewolf8385.playerpasswords.utils.EncryptionUtils;
 
 public class Password implements CommandExecutor {
     private final PlayerPasswords plugin;
@@ -93,9 +93,7 @@ public class Password implements CommandExecutor {
                     return true;
                 }
                 if(args.length > 1) {
-                    settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
-                    settings.saveData();
-                    settings.reloadData();
+                    pl.setPassword(EncryptionUtils.getSha256(args[1]));
                     ChatUtils.chat(p, settings.getConfig().getString("PasswordSet").replace("%password%", args[1]));
                 }
                 else {
