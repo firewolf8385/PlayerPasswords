@@ -19,6 +19,12 @@ public class Register implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        // Exit if not a player.
+        if(!(sender instanceof Player)) {
+            Utils.chat(sender, settings.getConfig().getString("MustBePlayer"));
+            return true;
+        }
+
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
         PasswordPlayer pl = plugin.getPlayerManager().get(p.getUniqueId());
