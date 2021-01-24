@@ -69,9 +69,7 @@ public class Password implements CommandExecutor {
                     return true;
                 }
 
-                settings.getData().set("passwords." + uuid + ".enabled", true);
-                settings.saveData();
-                settings.reloadData();
+                pl.setEnabled(true);
                 ChatUtils.chat(p, settings.getConfig().getString("PasswordEnabled"));
                 break;
 
@@ -81,9 +79,7 @@ public class Password implements CommandExecutor {
                     return true;
                 }
                 if(settings.getConfig().getBoolean("Optional")) {
-                    settings.getData().set("passwords." + uuid + ".enabled", false);
-                    settings.saveData();
-                    settings.reloadData();
+                    pl.setEnabled(false);
                     ChatUtils.chat(p, settings.getConfig().getString("PasswordDisabled"));
                 }
                 else {
