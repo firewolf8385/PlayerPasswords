@@ -12,7 +12,7 @@
 # This is used when an update modifies the config. If checks this value and
 #warns you when the config file does not match the version needed. This number
 # may be changed when the correct additions to the config are made.
-ConfigVersion: 3
+ConfigVersion: 4
 
 
 
@@ -89,6 +89,7 @@ NoPermission: "&6&lError &8» &cYou do not have permission to do that."
 OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters long."
 MustBeLoggedIn: "&6&lError &8» &cYou must be logged in to do that."
 OptionalPasswordsDisabled: "&6&lError &8» &cOptional Passwords are disabled."
+MustBePlay: "&6&lError &8» &cYou must be a player to use that command."
 
 # Other
 KickMessage: "&cYou entered your password incorrectly."
