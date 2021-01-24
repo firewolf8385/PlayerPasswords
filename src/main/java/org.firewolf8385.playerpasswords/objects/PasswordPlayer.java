@@ -6,8 +6,7 @@ import org.firewolf8385.playerpasswords.SettingsManager;
 
 import java.util.*;
 
-public class PasswordPlayer
-{
+public class PasswordPlayer {
     public static HashMap<UUID, PasswordPlayer> players = new HashMap<>();
     SettingsManager settings = SettingsManager.getInstance();
 
@@ -19,8 +18,7 @@ public class PasswordPlayer
      * Create a PasswordPlayer
      * @param uuid UUID of player.
      */
-    public PasswordPlayer(UUID uuid)
-    {
+    public PasswordPlayer(UUID uuid) {
         this.uuid = uuid;
 
         boolean one = !settings.getConfig().getBoolean("Optional");
@@ -38,8 +36,7 @@ public class PasswordPlayer
      * Get the player.
      * @return Player
      */
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }
 
@@ -47,8 +44,7 @@ public class PasswordPlayer
      * Get a list of all players.
      * @return Players
      */
-    public static Map<UUID, PasswordPlayer> getPlayers()
-    {
+    public static Map<UUID, PasswordPlayer> getPlayers() {
         return players;
     }
 
@@ -56,8 +52,7 @@ public class PasswordPlayer
      * Get if the player requires a password.
      * @return Whether or not a password is required.
      */
-    public boolean isRequired()
-    {
+    public boolean isRequired() {
         return required;
     }
 
@@ -65,8 +60,7 @@ public class PasswordPlayer
      * Get if the player is verified.
      * @return Whether or not it is verified.
      */
-    public boolean isVerified()
-    {
+    public boolean isVerified() {
         return verified;
     }
 
@@ -74,8 +68,7 @@ public class PasswordPlayer
      * Set if the player is verified.
      * @param verified Whether or not the player is verified.
      */
-    public void setVerified(boolean verified)
-    {
+    public void setVerified(boolean verified) {
         this.verified = verified;
     }
 }

@@ -10,18 +10,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-public class PP implements CommandExecutor
-{
-    SettingsManager settings = SettingsManager.getInstance();
+public class PP implements CommandExecutor {
+    private final SettingsManager settings = SettingsManager.getInstance();
     String gold = settings.getConfig().getString("color1");
     String yellow = settings.getConfig().getString("color2");
     String gray = settings.getConfig().getString("color3");
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // If no arguments, show plugin help.
-        if(args.length == 0)
-        {
+        if(args.length == 0) {
             Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
             Utils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
             Utils.chat(sender, "  " + gray + "» " + gold + "/pp support " + gray + "- " + yellow + "Display's the support discord link.");
@@ -30,8 +27,7 @@ public class PP implements CommandExecutor
             return true;
         }
 
-        switch(args[0])
-        {
+        switch(args[0]) {
             default:
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 Utils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
@@ -65,12 +61,10 @@ public class PP implements CommandExecutor
 
             case "verified":
                 Utils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
-                for(Player p : Bukkit.getOnlinePlayers())
-                {
+                for(Player p : Bukkit.getOnlinePlayers()) {
                     PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
 
-                    if(pl.isVerified())
-                    {
+                    if(pl.isVerified()) {
                         Utils.chat(sender, "  " + gray + "» " + yellow + p.getName());
                     }
                 }

@@ -4,15 +4,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Utils
-{
+public class Utils {
     /**
      * A quicker method to send colored chat messages.
      * @param p Player to send message to.
      * @param s Message to send.
      */
-    public static void chat(Player p, String s)
-    {
+    public static void chat(Player p, String s) {
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', s));
     }
 
@@ -21,8 +19,7 @@ public class Utils
      * @param sender CommandSender to sender message to.
      * @param s Message to send.
      */
-    public static void chat(CommandSender sender, String s)
-    {
+    public static void chat(CommandSender sender, String s) {
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', s));
     }
 

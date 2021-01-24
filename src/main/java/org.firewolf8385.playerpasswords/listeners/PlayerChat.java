@@ -6,24 +6,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-public class PlayerChat implements Listener
-{
-    SettingsManager settings = SettingsManager.getInstance();
+public class PlayerChat implements Listener {
+    private final SettingsManager settings = SettingsManager.getInstance();
 
     @EventHandler
-    public void onChat(AsyncPlayerChatEvent e)
-    {
+    public void onChat(AsyncPlayerChatEvent e) {
         PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
 
         // Return if Verified
-        if(p.isVerified())
-        {
+        if(p.isVerified()) {
             return;
         }
 
         // Exit if BlockChat is false.
-        if(!settings.getConfig().getBoolean("BlockChat"))
-        {
+        if(!settings.getConfig().getBoolean("BlockChat")) {
             return;
         }
 

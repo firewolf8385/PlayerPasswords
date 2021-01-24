@@ -9,12 +9,10 @@ import org.bukkit.entity.Player;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.firewolf8385.playerpasswords.utils.StringUtils;
 
-public class Register implements CommandExecutor
-{
-    SettingsManager settings = SettingsManager.getInstance();
+public class Register implements CommandExecutor {
+    private final SettingsManager settings = SettingsManager.getInstance();
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
-    {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
         PasswordPlayer pl = PasswordPlayer.getPlayers().get(p.getUniqueId());
@@ -23,29 +21,25 @@ public class Register implements CommandExecutor
         int maximum = settings.getConfig().getInt("MaximumPasswordLength");
 
         // If the player is already logged in, the command will end.
-        if(pl.isVerified())
-        {
+        if(pl.isVerified()) {
             Utils.chat(p, settings.getConfig().getString("AlreadyLoggedIn"));
             return true;
         }
 
         // If the player already set their password, the command will end.
-        if(enabled)
-        {
+        if(enabled) {
             Utils.chat(p, settings.getConfig().getString("AlreadyRegistered"));
             return true;
         }
 
         // If the player did not enter a password, the command will end.
-        if(args.length == 0)
-        {
+        if(args.length == 0) {
             Utils.chat(p, settings.getConfig().getString("RegisterUsage"));
             return true;
         }
 
         // Shows the player a message if their password does not fit the requirements.
-        if(!(args[0].length() >= minimum && args[0].length() <= maximum))
-        {
+        if(!(args[0].length() >= minimum && args[0].length() <= maximum)) {
             Utils.chat(p, settings.getConfig().getString("OutOfBounds"));
             return true;
         }
@@ -54,13 +48,11 @@ public class Register implements CommandExecutor
         settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
         Utils.chat(p, settings.getConfig().getString("SetPasswordSuccessful"));
 
-        if(!pl.isVerified())
-        {
+        if(!pl.isVerified()) {
             pl.setVerified(true);
         }
 
-        if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled")))
-        {
+        if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
             settings.getData().set("passwords." + uuid + ".enabled", true);
         }
 

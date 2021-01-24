@@ -6,24 +6,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-public class PlayerMove implements Listener
-{
-    SettingsManager settings = SettingsManager.getInstance();
+public class PlayerMove implements Listener {
+    private final SettingsManager settings = SettingsManager.getInstance();
 
     @EventHandler
-    public void onChat(PlayerMoveEvent e)
-    {
+    public void onChat(PlayerMoveEvent e) {
         PasswordPlayer p = PasswordPlayer.getPlayers().get(e.getPlayer().getUniqueId());
 
         // Exit if player is verified.
-        if(p.isVerified())
-        {
+        if(p.isVerified()) {
             return;
         }
 
         // Exit if BlockMovement is disabled.
-        if(!settings.getConfig().getBoolean("BlockMovement"))
-        {
+        if(!settings.getConfig().getBoolean("BlockMovement")) {
             return;
         }
 
