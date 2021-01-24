@@ -28,7 +28,7 @@ public class PlayerJoin implements Listener {
         PasswordPlayer pl = plugin.getPlayerManager().get(p);
 
         // Creates a new section if the player has not joined before.
-        if(!settings.getData().contains("passwords." + uuid)) {
+        if(plugin.getPlayerManager().exists(p)) {
             settings.getData().set("passwords." + uuid + ".password", "");
             settings.getData().set("passwords." + uuid + ".enabled", false);
             settings.saveData();

@@ -12,6 +12,7 @@ import java.util.UUID;
  */
 public class PlayerManager {
     private Map<UUID, PasswordPlayer> players = new HashMap<>();
+    private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
      * Creates a new instance of the manager.
@@ -50,6 +51,24 @@ public class PlayerManager {
      */
     public boolean contains(Player p) {
         return  contains(p.getUniqueId());
+    }
+
+    /**
+     * Checks if a player exists in Data.yml.
+     * @param uuid UUID of player to check.
+     * @return Whether or not they exist in Data.yml.
+     */
+    public boolean exists(UUID uuid) {
+        return settings.getData().contains("passwords." + uuid.toString());
+    }
+
+    /**
+     * Checks if a player exists in Data.yml.
+     * @param p Player to check.
+     * @return Whether or not they exist in Data.yml.
+     */
+    public boolean exists(Player p) {
+        return exists(p.getUniqueId());
     }
 
     /**
