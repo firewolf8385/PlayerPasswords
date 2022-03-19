@@ -14,7 +14,7 @@
 ##        ##     ##  ######   ######   ###  ###   #######  ##     ## ########   ######
 
 name: PlayerPasswords
-version: 1.4
+version: 2.0 SNAPSHOT
 author: firewolf8385
 main: com.github.firewolf8385.playerpasswords.PlayerPasswords
 api-version: 1.13
