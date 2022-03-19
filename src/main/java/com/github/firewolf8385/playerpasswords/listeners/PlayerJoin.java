@@ -2,7 +2,7 @@ package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.SettingsManager;
 import com.github.firewolf8385.playerpasswords.UpdateChecker;
-import com.github.firewolf8385.playerpasswords.Utils;
+import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -38,11 +38,11 @@ public class PlayerJoin implements Listener
         {
             if(settings.getData().getString("passwords." + uuid + ".password").equals(""))
             {
-                Utils.chat(p, settings.getConfig().getString("Register"));
+                ChatUtils.chat(p, settings.getConfig().getString("Register"));
             }
             else
             {
-                Utils.chat(p, settings.getConfig().getString("Login"));
+                ChatUtils.chat(p, settings.getConfig().getString("Login"));
             }
         }
 
@@ -51,12 +51,12 @@ public class PlayerJoin implements Listener
         {
             if(UpdateChecker.update)
             {
-                Utils.chat(p, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
+                ChatUtils.chat(p, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
             }
 
             if(settings.getConfig().getInt("ConfigVersion") != 2)
             {
-                Utils.chat(p, settings.getConfig().getString("OutdatedConfig"));
+                ChatUtils.chat(p, settings.getConfig().getString("OutdatedConfig"));
             }
         }
 
