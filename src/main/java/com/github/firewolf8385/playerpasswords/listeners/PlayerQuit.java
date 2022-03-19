@@ -1,18 +1,21 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
+import com.github.firewolf8385.playerpasswords.PlayerPasswords;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
-public class PlayerQuit implements Listener
-{
+public class PlayerQuit implements Listener {
+    private final PlayerPasswords plugin;
+
+    public PlayerQuit(PlayerPasswords plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent e)
-    {
+    public void onLeave(PlayerQuitEvent event) {
         // Remove player from list of players.
-        PasswordPlayer.getPlayers().remove(e.getPlayer().getUniqueId());
+        plugin.getPasswordPlayerManager().removePlayer(event.getPlayer());
     }
 
 }

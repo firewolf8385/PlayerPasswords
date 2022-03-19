@@ -1,63 +1,44 @@
-package com.github.firewolf8385.playerpasswords.objects;
+package com.github.firewolf8385.playerpasswords.player;
 
 import com.github.firewolf8385.playerpasswords.SettingsManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.*;
-
-public class PasswordPlayer
-{
-    public static HashMap<UUID, PasswordPlayer> players = new HashMap<>();
+public class PasswordPlayer {
     SettingsManager settings = SettingsManager.getInstance();
 
-    private boolean required;
+    private final boolean required;
     private boolean verified;
-    private UUID uuid;
+    private final Player player;
 
     /**
      * Create a PasswordPlayer
-     * @param uuid UUID of player.
+     * @param player Player object.
      */
-    public PasswordPlayer(UUID uuid)
-    {
-        this.uuid = uuid;
+    public PasswordPlayer(Player player) {
+        this.player = player;
 
         boolean one = !settings.getConfig().getBoolean("Optional");
-        boolean two = settings.getData().getBoolean("passwords." + uuid + ".enabled");
+        boolean two = settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
         boolean three = getPlayer().hasPermission("playerpasswords.required");
 
         required = one || two || three;
 
         verified = !required || getPlayer().hasPermission("playerpasswords.bypass");
-
-        players.put(uuid, this);
     }
 
     /**
      * Get the player.
      * @return Player
      */
-    public Player getPlayer()
-    {
-        return Bukkit.getPlayer(uuid);
-    }
-
-    /**
-     * Get a list of all players.
-     * @return Players
-     */
-    public static Map<UUID, PasswordPlayer> getPlayers()
-    {
-        return players;
+    public Player getPlayer() {
+        return player;
     }
 
     /**
      * Get if the player requires a password.
      * @return Whether or not a password is required.
      */
-    public boolean isRequired()
-    {
+    public boolean isRequired() {
         return required;
     }
 
@@ -65,8 +46,7 @@ public class PasswordPlayer
      * Get if the player is verified.
      * @return Whether or not it is verified.
      */
-    public boolean isVerified()
-    {
+    public boolean isVerified() {
         return verified;
     }
 
@@ -74,8 +54,7 @@ public class PasswordPlayer
      * Set if the player is verified.
      * @param verified Whether or not the player is verified.
      */
-    public void setVerified(boolean verified)
-    {
+    public void setVerified(boolean verified) {
         this.verified = verified;
     }
 }
