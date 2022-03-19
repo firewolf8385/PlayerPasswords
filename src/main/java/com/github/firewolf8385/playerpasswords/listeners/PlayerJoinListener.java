@@ -6,6 +6,7 @@ import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.UpdateChecker;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,25 +40,27 @@ public class PlayerJoinListener implements Listener {
         }
 
 
-        if(passwordPlayer.isRequired()) {
-            if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
-                ChatUtils.chat(player, PluginMessage.REGISTER.toString());
-            }
-            else {
-                ChatUtils.chat(player, PluginMessage.LOGIN.toString());
-            }
-        }
-
-
-        if(player.hasPermission("playerpasswords.admin")) {
-            if(UpdateChecker.update) {
-                ChatUtils.chat(player, PluginMessage.UPDATE_AVAILABLE.toString().replace("%version%", UpdateChecker.latestVersion));
+        // Run message tasks later to make plugin messages the most recent.
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            if(passwordPlayer.isRequired()) {
+                if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
+                    ChatUtils.chat(player, PluginMessage.REGISTER.toString());
+                }
+                else {
+                    ChatUtils.chat(player, PluginMessage.LOGIN.toString());
+                }
             }
 
-            if(settings.getConfig().getInt("ConfigVersion") != 2) {
-                ChatUtils.chat(player, PluginMessage.OUTDATED_CONFIG.toString());
-            }
-        }
 
+            if(player.hasPermission("playerpasswords.admin")) {
+                if(UpdateChecker.update) {
+                    ChatUtils.chat(player, PluginMessage.UPDATE_AVAILABLE.toString().replace("%version%", UpdateChecker.latestVersion));
+                }
+
+                if(settings.getConfig().getInt("ConfigVersion") != 2) {
+                    ChatUtils.chat(player, PluginMessage.OUTDATED_CONFIG.toString());
+                }
+            }
+        }, 5);
     }
 }
