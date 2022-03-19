@@ -37,7 +37,7 @@ public class PlayerPasswordsCMD implements CommandExecutor {
             default:
                 ChatUtils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + "1.3.1");
+                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "https://www.spigotmc.org/resources/70520/");
                 ChatUtils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
