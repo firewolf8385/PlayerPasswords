@@ -1,14 +1,13 @@
-package org.firewolf8385.playerpasswords.commands;
+package com.github.firewolf8385.playerpasswords.commands;
 
+import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.Utils;
 import org.bukkit.Bukkit;
-import org.firewolf8385.playerpasswords.PlayerPasswords;
-import org.firewolf8385.playerpasswords.SettingsManager;
-import org.firewolf8385.playerpasswords.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PP implements CommandExecutor
 {

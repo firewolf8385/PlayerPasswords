@@ -1,20 +1,20 @@
-package org.firewolf8385.playerpasswords;
+package com.github.firewolf8385.playerpasswords;
 
-import org.firewolf8385.playerpasswords.commands.Login;
-import org.firewolf8385.playerpasswords.commands.PP;
-import org.firewolf8385.playerpasswords.commands.Password;
-import org.firewolf8385.playerpasswords.commands.Register;
+import com.github.firewolf8385.playerpasswords.commands.Login;
+import com.github.firewolf8385.playerpasswords.commands.PP;
+import com.github.firewolf8385.playerpasswords.commands.Password;
+import com.github.firewolf8385.playerpasswords.commands.Register;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.firewolf8385.playerpasswords.listeners.PlayerChat;
-import org.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcess;
-import org.firewolf8385.playerpasswords.listeners.PlayerDropItem;
-import org.firewolf8385.playerpasswords.listeners.PlayerInteract;
-import org.firewolf8385.playerpasswords.listeners.PlayerJoin;
-import org.firewolf8385.playerpasswords.listeners.PlayerMove;
-import org.firewolf8385.playerpasswords.listeners.PlayerQuit;
-import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerChat;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcess;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerDropItem;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerInteract;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerJoin;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerMove;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerQuit;
+import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 
 public class PlayerPasswords extends JavaPlugin

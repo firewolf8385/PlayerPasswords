@@ -1,4 +1,4 @@
-package org.firewolf8385.playerpasswords.utils;
+package com.github.firewolf8385.playerpasswords.utils;
 
 public class StringUtils
 {

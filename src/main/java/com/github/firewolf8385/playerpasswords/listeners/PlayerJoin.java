@@ -1,15 +1,14 @@
-package org.firewolf8385.playerpasswords.listeners;
+package com.github.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.PlayerPasswords;
-import org.firewolf8385.playerpasswords.SettingsManager;
-import org.firewolf8385.playerpasswords.UpdateChecker;
-import org.firewolf8385.playerpasswords.Utils;
+import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.UpdateChecker;
+import com.github.firewolf8385.playerpasswords.Utils;
+import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerJoin implements Listener
 {

@@ -1,4 +1,4 @@
-package org.firewolf8385.playerpasswords;
+package com.github.firewolf8385.playerpasswords;
 
 import org.bukkit.Bukkit;
 

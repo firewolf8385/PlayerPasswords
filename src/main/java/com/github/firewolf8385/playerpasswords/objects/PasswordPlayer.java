@@ -1,8 +1,8 @@
-package org.firewolf8385.playerpasswords.objects;
+package com.github.firewolf8385.playerpasswords.objects;
 
+import com.github.firewolf8385.playerpasswords.SettingsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.firewolf8385.playerpasswords.SettingsManager;
 
 import java.util.*;
 

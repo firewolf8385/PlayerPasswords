@@ -1,10 +1,10 @@
-package org.firewolf8385.playerpasswords.listeners;
+package com.github.firewolf8385.playerpasswords.listeners;
 
-import org.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.objects.PasswordPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.firewolf8385.playerpasswords.objects.PasswordPlayer;
 
 public class PlayerInteract implements Listener
 {
