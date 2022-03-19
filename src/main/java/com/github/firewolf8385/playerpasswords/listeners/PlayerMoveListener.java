@@ -7,11 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 
-public class PlayerMove implements Listener {
+public class PlayerMoveListener implements Listener {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public PlayerMove(PlayerPasswords plugin) {
+    public PlayerMoveListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

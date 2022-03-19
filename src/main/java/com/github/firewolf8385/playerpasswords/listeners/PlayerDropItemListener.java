@@ -5,18 +5,18 @@ import com.github.firewolf8385.playerpasswords.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 
-public class PlayerInteract implements Listener {
+public class PlayerDropItemListener implements Listener {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public PlayerInteract(PlayerPasswords plugin) {
+    public PlayerDropItemListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
+    public void onItemDrop(PlayerDropItemEvent event) {
         PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
         // Exit if player is verified.
@@ -24,8 +24,8 @@ public class PlayerInteract implements Listener {
             return;
         }
 
-        // Exit if BlockInteract is disabled.
-        if(!settings.getConfig().getBoolean("BlockInteract")) {
+        // Exit if BlockItemDrop is disabled.
+        if(!settings.getConfig().getBoolean("BlockItemDrop")) {
             return;
         }
 

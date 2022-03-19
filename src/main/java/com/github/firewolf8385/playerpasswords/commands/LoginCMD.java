@@ -11,11 +11,11 @@ import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
 
-public class Login implements CommandExecutor {
+public class LoginCMD implements CommandExecutor {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public Login(PlayerPasswords plugin) {
+    public LoginCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

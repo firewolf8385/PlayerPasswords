@@ -1,20 +1,20 @@
 package com.github.firewolf8385.playerpasswords;
 
-import com.github.firewolf8385.playerpasswords.commands.Login;
-import com.github.firewolf8385.playerpasswords.commands.PP;
-import com.github.firewolf8385.playerpasswords.commands.Password;
-import com.github.firewolf8385.playerpasswords.commands.Register;
+import com.github.firewolf8385.playerpasswords.commands.LoginCMD;
+import com.github.firewolf8385.playerpasswords.commands.PlayerPasswordsCMD;
+import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
+import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerChat;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcess;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerDropItem;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerInteract;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerJoin;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerMove;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerQuit;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerChatListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcessListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerDropItemListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerInteractListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerJoinListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerMoveListener;
+import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
 /***************************************************************************************
  *    Title: PlayerPasswords
@@ -60,22 +60,22 @@ public class PlayerPasswords extends JavaPlugin {
      * This registers the plugin's commands.
      */
     private void registerCommands() {
-        getCommand("login").setExecutor(new Login(this));
-        getCommand("register").setExecutor(new Register(this));
-        getCommand("playerpasswords").setExecutor(new PP(this));
-        getCommand("password").setExecutor(new Password(this));
+        getCommand("login").setExecutor(new LoginCMD(this));
+        getCommand("register").setExecutor(new RegisterCMD(this));
+        getCommand("playerpasswords").setExecutor(new PlayerPasswordsCMD(this));
+        getCommand("password").setExecutor(new PasswordCMD(this));
     }
 
     /**
      * This registers events the plugin uses.
      */
     private void registerEvents() {
-        Bukkit.getPluginManager().registerEvents(new PlayerChat(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerJoin(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerMove(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuit(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcess(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerDropItem(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerInteract(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerChatListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcessListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDropItemListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);
     }
 }

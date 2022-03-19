@@ -10,11 +10,11 @@ import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
 
-public class Register implements CommandExecutor {
+public class RegisterCMD implements CommandExecutor {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public Register(PlayerPasswords plugin) {
+    public RegisterCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

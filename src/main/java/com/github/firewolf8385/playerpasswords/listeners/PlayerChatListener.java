@@ -5,30 +5,31 @@ import com.github.firewolf8385.playerpasswords.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class PlayerDropItem implements Listener {
-    SettingsManager settings = SettingsManager.getInstance();
+public class PlayerChatListener implements Listener {
     private final PlayerPasswords plugin;
+    SettingsManager settings = SettingsManager.getInstance();
 
-    public PlayerDropItem(PlayerPasswords plugin) {
+    public PlayerChatListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onItemDrop(PlayerDropItemEvent event) {
+    public void onChat(AsyncPlayerChatEvent event) {
         PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
-        // Exit if player is verified.
+        // Return if Verified
         if(passwordPlayer.isVerified()) {
             return;
         }
 
-        // Exit if BlockItemDrop is disabled.
-        if(!settings.getConfig().getBoolean("BlockItemDrop")) {
+        // Exit if BlockChat is false.
+        if(!settings.getConfig().getBoolean("BlockChat")) {
             return;
         }
 
+        // Cancel Event.
         event.setCancelled(true);
     }
 }

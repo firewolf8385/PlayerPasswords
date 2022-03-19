@@ -11,11 +11,11 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class PlayerJoin implements Listener {
+public class PlayerJoinListener implements Listener {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public PlayerJoin(PlayerPasswords plugin) {
+    public PlayerJoinListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

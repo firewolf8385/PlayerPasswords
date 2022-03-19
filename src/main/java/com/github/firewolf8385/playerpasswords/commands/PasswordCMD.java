@@ -10,14 +10,14 @@ import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
 
-public class Password implements CommandExecutor {
+public class PasswordCMD implements CommandExecutor {
     SettingsManager settings = SettingsManager.getInstance();
     String gold = settings.getConfig().getString("color1");
     String yellow = settings.getConfig().getString("color2");
     String gray = settings.getConfig().getString("color3");
     private final PlayerPasswords plugin;
 
-    public Password(PlayerPasswords plugin) {
+    public PasswordCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

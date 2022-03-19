@@ -8,11 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 
-public class PlayerCommandPreProcess implements Listener {
+public class PlayerCommandPreProcessListener implements Listener {
     SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
-    public PlayerCommandPreProcess(PlayerPasswords plugin) {
+    public PlayerCommandPreProcessListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 

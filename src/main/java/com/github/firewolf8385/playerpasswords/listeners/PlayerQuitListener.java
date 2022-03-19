@@ -5,10 +5,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class PlayerQuit implements Listener {
+public class PlayerQuitListener implements Listener {
     private final PlayerPasswords plugin;
 
-    public PlayerQuit(PlayerPasswords plugin) {
+    public PlayerQuitListener(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
