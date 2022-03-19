@@ -1,14 +1,14 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
-import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 
 public class PlayerMoveListener implements Listener {
-    SettingsManager settings = SettingsManager.getInstance();
+    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
     public PlayerMoveListener(PlayerPasswords plugin) {

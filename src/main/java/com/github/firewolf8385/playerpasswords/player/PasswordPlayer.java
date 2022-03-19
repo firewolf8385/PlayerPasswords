@@ -1,6 +1,6 @@
 package com.github.firewolf8385.playerpasswords.player;
 
-import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import org.bukkit.entity.Player;
 
 public class PasswordPlayer {

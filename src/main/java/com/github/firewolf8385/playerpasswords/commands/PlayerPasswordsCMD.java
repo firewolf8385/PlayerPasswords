@@ -1,7 +1,7 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
-import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,17 +11,18 @@ import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 
 public class PlayerPasswordsCMD implements CommandExecutor {
-    SettingsManager settings = SettingsManager.getInstance();
-    String gold = settings.getConfig().getString("color1");
-    String yellow = settings.getConfig().getString("color2");
-    String gray = settings.getConfig().getString("color3");
     private final PlayerPasswords plugin;
 
     public PlayerPasswordsCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String gold = ThemeColor.GOLD.toString();
+        String yellow = ThemeColor.YELLOW.toString();
+        String gray = ThemeColor.GRAY.toString();
+
         // If no arguments, show plugin help.
         if(args.length == 0) {
             ChatUtils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");

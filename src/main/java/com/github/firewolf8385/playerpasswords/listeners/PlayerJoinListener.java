@@ -1,7 +1,8 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
-import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.UpdateChecker;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
@@ -12,7 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoinListener implements Listener {
-    SettingsManager settings = SettingsManager.getInstance();
+    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
     public PlayerJoinListener(PlayerPasswords plugin) {
@@ -40,21 +41,21 @@ public class PlayerJoinListener implements Listener {
 
         if(passwordPlayer.isRequired()) {
             if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
-                ChatUtils.chat(player, settings.getConfig().getString("Register"));
+                ChatUtils.chat(player, PluginMessage.REGISTER.toString());
             }
             else {
-                ChatUtils.chat(player, settings.getConfig().getString("Login"));
+                ChatUtils.chat(player, PluginMessage.LOGIN.toString());
             }
         }
 
 
         if(player.hasPermission("playerpasswords.admin")) {
             if(UpdateChecker.update) {
-                ChatUtils.chat(player, settings.getConfig().getString("UpdateAvailable").replace("%version%", UpdateChecker.latestVersion));
+                ChatUtils.chat(player, PluginMessage.UPDATE_AVAILABLE.toString().replace("%version%", UpdateChecker.latestVersion));
             }
 
             if(settings.getConfig().getInt("ConfigVersion") != 2) {
-                ChatUtils.chat(player, settings.getConfig().getString("OutdatedConfig"));
+                ChatUtils.chat(player, PluginMessage.OUTDATED_CONFIG.toString());
             }
         }
 

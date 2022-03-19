@@ -5,6 +5,7 @@ import com.github.firewolf8385.playerpasswords.commands.PlayerPasswordsCMD;
 import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
 import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,7 +26,7 @@ import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
 public class PlayerPasswords extends JavaPlugin {
     private PasswordPlayerManager passwordPlayerManager;
-    SettingsManager settings = SettingsManager.getInstance();
+    private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
      * This runs necessary tasks when the plugin is enabled.

@@ -1,14 +1,14 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
-import com.github.firewolf8385.playerpasswords.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class PlayerDropItemListener implements Listener {
-    SettingsManager settings = SettingsManager.getInstance();
+    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
     public PlayerDropItemListener(PlayerPasswords plugin) {
