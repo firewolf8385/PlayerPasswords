@@ -17,13 +17,6 @@ import com.github.firewolf8385.playerpasswords.listeners.PlayerJoinListener;
 import com.github.firewolf8385.playerpasswords.listeners.PlayerMoveListener;
 import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
-/***************************************************************************************
- *    Title: PlayerPasswords
- *    Author: firewolf8385
- *    Date: March 19th, 2022
- *    Code version: 2.0 SNAPSHOT
- ***************************************************************************************/
-
 public class PlayerPasswords extends JavaPlugin {
     private PasswordPlayerManager passwordPlayerManager;
     private final SettingsManager settings = SettingsManager.getInstance();
