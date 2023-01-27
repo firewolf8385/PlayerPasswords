@@ -44,9 +44,15 @@ Optional: true
 MinimumPasswordLength: 1
 MaximumPasswordLength: 256
 
-# This sets what happens when the wrong password has been entered.
-# Options: kick, tryagain
-WrongPassword: "kick"
+# The maximum number of attempts to get the password right the player can have.
+# Use -1 for infinite attempts.
+MaxAttempts: 1
+
+# When the player reaches the max attempts, these commands are run.
+# Placeholders:
+#  - %player% - The player's username.
+FailCommands:
+  - kick %player% Incorrect Password!
 
 # Block chat when not logged in.
 BlockChat: true

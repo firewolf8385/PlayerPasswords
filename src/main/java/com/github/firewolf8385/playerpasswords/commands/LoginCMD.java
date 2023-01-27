@@ -4,6 +4,7 @@ import com.github.firewolf8385.playerpasswords.PlayerPasswords;
 import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -55,18 +56,28 @@ public class LoginCMD implements CommandExecutor {
             return true;
         }
 
+        // If the password is correct, mark the player as verified.
         if(StringUtils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password"))) {
             ChatUtils.chat(player, PluginMessage.LOGIN_SUCCESSFUL.toString());
             passwordPlayer.setVerified(true);
+            return true;
         }
-        else {
-            if(settings.getConfig().getString("WrongPassword").equalsIgnoreCase("tryagain")) {
-                ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+
+        // Otherwise, process the login attempt.
+        passwordPlayer.addLoginAttempt();
+        int maxAttempts = settings.getConfig().getInt("MaxAttempts");
+
+        // If there have been too many login attempts, process the fail commands.
+        if(maxAttempts != -1 && passwordPlayer.getLoginAttempts() >= maxAttempts) {
+            for(String command : settings.getConfig().getStringList("FailCommands")) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName()));
             }
-            else {
-                player.kickPlayer(ChatColor.translateAlternateColorCodes('&', PluginMessage.KICK_MESSAGE.toString()));
-            }
+
+            return true;
         }
+
+        // If they still have attempts remaining, send them the incorrect password message.
+        ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
         return true;
     }
 }
