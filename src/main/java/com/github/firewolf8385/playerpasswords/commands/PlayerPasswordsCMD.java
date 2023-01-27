@@ -54,9 +54,6 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                 ChatUtils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
 
-            case "disable":
-                break;
-
             case "help":
                 ChatUtils.chat(sender, gold + "&l]" + gray + "&m-----------------" + gold + "&lPlayerPasswords" + gray + "&m-----------------" + gold +"&l[");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
@@ -76,7 +73,6 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                 }
                 ChatUtils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
                 break;
-
         }
 
         return true;
