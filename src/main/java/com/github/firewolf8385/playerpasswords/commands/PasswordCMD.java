@@ -22,6 +22,12 @@ public class PasswordCMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+        // Exit if not a player.
+        if(!(sender instanceof Player)) {
+            return true;
+        }
+
         Player player = (Player) sender;
         String uuid = player.getUniqueId().toString();
         PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
