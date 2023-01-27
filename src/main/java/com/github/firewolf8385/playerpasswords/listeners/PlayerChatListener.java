@@ -1,8 +1,10 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
+import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
+import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -30,6 +32,7 @@ public class PlayerChatListener implements Listener {
         }
 
         // Cancel Event.
+        ChatUtils.chat(event.getPlayer(), PluginMessage.MUST_BE_LOGGED_IN.toString());
         event.setCancelled(true);
     }
 }
