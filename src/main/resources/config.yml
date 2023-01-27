@@ -44,6 +44,9 @@ Optional: true
 MinimumPasswordLength: 1
 MaximumPasswordLength: 256
 
+# Require the password to be confirmed before being saved.
+RequireConfirmation: true
+
 # The maximum number of attempts to get the password right the player can have.
 # Use -1 for infinite attempts.
 MaxAttempts: 1
@@ -78,6 +81,8 @@ Login: "&6&lLogin &8» &7You must log in to continue! &e/login [password]"
 Register: "&6&lRegister &8» &7You must register to continue! &e/register [password]"
 LogInSuccessful: "&6&lLogin &8» &7You have logged in successfully."
 LoginUsage: "&6&lLogin &8» &c/login [password]"
+ConfirmRegister: "&6&lRegister &8» &7Confirm your password with &e/register confirm [password]"
+RegisterConfirmUsage: "&6&lUsage &8» &7/register confirm [password]"
 
 # Password
 PasswordEnabled: "&6&lPassword &8» &7You have &aenabled &7password protection."
@@ -88,6 +93,8 @@ RegisterUsage: "&6&lUsage &8» &7/register [password]"
 PasswordIncorrect: "&6&lError &8» &cPassword Is Incorrect. Try again."
 PasswordNotSet: "&6&lError &8» &cYou do not have a password set. Set one with /password set [password]."
 PasswordSetUsage: "&6&lUsage &8» &7/password set [password]"
+ConfirmPassword: "&6&lPassword &8» &7Confirm your password with &e/password confirm [password]"
+PasswordConfirmUsage: "&6&lUsage &8» &7/password confirm [password]"
 
 # Errors
 AlreadyLoggedIn: "&6&lError &8» &cYou are already logged in!"

@@ -107,13 +107,46 @@ public class PasswordCMD implements CommandExecutor {
                         return true;
                     }
 
-                    settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
-                    settings.saveData();
-                    settings.reloadData();
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+                    passwordPlayer.setPassword(args[1]);
+                    if(settings.getConfig().getBoolean("RequireConfirmation")) {
+                        ChatUtils.chat(player, PluginMessage.CONFIRM_PASSWORD.toString());
+                    }
+                    else {
+                        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
+                        settings.saveData();
+                        settings.reloadData();
+                        ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+                    }
                 }
                 else {
                     ChatUtils.chat(player, PluginMessage.PASSWORD_SET_USAGE.toString());
+                }
+                break;
+
+            case "confirm":
+                // If the cache is empty, then there is no password to confirm.
+                if(passwordPlayer.getPassword().isEmpty()) {
+                    ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_SET.toString());
+                    return true;
+                }
+
+                // If there is less than 2 arguments, the command was not run right.
+                if(args.length > 1) {
+                    // Check if the cache and confirmation are equal.
+                    if(passwordPlayer.getPassword().equals(args[1])) {
+                        // If so, saves the password.
+                        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
+                        settings.saveData();
+                        settings.reloadData();
+                        ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+                    }
+                    else {
+                        ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+                    }
+                    return true;
+                }
+                else {
+                    ChatUtils.chat(player, PluginMessage.PASSWORD_CONFIRM_USAGE.toString());
                 }
                 break;
         }

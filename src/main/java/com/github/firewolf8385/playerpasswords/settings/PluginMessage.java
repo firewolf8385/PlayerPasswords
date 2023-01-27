@@ -10,6 +10,8 @@ public enum PluginMessage {
     REGISTER("Register", "&6&lRegister &8» &7You must register to continue! &e/register [password]"),
     LOGIN_SUCCESSFUL("LogInSuccessful", "&6&lLogin &8» &7You have logged in successfully."),
     LOGIN_USAGE("LoginUsage", "&6&lLogin &8» &c/login [password]"),
+    CONFIRM_REGISTER("ConfirmRegister", "&6&lRegister &8» &7Confirm your password with &e/register confirm [password]"),
+    REGISTER_CONFIRM_USAGE("RegisterConfirmUsage", "&6&lUsage &8» &7/register confirm [password]"),
 
     // Password Messages
     PASSWORD_ENABLED("PasswordEnabled", "&6&lPassword &8» &7You have &aenabled &7password protection."),
@@ -20,6 +22,8 @@ public enum PluginMessage {
     PASSWORD_INCORRECT("PasswordIncorrect", "&6&lError &8» &cPassword Is Incorrect. Try again."),
     PASSWORD_SET_USAGE("PasswordSetUsage", "&6&lUsage &8» &7/password set [password]"),
     PASSWORD_NOT_SET("PasswordNotSet", "&6&lError &8» &cYou do not have a password set. Set one with /password set [password]."),
+    CONFIRM_PASSWORD("ConfirmPassword", "&6&lPassword &8» &7Confirm your password with &e/password confirm [password]"),
+    PASSWORD_CONFIRM_USAGE("PasswordConfirmUsage", "&6&lUsage &8» &7/password confirm [password]"),
 
     // Error Messages
     ALREADY_LOGGED_IN("AlreadyLoggedIn", "&6&lError &8» &cYou are already logged in!"),

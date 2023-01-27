@@ -51,13 +51,60 @@ public class RegisterCMD implements CommandExecutor {
             return true;
         }
 
+        // Check if the player is trying to confirm their registration.
+        if(args[0].equalsIgnoreCase("confirm")) {
+            // If the cache is empty, then there is no password to confirm.
+            if(passwordPlayer.getPassword().isEmpty()) {
+                ChatUtils.chat(player, PluginMessage.REGISTER_USAGE.toString());
+                return true;
+            }
+
+            // If there is less than 2 arguments, the command was not run right.
+            if(args.length > 1) {
+                // Check if the cache and confirmation are equal.
+                if(passwordPlayer.getPassword().equals(args[1])) {
+                    // If so, saves the password.
+                    settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
+                    ChatUtils.chat(player, PluginMessage.SET_PASSWORD_SUCCESSFUL.toString());
+
+                    if(!passwordPlayer.isVerified()) {
+                        passwordPlayer.setVerified(true);
+                    }
+
+                    if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
+                        settings.getData().set("passwords." + uuid + ".enabled", true);
+                    }
+
+                    settings.saveData();
+                    settings.reloadData();
+                }
+                else {
+                    ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+                }
+                return true;
+            }
+            else {
+                ChatUtils.chat(player, PluginMessage.REGISTER_CONFIRM_USAGE.toString());
+            }
+
+            return true;
+        }
+
         // Shows the player a message if their password does not fit the requirements.
         if(!(args[0].length() >= minimum && args[0].length() <= maximum)) {
             ChatUtils.chat(player, PluginMessage.OUT_OF_BOUNDS.toString());
             return true;
         }
 
+        passwordPlayer.setPassword(args[0]);
 
+        // Makes sure the player does not need to confirm the password.
+        if(settings.getConfig().getBoolean("RequireConfirmation")) {
+            ChatUtils.chat(player, PluginMessage.CONFIRM_REGISTER.toString());
+            return true;
+        }
+
+        // Otherwise, processes the registration.
         settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
         ChatUtils.chat(player, PluginMessage.SET_PASSWORD_SUCCESSFUL.toString());
 

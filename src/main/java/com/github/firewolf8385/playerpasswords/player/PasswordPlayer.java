@@ -10,6 +10,7 @@ public class PasswordPlayer {
     private boolean verified;
     private final Player player;
     private int loginAttempts = 0;
+    private String password = "";
 
     /**
      * Create a PasswordPlayer
@@ -40,6 +41,15 @@ public class PasswordPlayer {
      */
     public int getLoginAttempts() {
         return loginAttempts;
+    }
+
+    /**
+     * Get the currently cached password.
+     * Used for confirming passwords before setting them.
+     * @return Cached password.
+     */
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -79,6 +89,14 @@ public class PasswordPlayer {
      */
     public boolean isVerified() {
         return verified;
+    }
+
+    /**
+     * Change the stored password cache.
+     * @param password New password to save.
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
