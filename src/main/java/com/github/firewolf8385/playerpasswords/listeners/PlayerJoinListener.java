@@ -41,7 +41,7 @@ public class PlayerJoinListener implements Listener {
 
         // Run message tasks later to make plugin messages the most recent.
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            if(passwordPlayer.isRequired()) {
+            if(passwordPlayer.isRequired() && !passwordPlayer.isVerified()) {
                 if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
                     ChatUtils.chat(player, PluginMessage.REGISTER.toString());
                 }
