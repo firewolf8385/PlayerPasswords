@@ -9,6 +9,7 @@ public class PasswordPlayer {
     private final boolean required;
     private boolean verified;
     private final Player player;
+    private int loginAttempts = 0;
 
     /**
      * Create a PasswordPlayer
@@ -24,6 +25,21 @@ public class PasswordPlayer {
         required = one || two || three;
 
         verified = !required || getPlayer().hasPermission("playerpasswords.bypass");
+    }
+
+    /**
+     * Adds a login attempt to the player.
+     */
+    public void addLoginAttempt() {
+        loginAttempts++;
+    }
+
+    /**
+     * Get the number of times the player has tried to log in.
+     * @return Login attempts.
+     */
+    public int getLoginAttempts() {
+        return loginAttempts;
     }
 
     /**
@@ -46,7 +62,7 @@ public class PasswordPlayer {
         }
 
         // If there is data, check if the data is empty.
-        return settings.getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
+        return !settings.getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
     }
 
     /**
