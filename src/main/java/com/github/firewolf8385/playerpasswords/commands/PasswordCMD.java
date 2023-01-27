@@ -102,7 +102,7 @@ public class PasswordCMD implements CommandExecutor {
                     int maximum = settings.getConfig().getInt("MaximumPasswordLength");
 
                     // Shows the player a message if their password does not fit the requirements.
-                    if(!(args[0].length() >= minimum && args[0].length() <= maximum)) {
+                    if(!(args[1].length() >= minimum && args[1].length() <= maximum)) {
                         ChatUtils.chat(player, PluginMessage.OUT_OF_BOUNDS.toString());
                         return true;
                     }
