@@ -31,15 +31,27 @@ public class LoginCMD implements CommandExecutor {
         String uuid = player.getUniqueId().toString();
         PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
-        // If The Command Is Run Without Args, Show Error Message
-        if(args.length == 0) {
-            ChatUtils.chat(player, PluginMessage.LOGIN_USAGE.toString());
-            return true;
-        }
-
         // If the player is already logged in, they can't log in again.
         if(passwordPlayer.isVerified()) {
             ChatUtils.chat(player, PluginMessage.ALREADY_LOGGED_IN.toString());
+            return true;
+        }
+
+        // Makes sure the player has a password set.
+        if(!passwordPlayer.hasPassword()) {
+            // If not, and they're required to, tell them how to register.
+            if(passwordPlayer.isRequired()) {
+                ChatUtils.chat(player, PluginMessage.REGISTER.toString());
+                return true;
+            }
+
+            // Otherwise, tell them how to set a password.
+            ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_SET.toString());
+        }
+
+        // If The Command Is Run Without Args, Show Error Message
+        if(args.length == 0) {
+            ChatUtils.chat(player, PluginMessage.LOGIN_USAGE.toString());
             return true;
         }
 

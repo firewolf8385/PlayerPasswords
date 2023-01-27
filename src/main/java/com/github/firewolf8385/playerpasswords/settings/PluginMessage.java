@@ -19,6 +19,7 @@ public enum PluginMessage {
     REGISTER_USAGE("RegisterUsage", "&6&lUsage &8» &7/register [password]"),
     PASSWORD_INCORRECT("PasswordIncorrect", "&6&lError &8» &cPassword Is Incorrect. Try again."),
     PASSWORD_SET_USAGE("PasswordSetUsage", "&6&lUsage &8» &7/password set [password]"),
+    PASSWORD_NOT_SET("PasswordNotSet", "&6&lError &8» &cYou do not have a password set. Set one with /password set [password]."),
 
     // Error Messages
     ALREADY_LOGGED_IN("AlreadyLoggedIn", "&6&lError &8» &cYou are already logged in!"),

@@ -35,8 +35,23 @@ public class PasswordPlayer {
     }
 
     /**
+     * Get if a player has a password.
+     * @return Whether the player has set a password.
+     */
+    public boolean hasPassword() {
+
+        // If the player does not have any data, then they can't have a password.
+        if(!settings.getData().isSet("passwords." + player.getUniqueId() + ".password")) {
+            return false;
+        }
+
+        // If there is data, check if the data is empty.
+        return settings.getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
+    }
+
+    /**
      * Get if the player requires a password.
-     * @return Whether or not a password is required.
+     * @return Whether a password is required.
      */
     public boolean isRequired() {
         return required;
@@ -44,7 +59,7 @@ public class PasswordPlayer {
 
     /**
      * Get if the player is verified.
-     * @return Whether or not it is verified.
+     * @return Whether it is verified.
      */
     public boolean isVerified() {
         return verified;
@@ -52,7 +67,7 @@ public class PasswordPlayer {
 
     /**
      * Set if the player is verified.
-     * @param verified Whether or not the player is verified.
+     * @param verified Whether the player is verified.
      */
     public void setVerified(boolean verified) {
         this.verified = verified;

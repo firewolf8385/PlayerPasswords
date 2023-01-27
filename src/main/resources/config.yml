@@ -80,6 +80,7 @@ PasswordSet: "&6&lPassword &8» &7Your password has been set to &e%password%&7."
 SetPasswordSuccessful: "&6&lPassword &8» &7You have successfully set your password."
 RegisterUsage: "&6&lUsage &8» &7/register [password]"
 PasswordIncorrect: "&6&lError &8» &cPassword Is Incorrect. Try again."
+PasswordNotSet: "&6&lError &8» &cYou do not have a password set. Set one with /password set [password]."
 PasswordSetUsage: "&6&lUsage &8» &7/password set [password]"
 
 # Errors
