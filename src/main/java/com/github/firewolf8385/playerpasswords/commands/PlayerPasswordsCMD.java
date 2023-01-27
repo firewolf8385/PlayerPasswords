@@ -1,6 +1,8 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
+import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
+import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import org.bukkit.Bukkit;
@@ -11,6 +13,7 @@ import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 
 public class PlayerPasswordsCMD implements CommandExecutor {
+    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
     public PlayerPasswordsCMD(PlayerPasswords plugin) {
@@ -72,6 +75,12 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                     }
                 }
                 ChatUtils.chat(sender, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
+                break;
+
+            case "reload":
+                settings.reloadConfig();
+                settings.reloadData();
+                ChatUtils.chat(sender, PluginMessage.CONFIG_RELOADED.toString());
                 break;
         }
 

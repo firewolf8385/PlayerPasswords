@@ -32,7 +32,8 @@ public enum PluginMessage {
     // Other Messages
     KICK_MESSAGE("KickMessage", "&cYou entered your password incorrectly."),
     UPDATE_AVAILABLE("UpdateAvailable", "&6&lPlayerPasswords &8» &cYou are using an outdated version! Latest version is %version%."),
-    OUTDATED_CONFIG("OutdatedConfig", "&6&lPlayerPasswords &8» &cThe config file is outdated. Features using this new file may error if not corrected.");
+    OUTDATED_CONFIG("OutdatedConfig", "&6&lPlayerPasswords &8» &cThe config file is outdated. Features using this new file may error if not corrected."),
+    CONFIG_RELOADED("ConfigReloaded", "&6&lPlayerPasswords &8» &aConfiguration has been reloaded!");
 
     private final String configName;
     private final String defaultValue;
