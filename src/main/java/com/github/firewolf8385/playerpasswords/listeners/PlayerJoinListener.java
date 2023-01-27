@@ -3,7 +3,6 @@ package com.github.firewolf8385.playerpasswords.listeners;
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
 import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
-import com.github.firewolf8385.playerpasswords.UpdateChecker;
 import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.Bukkit;
@@ -53,10 +52,6 @@ public class PlayerJoinListener implements Listener {
 
 
             if(player.hasPermission("playerpasswords.admin")) {
-                if(UpdateChecker.update) {
-                    ChatUtils.chat(player, PluginMessage.UPDATE_AVAILABLE.toString().replace("%version%", UpdateChecker.latestVersion));
-                }
-
                 if(settings.getConfig().getInt("ConfigVersion") != 2) {
                     ChatUtils.chat(player, PluginMessage.OUTDATED_CONFIG.toString());
                 }
