@@ -11,17 +11,33 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * This class runs the /login command, which runs login related functions.
+ */
 public class LoginCMD implements CommandExecutor {
     private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
+    /**
+     * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
+     * @param plugin Instance of the plugin.
+     */
     public LoginCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * Runs when the command is executed.
+     * @param sender Source of the command
+     * @param cmd Command which was executed
+     * @param label Alias of the command which was used
+     * @param args Passed command arguments
+     * @return If the command was successful.
+     */
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         // Exit if not a player.
         if(!(sender instanceof Player)) {
             return true;
