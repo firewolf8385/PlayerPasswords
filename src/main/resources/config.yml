@@ -8,14 +8,6 @@
 #                    |___/
 #                                Version 1.3
 
-
-# This is used when an update modifies the config. If checks this value and
-#warns you when the config file does not match the version needed. This number
-# may be changed when the correct additions to the config are made.
-ConfigVersion: 2
-
-
-
 # -----------------------------------------
 #                 Theme
 # -----------------------------------------
@@ -105,7 +97,4 @@ MustBeLoggedIn: "<red><bold>Error</bold> <dark_gray>» <red>You must be logged i
 OptionalPasswordsDisabled: "<red><bold>Error</bold> <dark_gray>» <red>Optional Passwords are disabled."
 
 # Other
-KickMessage: "<red>You entered your password incorrectly."
-UpdateAvailable: "<gold><bold>PlayerPasswords</bold> <dark_gray>» <red>You are using an outdated version! Latest version is %version%."
-OutdatedConfig: "<gold><bold>>PlayerPasswords</bold> <dark_gray>» <red>The config file is outdated. Features using this new file may error if not corrected."
 ConfigReloaded: "<gold><bold>PlayerPasswords</bold> <dark_gray>» <green>Configuration has been reloaded!"

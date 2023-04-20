@@ -49,13 +49,6 @@ public class PlayerJoinListener implements Listener {
                     ChatUtils.chat(player, PluginMessage.LOGIN.toString());
                 }
             }
-
-
-            if(player.hasPermission("playerpasswords.admin")) {
-                if(settings.getConfig().getInt("ConfigVersion") != 2) {
-                    ChatUtils.chat(player, PluginMessage.OUTDATED_CONFIG.toString());
-                }
-            }
         }, 5);
     }
 }
