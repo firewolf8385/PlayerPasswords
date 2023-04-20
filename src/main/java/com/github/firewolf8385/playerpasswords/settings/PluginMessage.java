@@ -16,6 +16,7 @@ public enum PluginMessage {
     // Password Messages
     PASSWORD_ENABLED("PasswordEnabled", "&6&lPassword &8» &7You have &aenabled &7password protection."),
     PASSWORD_DISABLED("PasswordDisabled", "&6&lPassword &8» &7You have &cdisabled &7password protection."),
+    PASSWORD_NOT_ENABLED("PasswordNotEnabled", "<gold><bold>Password</bold> <dark_gray>» <gray>Enable your password with /password enable."),
     PASSWORD_SET("PasswordSet", "&6&lPassword &8» &7Your password has been set to &e%password%&7."),
     SET_PASSWORD_SUCCESSFUL("SetPasswordSuccessful", "&6&lPassword &8» &7You have successfully set your password."),
     REGISTER_USAGE("RegisterUsage", "&6&lUsage &8» &7/register [password]"),

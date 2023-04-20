@@ -11,17 +11,33 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * This class runs the /password command, which runs password related functions.
+ */
 public class PasswordCMD implements CommandExecutor {
     private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
+    /**
+     * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
+     * @param plugin Instance of the plugin.
+     */
     public PasswordCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * Runs when the command is executed.
+     * @param sender Source of the command
+     * @param cmd Command which was executed
+     * @param label Alias of the command which was used
+     * @param args Passed command arguments
+     * @return If the command was successful.
+     */
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
 
         // Exit if not a player.
         if(!(sender instanceof Player)) {
@@ -38,29 +54,25 @@ public class PasswordCMD implements CommandExecutor {
             return true;
         }
 
+        // Grab the theme set in the config.
         String gold = ThemeColor.GOLD.toString();
         String yellow = ThemeColor.YELLOW.toString();
         String gray = ThemeColor.GRAY.toString();
 
         // Shows default page if no arguments are given.
         if(args.length == 0) {
-            ChatUtils.chat(player, gold + "&l]" + gray + "&m--------------------" + gold + "&lPasswords" + gray + "&m--------------------" + gold +"&l[");
-            ChatUtils.chat(player, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
-            ChatUtils.chat(player, "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password");
-            ChatUtils.chat(player, "  " + gray + "» " + gold + "/password set [password] " + gray + "- " + yellow + "Changes Your Password");
-            ChatUtils.chat(player, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
-            return true;
+            args = new String[]{"help"};
         }
 
-
+        // Processes the sub command.
         switch(args[0].toLowerCase()) {
             default:
-                ChatUtils.chat(player, gold + "&l]" + gray + "&m--------------------" + gold + "&lPasswords" + gray + "&m--------------------" + gold +"&l[");
+                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray + "&m--------------------" + gold + "<bold>Passwords</bold>" + gray + "&m--------------------" + gold +"<bold>[</bold>");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password set [password] " + gray + "- " + yellow + "Changes Your Password");
-                ChatUtils.chat(player, gold + "&l]" + gray +"&m---------------------------------------------------" + gold + "&l[");
-                break;
+                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray +"&m---------------------------------------------------" + gold + "<bold>[</bold>");
+                return true;
 
             case "enable":
                 if(!sender.hasPermission("playerpasswords.enable")) {
@@ -77,7 +89,7 @@ public class PasswordCMD implements CommandExecutor {
                 settings.saveData();
                 settings.reloadData();
                 ChatUtils.chat(player, PluginMessage.PASSWORD_ENABLED.toString());
-                break;
+                return true;
 
             case "disable":
                 if(!sender.hasPermission("playerpasswords.disable")) {
@@ -93,7 +105,7 @@ public class PasswordCMD implements CommandExecutor {
                 else {
                     ChatUtils.chat(player, PluginMessage.OPTIONAL_PASSWORD_DISABLED.toString());
                 }
-                break;
+                return true;
 
             case "set":
                 if(!sender.hasPermission("playerpasswords.set")) {
@@ -126,7 +138,7 @@ public class PasswordCMD implements CommandExecutor {
                 else {
                     ChatUtils.chat(player, PluginMessage.PASSWORD_SET_USAGE.toString());
                 }
-                break;
+                return true;
 
             case "confirm":
                 // If the cache is empty, then there is no password to confirm.
@@ -144,6 +156,11 @@ public class PasswordCMD implements CommandExecutor {
                         settings.saveData();
                         settings.reloadData();
                         ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+
+                        // Remind the player to enable their password.
+                        if(settings.getConfig().getBoolean("Optional") && !passwordPlayer.hasPasswordEnabled()) {
+                            ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_ENABLED.toString());
+                        }
                     }
                     else {
                         ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
@@ -153,9 +170,7 @@ public class PasswordCMD implements CommandExecutor {
                 else {
                     ChatUtils.chat(player, PluginMessage.PASSWORD_CONFIRM_USAGE.toString());
                 }
-                break;
+                return true;
         }
-
-        return true;
     }
 }

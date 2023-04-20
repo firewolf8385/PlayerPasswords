@@ -77,8 +77,9 @@ ConfirmRegister: "<gold><bold>Register</bold> <dark_gray>» <gray>Confirm your p
 RegisterConfirmUsage: "<red><bold>Usage</bold> <dark_gray>» <red>/register confirm [password]."
 
 # Password
-PasswordEnabled: "<gold><bold>Password <dark_gray>» <gray>You have <green>enabled <gray>password protection."
+PasswordEnabled: "<gold><bold>Password</bold> <dark_gray>» <gray>You have <green>enabled <gray>password protection."
 PasswordDisabled: "<gold><bold>Password</bold> <dark_gray>» <gray>You have <red>disabled <gray>password protection."
+PasswordNotEnabled: "<gold><bold>Password</bold> <dark_gray>» <gray>Enable your password with /password enable."
 PasswordSet: "<gold><bold>Password</bold> <dark_gray>» <gray>Your password has been set to <yellow>%password%<gray>."
 SetPasswordSuccessful: "<gold><bold>Password</bold> <dark_gray>» <gray>You have successfully set your password."
 RegisterUsage: "<red><bold>Usage</bold> <dark_gray>» <red>/register [password]."

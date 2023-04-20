@@ -76,6 +76,14 @@ public class PasswordPlayer {
     }
 
     /**
+     * Get if the player has their password enabled.
+     * @return Whether the password is enabled.
+     */
+    public boolean hasPasswordEnabled() {
+        return settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
+    }
+
+    /**
      * Get if the player requires a password.
      * @return Whether a password is required.
      */
