@@ -40,6 +40,7 @@ public class LoginCMD implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         // Exit if not a player.
         if(!(sender instanceof Player)) {
+            ChatUtils.chat(sender, PluginMessage.NOT_A_PLAYER.toString());
             return true;
         }
 

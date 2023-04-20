@@ -33,6 +33,7 @@ public enum PluginMessage {
     OUT_OF_BOUNDS("OutOfBounds", "&6&lError &8» &cPassword must be between 1 and 256 characters long."),
     MUST_BE_LOGGED_IN("MustBeLoggedIn", "&6&lError &8» &cYou must be logged in to do that."),
     OPTIONAL_PASSWORD_DISABLED("OptionalPasswordsDisabled", "&6&lError &8» &cOptional Passwords are disabled."),
+    NOT_A_PLAYER("NotAPlayer", "<red><bold>Error</bold> <dark_gray>» <red>Only players can use that command."),
 
     // Other Messages
     CONFIG_RELOADED("ConfigReloaded", "&6&lPlayerPasswords &8» &aConfiguration has been reloaded!");

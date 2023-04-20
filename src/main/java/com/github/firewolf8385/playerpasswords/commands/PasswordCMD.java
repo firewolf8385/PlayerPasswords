@@ -41,6 +41,7 @@ public class PasswordCMD implements CommandExecutor {
 
         // Exit if not a player.
         if(!(sender instanceof Player)) {
+            ChatUtils.chat(sender, PluginMessage.NOT_A_PLAYER.toString());
             return true;
         }
 
