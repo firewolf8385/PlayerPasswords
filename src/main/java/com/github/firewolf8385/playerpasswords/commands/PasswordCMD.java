@@ -67,11 +67,11 @@ public class PasswordCMD implements CommandExecutor {
         // Processes the sub command.
         switch(args[0].toLowerCase()) {
             default:
-                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray + "&m--------------------" + gold + "<bold>Passwords</bold>" + gray + "&m--------------------" + gold +"<bold>[</bold>");
+                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray + "<strikethrough>--------------------</strikethrough>" + gold + "<bold>Passwords</bold>" + gray + "<strikethrough>--------------------</strikethrough>" + gold +"<bold>[</bold>");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password");
                 ChatUtils.chat(player, "  " + gray + "» " + gold + "/password set [password] " + gray + "- " + yellow + "Changes Your Password");
-                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray +"&m---------------------------------------------------" + gold + "<bold>[</bold>");
+                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray +"<strikethrough>---------------------------------------------------</strikethrough>" + gold + "<bold>[</bold>");
                 return true;
 
             case "enable":
