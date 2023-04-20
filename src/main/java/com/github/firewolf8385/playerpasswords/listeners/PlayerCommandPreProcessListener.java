@@ -4,7 +4,7 @@ import com.github.firewolf8385.playerpasswords.PlayerPasswords;
 import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
-import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
+import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;

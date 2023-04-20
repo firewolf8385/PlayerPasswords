@@ -3,7 +3,7 @@ package com.github.firewolf8385.playerpasswords.commands;
 import com.github.firewolf8385.playerpasswords.PlayerPasswords;
 import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
-import com.github.firewolf8385.playerpasswords.utils.chat.ChatUtils;
+import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
