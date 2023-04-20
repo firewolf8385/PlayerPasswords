@@ -10,17 +10,34 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
+/**
+ * This class runs the /register command, which allows the player to register a password when optional is set to false.
+ */
 public class RegisterCMD implements CommandExecutor {
     private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
+    /**
+     * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
+     * @param plugin Instance of the plugin.
+     */
     public RegisterCMD(PlayerPasswords plugin) {
         this.plugin = plugin;
     }
 
+    /**
+     * Runs when the command is executed.
+     * @param sender Source of the command
+     * @param cmd Command which was executed
+     * @param label Alias of the command which was used
+     * @param args Passed command arguments
+     * @return If the command was successful.
+     */
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
         // Exit if not a player.
         if(!(sender instanceof Player)) {
             return true;
@@ -96,6 +113,7 @@ public class RegisterCMD implements CommandExecutor {
             return true;
         }
 
+        // Updates the player's password.
         passwordPlayer.setPassword(args[0]);
 
         // Makes sure the player does not need to confirm the password.
@@ -108,14 +126,17 @@ public class RegisterCMD implements CommandExecutor {
         settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
         ChatUtils.chat(player, PluginMessage.SET_PASSWORD_SUCCESSFUL.toString());
 
+        // Sets the player to be verified.
         if(!passwordPlayer.isVerified()) {
             passwordPlayer.setVerified(true);
         }
 
+        // Enables the player's password.
         if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
             settings.getData().set("passwords." + uuid + ".enabled", true);
         }
 
+        // Updates the data file.
         settings.saveData();
         settings.reloadData();
 
