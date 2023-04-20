@@ -52,7 +52,7 @@ public class PlayerPasswordsCMD implements CommandExecutor {
         // Process the sub commands.
         switch(args[0]) {
             default:
-                ChatUtils.chat(sender, gold + "&l]" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"&l[");
+                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp reload " + gray + "- " + yellow + "Reload the plugin's config file.");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp verified " + gray + "- " + yellow + "List all verified players.");
@@ -60,7 +60,7 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                 break;
 
             case "info":
-                ChatUtils.chat(sender, gold + "&l]" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"&l[");
+                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Spigot " + gray + "- " + yellow + "https://www.spigotmc.org/resources/70520/");
@@ -68,7 +68,7 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                 break;
 
             case "verified":
-                ChatUtils.chat(sender, gold + "&l]" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"&l[");
+                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
                 for(Player player : Bukkit.getOnlinePlayers()) {
                     PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
