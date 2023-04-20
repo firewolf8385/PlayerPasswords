@@ -68,6 +68,11 @@ public class PasswordCMD implements CommandExecutor {
                     return true;
                 }
 
+                if(!passwordPlayer.hasPassword()) {
+                    ChatUtils.chat(sender, PluginMessage.PASSWORD_NOT_SET.toString());
+                    return true;
+                }
+
                 settings.getData().set("passwords." + uuid + ".enabled", true);
                 settings.saveData();
                 settings.reloadData();
