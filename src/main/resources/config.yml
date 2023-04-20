@@ -24,14 +24,14 @@ ConfigVersion: 2
 # used by the plugin that cannot be modified
 # under Messages.
 
-# Default: "&6"
-color1: "&6"
+# Default: "<gold>"
+color1: "<gold>"
 
-# Default: "&e"
-color2: "&e"
+# Default: "<yellow>"
+color2: "<yellow>"
 
-# Default: "&8"
-color3: "&8"
+# Default: "<dark_gray>"
+color3: "<dark_gray>"
 
 # -----------------------------------------
 #               Settings
@@ -77,35 +77,35 @@ BlockMovement: true
 # -----------------------------------------
 
 # Login
-Login: "&6&lLogin &8» &7You must log in to continue! &e/login [password]"
-Register: "&6&lRegister &8» &7You must register to continue! &e/register [password]"
-LogInSuccessful: "&6&lLogin &8» &7You have logged in successfully."
-LoginUsage: "&6&lLogin &8» &c/login [password]"
-ConfirmRegister: "&6&lRegister &8» &7Confirm your password with &e/register confirm [password]"
-RegisterConfirmUsage: "&6&lUsage &8» &7/register confirm [password]"
+Login: "<gold><bold>Login</bold> <dark_gray>» <gray>You must log in to continue! <yellow>/login [password]<gray>."
+Register: "<gold><bold>Register</bold> <dark_gray>» <gray>You must register to continue! <yellow>/register [password]<gray>."
+LogInSuccessful: "<gold><bold>Login</bold> <dark_gray>» <gray>You have logged in successfully."
+LoginUsage: "<gold><bold>Login</bold> <dark_gray>» <gray>/login [password]"
+ConfirmRegister: "<gold><bold>Register</bold> <dark_gray>» <gray>Confirm your password with <yellow>/register confirm [password]<gray>."
+RegisterConfirmUsage: "<red><bold>Usage</bold> <dark_gray>» <red>/register confirm [password]."
 
 # Password
-PasswordEnabled: "&6&lPassword &8» &7You have &aenabled &7password protection."
-PasswordDisabled: "&6&lPassword &8» &7You have &cdisabled &7password protection."
-PasswordSet: "&6&lPassword &8» &7Your password has been set to &e%password%&7."
-SetPasswordSuccessful: "&6&lPassword &8» &7You have successfully set your password."
-RegisterUsage: "&6&lUsage &8» &7/register [password]"
-PasswordIncorrect: "&6&lError &8» &cPassword Is Incorrect. Try again."
-PasswordNotSet: "&6&lError &8» &cYou do not have a password set. Set one with /password set [password]."
-PasswordSetUsage: "&6&lUsage &8» &7/password set [password]"
-ConfirmPassword: "&6&lPassword &8» &7Confirm your password with &e/password confirm [password]"
-PasswordConfirmUsage: "&6&lUsage &8» &7/password confirm [password]"
+PasswordEnabled: "<gold><bold>Password <dark_gray>» <gray>You have <green>enabled <gray>password protection."
+PasswordDisabled: "<gold><bold>Password</bold> <dark_gray>» <gray>You have <red>disabled <gray>password protection."
+PasswordSet: "<gold><bold>Password</bold> <dark_gray>» <gray>Your password has been set to <yellow>%password%<gray>."
+SetPasswordSuccessful: "<gold><bold>Password</bold> <dark_gray>» <gray>You have successfully set your password."
+RegisterUsage: "<red><bold>Usage</bold> <dark_gray>» <red>/register [password]."
+PasswordIncorrect: "<red><bold>Error</bold> <dark_gray>» <red>Password Is Incorrect. Try again."
+PasswordNotSet: "<red><bold>Error</bold> <dark_gray>» <red>You do not have a password set. Set one with /password set [password]."
+PasswordSetUsage: "<red><bold>Usage</bold> <dark_gray>» <red>/password set [password]"
+ConfirmPassword: "<gold><bold>Password</bold> <dark_gray>» <gray>Confirm your password with <yellow>/password confirm [password]<gray>."
+PasswordConfirmUsage: "<red><bold>Usage</bold> <dark_gray>» <gray>/password confirm [password]"
 
 # Errors
-AlreadyLoggedIn: "&6&lError &8» &cYou are already logged in!"
-AlreadyRegistered: "&6&lError &8» &cYou are already registered!"
-NoPermission: "&6&lError &8» &cYou do not have permission to do that."
-OutOfBounds: "&6&lError &8» &cPassword must be between 1 and 256 characters long."
-MustBeLoggedIn: "&6&lError &8» &cYou must be logged in to do that."
-OptionalPasswordsDisabled: "&6&lError &8» &cOptional Passwords are disabled."
+AlreadyLoggedIn: "<red><bold>Error</bold> <dark_gray>» <red>You are already logged in!"
+AlreadyRegistered: "<red><bold>Error</bold> <dark_gray>» <red>You are already registered!"
+NoPermission: "<red><bold>Error</bold> <dark_gray>» <red>You do not have permission to do that."
+OutOfBounds: "<red><bold>Error</bold> <dark_gray>» <red>Password must be between 1 and 256 characters long."
+MustBeLoggedIn: "<red><bold>Error</bold> <dark_gray>» <red>You must be logged in to do that."
+OptionalPasswordsDisabled: "<red><bold>Error</bold> <dark_gray>» <red>Optional Passwords are disabled."
 
 # Other
-KickMessage: "&cYou entered your password incorrectly."
-UpdateAvailable: "&6&lPlayerPasswords &8» &cYou are using an outdated version! Latest version is %version%."
-OutdatedConfig: "&6&lPlayerPasswords &8» &cThe config file is outdated. Features using this new file may error if not corrected."
-ConfigReloaded: "&6&lPlayerPasswords &8» &aConfiguration has been reloaded!"
+KickMessage: "<red>You entered your password incorrectly."
+UpdateAvailable: "<gold><bold>PlayerPasswords</bold> <dark_gray>» <red>You are using an outdated version! Latest version is %version%."
+OutdatedConfig: "<gold><bold>>PlayerPasswords</bold> <dark_gray>» <red>The config file is outdated. Features using this new file may error if not corrected."
+ConfigReloaded: "<gold><bold>PlayerPasswords</bold> <dark_gray>» <green>Configuration has been reloaded!"
