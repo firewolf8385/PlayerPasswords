@@ -61,3 +61,5 @@ permissions:
     default: false
   playerpasswords.required:
     default: false
+  playerpasswords.admin:
+    default: op

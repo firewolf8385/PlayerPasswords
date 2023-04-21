@@ -41,6 +41,13 @@ public class PlayerPasswordsCMD implements CommandExecutor {
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
+        // Makes sure the player has permission to use the command.
+        if(!sender.hasPermission("playerpasswords.admin")) {
+            ChatUtils.chat(sender, PluginMessage.NO_PERMISSION.toString());
+            return true;
+        }
+
         String gold = ThemeColor.GOLD.toString();
         String yellow = ThemeColor.YELLOW.toString();
         String gray = ThemeColor.GRAY.toString();
