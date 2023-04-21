@@ -8,15 +8,20 @@ import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.utils.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * This class runs the /password command, which runs password related functions.
  */
-public class PasswordCMD implements CommandExecutor {
+public class PasswordCMD implements CommandExecutor, TabCompleter {
     private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
@@ -173,5 +178,25 @@ public class PasswordCMD implements CommandExecutor {
                 }
                 return true;
         }
+    }
+
+    /**
+     * Processes command tab completion.
+     * @param sender Command sender.
+     * @param cmd Command.
+     * @param label Command label.
+     * @param args Arguments of the command.
+     * @return Tab completion.
+     */
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
+        // Lists all subcommands if the player hasn't picked one yet.
+        if(args.length < 2) {
+            return Arrays.asList("confirm", "disable", "enable", "help", "set");
+        }
+
+        // Otherwise, send an empty list.
+        return Collections.emptyList();
     }
 }

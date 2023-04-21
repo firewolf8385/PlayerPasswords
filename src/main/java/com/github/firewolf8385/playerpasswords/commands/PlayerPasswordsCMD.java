@@ -10,16 +10,21 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This class runs the /playerpasswords command, which is the main admin command for the plugin.
  * aliases:
  *   - /pp
  */
-public class PlayerPasswordsCMD implements CommandExecutor {
+public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
     private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswords plugin;
 
@@ -122,5 +127,25 @@ public class PlayerPasswordsCMD implements CommandExecutor {
         }
 
         return true;
+    }
+
+    /**
+     * Processes command tab completion.
+     * @param sender Command sender.
+     * @param cmd Command.
+     * @param label Command label.
+     * @param args Arguments of the command.
+     * @return Tab completion.
+     */
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+
+        // Lists all subcommands if the player hasn't picked one yet.
+        if(args.length < 2) {
+            return Arrays.asList("help", "info", "help", "reload", "reset", "verified", "version");
+        }
+
+        // Otherwise, send an empty list.
+        return Collections.emptyList();
     }
 }
