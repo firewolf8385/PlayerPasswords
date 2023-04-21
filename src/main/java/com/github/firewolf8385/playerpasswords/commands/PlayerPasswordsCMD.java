@@ -73,7 +73,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 break;
 
             case "info":
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
+                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "<bold>PlayerPasswords</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "GitHub " + gray + "- " + yellow + "https://www.github.com/firewolf8385/PlayerPasswords");
@@ -81,7 +81,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 break;
 
             case "verified":
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "&lPlayerPasswords" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
+                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "<bold>PlayerPasswords</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
                 for(Player player : Bukkit.getOnlinePlayers()) {
                     PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
