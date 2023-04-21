@@ -6,6 +6,7 @@ import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -83,6 +84,33 @@ public class PlayerPasswordsCMD implements CommandExecutor {
                 settings.reloadConfig();
                 settings.reloadData();
                 ChatUtils.chat(sender, PluginMessage.CONFIG_RELOADED.toString());
+                break;
+
+            case "reset":
+                // Makes sure the command is being used properly.
+                if(args.length != 2) {
+                    ChatUtils.chat(sender, PluginMessage.PASSWORD_RESET_USAGE.toString());
+                    return true;
+                }
+
+                // Get the player to reset the password of.
+                OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
+                // Makes sure the player exists.
+                if(!settings.getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
+                    ChatUtils.chat(sender, PluginMessage.PLAYER_DOES_NOT_EXIST.toString());
+                    return true;
+                }
+
+                settings.getData().set("passwords." + target.getUniqueId() + ".enabled", false);
+                settings.getData().set("passwords." + target.getUniqueId() + ".password", "");
+
+                // Reload the data file after updating it.
+                settings.saveData();
+                settings.reloadData();
+
+                ChatUtils.chat(sender, PluginMessage.PASSWORD_RESET.toString());
+
                 break;
         }
 
