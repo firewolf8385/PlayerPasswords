@@ -30,7 +30,7 @@ public enum PluginMessage {
     ALREADY_LOGGED_IN("AlreadyLoggedIn", "&6&lError &8» &cYou are already logged in!"),
     ALREADY_REGISTERED("AlreadyRegistered", "&6&lError &8» &cYou are already registered!"),
     NO_PERMISSION("NoPermission", "&6&lError &8» &cYou do not have permission to do that."),
-    OUT_OF_BOUNDS("OutOfBounds", "&6&lError &8» &cPassword must be between 1 and 256 characters long."),
+    OUT_OF_BOUNDS("OutOfBounds", "<red><bold>Error</bold> <dark_gray>» <red>Password must be between <white>%minimum% <red>and <white>%maximum% <red>characters long."),
     MUST_BE_LOGGED_IN("MustBeLoggedIn", "&6&lError &8» &cYou must be logged in to do that."),
     OPTIONAL_PASSWORD_DISABLED("OptionalPasswordsDisabled", "&6&lError &8» &cOptional Passwords are disabled."),
     NOT_A_PLAYER("NotAPlayer", "<red><bold>Error</bold> <dark_gray>» <red>Only players can use that command."),

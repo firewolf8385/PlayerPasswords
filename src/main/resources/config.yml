@@ -93,7 +93,7 @@ PasswordConfirmUsage: "<red><bold>Usage</bold> <dark_gray>» <gray>/password con
 AlreadyLoggedIn: "<red><bold>Error</bold> <dark_gray>» <red>You are already logged in!"
 AlreadyRegistered: "<red><bold>Error</bold> <dark_gray>» <red>You are already registered!"
 NoPermission: "<red><bold>Error</bold> <dark_gray>» <red>You do not have permission to do that."
-OutOfBounds: "<red><bold>Error</bold> <dark_gray>» <red>Password must be between 1 and 256 characters long."
+OutOfBounds: "<red><bold>Error</bold> <dark_gray>» <red>Password must be between <white>%minimum% <red>and <white>%maximum% <red>characters long."
 MustBeLoggedIn: "<red><bold>Error</bold> <dark_gray>» <red>You must be logged in to do that."
 OptionalPasswordsDisabled: "<red><bold>Error</bold> <dark_gray>» <red>Optional Passwords are disabled."
 NotAPlayer: "<red><bold>Error</bold> <dark_gray>» <red>Only players can use that command."
