@@ -41,6 +41,7 @@ commands:
   password:
     usage: /<command>
     description: Player password settings
+    aliases: [pw]
 
 ######
 #     # ###### #####  #    # #  ####   ####  #  ####  #    #  ####
