@@ -19,13 +19,25 @@ public class PasswordPlayer {
     public PasswordPlayer(Player player) {
         this.player = player;
 
-        boolean one = !settings.getConfig().getBoolean("Optional");
-        boolean two = settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
-        boolean three = getPlayer().hasPermission("playerpasswords.required");
+        boolean optional = settings.getConfig().getBoolean("Optional");
+        boolean enabled = settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
+        boolean requiredPerm = player.hasPermission("playerpasswords.required");
+        boolean bypass = player.hasPermission("playerpasswords.bypass");
 
-        required = one || two || three;
+        if(enabled) {
+            verified = false;
+            required = true;
+            return;
+        }
 
-        verified = !required || getPlayer().hasPermission("playerpasswords.bypass");
+        if((requiredPerm || !optional) && !bypass) {
+            verified = false;
+            required = true;
+            return;
+        }
+
+        verified = true;
+        required = false;
     }
 
     /**
