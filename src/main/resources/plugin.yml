@@ -16,7 +16,7 @@
 name: PlayerPasswords
 version: ${project.version}
 author: firewolf8385
-main: com.github.firewolf8385.playerpasswords.PlayerPasswords
+main: com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin
 api-version: 1.13
 
 #####
