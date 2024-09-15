@@ -72,6 +72,9 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
 
         hookManager = new HookManager();
         ChatUtils.initialize(this);
+
+        // Initialize PlayerPasswords API.
+        PlayerPasswords.initialize(this);
     }
 
     public HookManager getHookManager() {
