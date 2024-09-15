@@ -30,6 +30,7 @@ import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
 import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
