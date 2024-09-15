@@ -25,6 +25,7 @@
 package com.github.firewolf8385.playerpasswords.utils;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
+import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
@@ -142,11 +143,17 @@ public class ChatUtils {
      * @return Translated Message.
      */
     public static Component translate(@NotNull String message) {
+        // Replace theme colors.
+        message = message.replace("<color1>", ThemeColor.GOLD.toString())
+                .replace("<color2>", ThemeColor.YELLOW.toString())
+                .replace("<color3>", ThemeColor.GRAY.toString());
 
         // Checks for the "<center>" tag, which centers a message.
         if(message.startsWith("<center>")) {
             message = centerText(message.replaceFirst("<center>", ""));
         }
+
+        message = message.replace("<color1>", ThemeColor.GOLD.toString()).replace("<color2>", ThemeColor.YELLOW.toString()).replace("<color3>", ThemeColor.GRAY.toString());
 
         return MiniMessage.miniMessage().deserialize(replaceLegacy(message));
     }

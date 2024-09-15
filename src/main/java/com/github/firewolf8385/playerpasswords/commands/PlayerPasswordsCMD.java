@@ -90,35 +90,35 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
         switch(args[0]) {
             default:
                 ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp reload " + gray + "- " + yellow + "Reload the plugin's config file.");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp verified " + gray + "- " + yellow + "List all verified players.");
+                ChatUtils.chat(sender, "  <color3>» <color1>/pp info <color3>- <color2>Shows plugin info.");
+                ChatUtils.chat(sender, "  <color3>» <color1>/pp reload <color3>- <color2>Reload the plugin's config file.");
+                ChatUtils.chat(sender, "  <color3>» <color1>/pp verified <color3>- <color2>List all verified players.");
                 ChatUtils.chat(sender, "");
                 break;
 
             case "info":
                 ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "GitHub " + gray + "- " + yellow + "github.com/firewolf8385/PlayerPasswords");
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Modrinth " + gray + "- " + yellow + "modrinth.com/project/playerpasswords");
+                ChatUtils.chat(sender, "  <color3>» <color1>Author <color3>- <color2>firewolf8385");
+                ChatUtils.chat(sender, "  <color3>» <color1>Version <color3>- <color2>" + plugin.getDescription().getVersion());
+                ChatUtils.chat(sender, "  <color3>» <color1>GitHub <color3>- <color2>github.com/firewolf8385/PlayerPasswords");
+                ChatUtils.chat(sender, "  <color3>» <color1>Modrinth <color3>- <color2>modrinth.com/project/playerpasswords");
                 ChatUtils.chat(sender, "");
                 break;
 
             case "verified":
                 ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
 
                 for(Player player : Bukkit.getOnlinePlayers()) {
                     PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
                     if(passwordPlayer.isVerified()) {
-                        ChatUtils.chat(sender, "  " + gray + "» " + yellow + player.getName());
+                        ChatUtils.chat(sender, "  <color3>» <color2>" + player.getName());
                     }
                 }
                 ChatUtils.chat(sender, "");
