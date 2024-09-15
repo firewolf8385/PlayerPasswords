@@ -77,9 +77,9 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        String gold = ThemeColor.GOLD.toString();
-        String yellow = ThemeColor.YELLOW.toString();
-        String gray = ThemeColor.GRAY.toString();
+        final String gold = ThemeColor.GOLD.toString();
+        final String yellow = ThemeColor.YELLOW.toString();
+        final String gray = ThemeColor.GRAY.toString();
 
         // Shows default page if no arguments are given.
         if(args.length == 0) {
@@ -104,7 +104,8 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
-                ChatUtils.chat(sender, "  " + gray + "» " + gold + "GitHub " + gray + "- " + yellow + "https://www.github.com/firewolf8385/PlayerPasswords");
+                ChatUtils.chat(sender, "  " + gray + "» " + gold + "GitHub " + gray + "- " + yellow + "github.com/firewolf8385/PlayerPasswords");
+                ChatUtils.chat(sender, "  " + gray + "» " + gold + "Modrinth " + gray + "- " + yellow + "modrinth.com/project/playerpasswords");
                 ChatUtils.chat(sender, "");
                 break;
 
