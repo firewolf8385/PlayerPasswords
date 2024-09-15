@@ -104,8 +104,8 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "  <color3>» <color1>Author <color3>- <color2>firewolf8385");
                 ChatUtils.chat(sender, "  <color3>» <color1>Version <color3>- <color2>" + plugin.getDescription().getVersion());
-                ChatUtils.chat(sender, "  <color3>» <color1>GitHub <color3>- <color2>github.com/firewolf8385/PlayerPasswords");
-                ChatUtils.chat(sender, "  <color3>» <color1>Modrinth <color3>- <color2>modrinth.com/project/playerpasswords");
+                ChatUtils.chat(sender, "  <color3>» <color1>GitHub <color3>- <color2><click:open_url:'https://www.github.com/firewolf8385/PlayerPasswords'>github.com/firewolf8385/PlayerPasswords</click>");
+                ChatUtils.chat(sender, "  <color3>» <color1>Modrinth <color3>- <color2><click:open_url:'https://www.modrinth.com/project/playerpasswords'>modrinth.com/project/playerpasswords</click>");
                 ChatUtils.chat(sender, "");
                 break;
 
