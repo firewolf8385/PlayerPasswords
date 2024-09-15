@@ -89,23 +89,30 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
         // Process the sub commands.
         switch(args[0]) {
             default:
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "<bold>PlayerPasswords</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp info " + gray + "- " + yellow + "Shows plugin info.");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp reload " + gray + "- " + yellow + "Reload the plugin's config file.");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "/pp verified " + gray + "- " + yellow + "List all verified players.");
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray +"<strikethrough>---------------------------------------------------</strikethrough>" + gold + "<bold>[</bold>");
+                ChatUtils.chat(sender, "");
                 break;
 
             case "info":
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "<bold>PlayerPasswords</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Author " + gray + "- " + yellow + "firewolf8385");
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "Version " + gray + "- " + yellow + plugin.getDescription().getVersion());
                 ChatUtils.chat(sender, "  " + gray + "» " + gold + "GitHub " + gray + "- " + yellow + "https://www.github.com/firewolf8385/PlayerPasswords");
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray +"<strikethrough>---------------------------------------------------</strikethrough>" + gold + "<bold>[</bold>");
+                ChatUtils.chat(sender, "");
                 break;
 
             case "verified":
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold + "<bold>PlayerPasswords</bold>" + gray + "<strikethrough>-----------------</strikethrough>" + gold +"<bold>[</bold>");
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(sender, "<center>" + gray + "<st>        </st> " +  gold + "<bold>PlayerPasswords " + gray +  "<st>        </st> ");
+                ChatUtils.chat(sender, "");
+
                 for(Player player : Bukkit.getOnlinePlayers()) {
                     PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
@@ -113,7 +120,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                         ChatUtils.chat(sender, "  " + gray + "» " + yellow + player.getName());
                     }
                 }
-                ChatUtils.chat(sender, gold + "<bold>]</bold>" + gray +"<strikethrough>---------------------------------------------------</strikethrough>" + gold + "<bold>[</bold>");
+                ChatUtils.chat(sender, "");
                 break;
 
             case "reload":
