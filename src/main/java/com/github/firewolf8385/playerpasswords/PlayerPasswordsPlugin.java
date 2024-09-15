@@ -29,7 +29,9 @@ import com.github.firewolf8385.playerpasswords.commands.PlayerPasswordsCMD;
 import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
 import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
+import com.github.firewolf8385.playerpasswords.settings.HookManager;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -44,6 +46,7 @@ import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
 public class PlayerPasswordsPlugin extends JavaPlugin {
     private PasswordPlayerManager passwordPlayerManager;
+    private HookManager hookManager;
     private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
@@ -66,6 +69,13 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
             passwordPlayerManager.addPlayer(player);
             passwordPlayerManager.getPlayer(player).setVerified(true);
         }
+
+        hookManager = new HookManager();
+        ChatUtils.initialize(this);
+    }
+
+    public HookManager getHookManager() {
+        return this.hookManager;
     }
 
     public PasswordPlayerManager getPasswordPlayerManager() {
