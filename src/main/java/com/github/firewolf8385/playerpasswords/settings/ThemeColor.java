@@ -5,9 +5,9 @@ package com.github.firewolf8385.playerpasswords.settings;
  * If a value is missing, it uses the default instead.
  */
 public enum ThemeColor {
-    GOLD("color1", "&6"),
-    YELLOW("color2", "&e"),
-    GRAY("color3", "&8");
+    GOLD("color1", "<gold>"),
+    YELLOW("color2", "<yellow>"),
+    GRAY("color3", "<dark_gray>");
 
     private final String configName;
     private final String defaultValue;

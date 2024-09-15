@@ -53,7 +53,7 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
      * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
      * @param plugin Instance of the plugin.
      */
-    public PasswordCMD(PlayerPasswordsPlugin plugin) {
+    public PasswordCMD(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -66,7 +66,7 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
      * @return If the command was successful.
      */
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command cmd, @NotNull final String label, @NotNull String[] args) {
 
         // Exit if not a player.
         if(!(sender instanceof Player)) {
@@ -74,20 +74,15 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        Player player = (Player) sender;
-        String uuid = player.getUniqueId().toString();
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+        final Player player = (Player) sender;
+        final String uuid = player.getUniqueId().toString();
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
         // Player cannot use command if they aren't logged in.
         if(!passwordPlayer.isVerified()) {
             ChatUtils.chat(player, PluginMessage.MUST_BE_LOGGED_IN.toString());
             return true;
         }
-
-        // Grab the theme set in the config.
-        String gold = ThemeColor.GOLD.toString();
-        String yellow = ThemeColor.YELLOW.toString();
-        String gray = ThemeColor.GRAY.toString();
 
         // Shows default page if no arguments are given.
         if(args.length == 0) {
@@ -97,11 +92,13 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
         // Processes the sub command.
         switch(args[0].toLowerCase()) {
             default:
-                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray + "<strikethrough>--------------------</strikethrough>" + gold + "<bold>Passwords</bold>" + gray + "<strikethrough>--------------------</strikethrough>" + gold +"<bold>[</bold>");
-                ChatUtils.chat(player, "  " + gray + "» " + gold + "/password enable " + gray + "- " + yellow + "Enables Your Password");
-                ChatUtils.chat(player, "  " + gray + "» " + gold + "/password disable " + gray + "- " + yellow + "Disables Your Password");
-                ChatUtils.chat(player, "  " + gray + "» " + gold + "/password set [password] " + gray + "- " + yellow + "Changes Your Password");
-                ChatUtils.chat(player, gold + "<bold>]</bold>" + gray +"<strikethrough>---------------------------------------------------</strikethrough>" + gold + "<bold>[</bold>");
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>Passwords <color3><st>        </st> ");
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(player, "  <color3>» <color1>/password enable <color3>- <color2>Enables Your Password");
+                ChatUtils.chat(player, "  <color3>» <color1>/password disable <color3>- <color2>Disables Your Password");
+                ChatUtils.chat(player, "  <color3>» <color1>/password set [password] <color3>- <color2>Changes Your Password");
+                ChatUtils.chat(sender, "");
                 return true;
 
             case "enable":

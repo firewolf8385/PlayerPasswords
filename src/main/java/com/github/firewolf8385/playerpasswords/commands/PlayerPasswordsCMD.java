@@ -27,7 +27,6 @@ package com.github.firewolf8385.playerpasswords.commands;
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
 import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
-import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -56,7 +55,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
      * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
      * @param plugin Instance of the plugin.
      */
-    public PlayerPasswordsCMD(PlayerPasswordsPlugin plugin) {
+    public PlayerPasswordsCMD(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -69,17 +68,13 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
      * @return If the command was successful.
      */
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command cmd, @NotNull final String label, @NotNull String[] args) {
 
         // Makes sure the player has permission to use the command.
         if(!sender.hasPermission("playerpasswords.admin")) {
             ChatUtils.chat(sender, PluginMessage.NO_PERMISSION.toString());
             return true;
         }
-
-        final String gold = ThemeColor.GOLD.toString();
-        final String yellow = ThemeColor.YELLOW.toString();
-        final String gray = ThemeColor.GRAY.toString();
 
         // Shows default page if no arguments are given.
         if(args.length == 0) {
@@ -114,8 +109,8 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
 
-                for(Player player : Bukkit.getOnlinePlayers()) {
-                    PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+                for(final Player player : Bukkit.getOnlinePlayers()) {
+                    final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
                     if(passwordPlayer.isVerified()) {
                         ChatUtils.chat(sender, "  <color3>» <color2>" + player.getName());
@@ -138,7 +133,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 }
 
                 // Get the player to reset the password of.
-                OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+                final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
                 // Makes sure the player exists.
                 if(!settings.getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
