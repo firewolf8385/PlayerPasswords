@@ -102,6 +102,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(sender, "");
                 break;
 
+            case "list":
             case "players":
                 ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
@@ -182,7 +183,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         // Lists all subcommands if the player hasn't picked one yet.
         if(args.length < 2) {
-            return Arrays.asList("help", "info", "help", "reload", "reset", "players", "version");
+            return Arrays.asList("info", "help", "reload", "reset", "players", "version", "list");
         }
 
         // Otherwise, send an empty list.
