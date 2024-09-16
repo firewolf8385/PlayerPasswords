@@ -38,6 +38,7 @@ commands:
     usage: /<command>
     description: Main plugin command.
     aliases: [playerpassword, pp, passwords]
+    permission: playerpasswords.admin
   password:
     usage: /<command>
     description: Player password settings
