@@ -24,7 +24,9 @@
  */
 package com.github.firewolf8385.playerpasswords;
 
+import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -45,7 +47,7 @@ public class PlayerPasswords {
 
     /**
      * Check if chat is configured to be blocked for unverified players.
-     * @return
+     * @return True if blocked, false if not.
      */
     public static boolean isChatBlocked() {
         // Disable the block if it's not set in config.yml.
@@ -111,5 +113,20 @@ public class PlayerPasswords {
 
         // Otherwise check config.yml.
         return settings.getConfig().getBoolean("BlockMovement");
+    }
+
+    /**
+     * Check if a given player is logged in (verified).
+     * @param player Player to check verification status of.
+     * @return true if they are verified, false if they are not.
+     */
+    public static boolean isVerified(@NotNull final Player player) {
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+
+        if(passwordPlayer == null) {
+            return false;
+        }
+
+        return passwordPlayer.isVerified();
     }
 }
