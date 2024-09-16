@@ -91,16 +91,6 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
         switch(args[0].toLowerCase()) {
             default:
                 ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.PASSWORD_HELP_PAGE));
-                /*
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>Passwords <color3><st>        </st> ");
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(player, "  <color3>» <color1>/password enable <color3>- <color2>Enables Your Password");
-                ChatUtils.chat(player, "  <color3>» <color1>/password disable <color3>- <color2>Disables Your Password");
-                ChatUtils.chat(player, "  <color3>» <color1>/password set [password] <color3>- <color2>Changes Your Password");
-                ChatUtils.chat(sender, "");
-
-                 */
                 return true;
 
             case "enable":
