@@ -25,8 +25,7 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -41,14 +40,13 @@ import org.jetbrains.annotations.NotNull;
  * This class runs the /login command, which runs login related functions.
  */
 public class LoginCMD implements CommandExecutor {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
     /**
      * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
      * @param plugin Instance of the plugin.
      */
-    public LoginCMD(PlayerPasswordsPlugin plugin) {
+    public LoginCMD(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -61,20 +59,20 @@ public class LoginCMD implements CommandExecutor {
      * @return If the command was successful.
      */
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command cmd, @NotNull final String label, @NotNull final String[] args) {
         // Exit if not a player.
         if(!(sender instanceof Player)) {
-            ChatUtils.chat(sender, PluginMessage.NOT_A_PLAYER.toString());
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_NOT_A_PLAYER));
             return true;
         }
 
-        Player player = (Player) sender;
-        String uuid = player.getUniqueId().toString();
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+        final Player player = (Player) sender;
+        final String uuid = player.getUniqueId().toString();
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
         // If the player is already logged in, they can't log in again.
         if(passwordPlayer.isVerified()) {
-            ChatUtils.chat(player, PluginMessage.ALREADY_LOGGED_IN.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.LOGIN_ALREADY_LOGGED_IN));
             return true;
         }
 
@@ -82,34 +80,34 @@ public class LoginCMD implements CommandExecutor {
         if(!passwordPlayer.hasPassword()) {
             // If not, and they're required to, tell them how to register.
             if(passwordPlayer.isRequired()) {
-                ChatUtils.chat(player, PluginMessage.REGISTER.toString());
+                ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_REGISTER_TO_CONTINUE));
                 return true;
             }
 
             // Otherwise, tell them how to set a password.
-            ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_SET.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_NOT_SET));
         }
 
         // If The Command Is Run Without Args, Show Error Message
         if(args.length == 0) {
-            ChatUtils.chat(player, PluginMessage.LOGIN_USAGE.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.LOGIN_LOGIN_USAGE));
             return true;
         }
 
         // If the password is correct, mark the player as verified.
-        if(StringUtils.hash(args[0]) == (settings.getData().getInt("passwords." + uuid + ".password"))) {
-            ChatUtils.chat(player, PluginMessage.LOGIN_SUCCESSFUL.toString());
+        if(StringUtils.hash(args[0]) == (plugin.getConfigManager().getData().getInt("passwords." + uuid + ".password"))) {
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.LOGIN_LOGGED_IN_SUCCESSFULLY));
             passwordPlayer.setVerified(true);
             return true;
         }
 
         // Otherwise, process the login attempt.
         passwordPlayer.addLoginAttempt();
-        int maxAttempts = settings.getConfig().getInt("MaxAttempts");
+        int maxAttempts = plugin.getConfigManager().getConfig().getInt("MaxAttempts");
 
         // If there have been too many login attempts, process the fail commands.
         if(maxAttempts != -1 && passwordPlayer.getLoginAttempts() >= maxAttempts) {
-            for(String command : settings.getConfig().getStringList("FailCommands")) {
+            for(String command : plugin.getConfigManager().getConfig().getStringList("FailCommands")) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", player.getName()));
             }
 
@@ -117,7 +115,7 @@ public class LoginCMD implements CommandExecutor {
         }
 
         // If they still have attempts remaining, send them the incorrect password message.
-        ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_INCORRECT));
         return true;
     }
 }

@@ -25,8 +25,7 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -48,7 +47,6 @@ import java.util.List;
  *   - /pp
  */
 public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
     /**
@@ -72,7 +70,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         // Makes sure the player has permission to use the command.
         if(!sender.hasPermission("playerpasswords.admin")) {
-            ChatUtils.chat(sender, PluginMessage.NO_PERMISSION.toString());
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_NO_PERMISSION));
             return true;
         }
 
@@ -134,15 +132,16 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 break;
 
             case "reload":
-                settings.reloadConfig();
-                settings.reloadData();
-                ChatUtils.chat(sender, PluginMessage.CONFIG_RELOADED.toString());
+                plugin.getConfigManager().reloadConfig();
+                plugin.getConfigManager().reloadData();
+                plugin.getConfigManager().reloadMessages();
+                ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_CONFIG_RELOADED));
                 break;
 
             case "reset":
                 // Makes sure the command is being used properly.
                 if(args.length != 2) {
-                    ChatUtils.chat(sender, PluginMessage.PASSWORD_RESET_USAGE.toString());
+                    ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET_USAGE));
                     return true;
                 }
 
@@ -150,19 +149,19 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
 
                 // Makes sure the player exists.
-                if(!settings.getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
-                    ChatUtils.chat(sender, PluginMessage.PLAYER_DOES_NOT_EXIST.toString());
+                if(!plugin.getConfigManager().getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
+                    ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PLAYER_DOES_NOT_EXIST));
                     return true;
                 }
 
-                settings.getData().set("passwords." + target.getUniqueId() + ".enabled", false);
-                settings.getData().set("passwords." + target.getUniqueId() + ".password", "");
+                plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".enabled", false);
+                plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".password", "");
 
                 // Reload the data file after updating it.
-                settings.saveData();
-                settings.reloadData();
+                plugin.getConfigManager().saveData();
+                plugin.getConfigManager().reloadData();
 
-                ChatUtils.chat(sender, PluginMessage.PASSWORD_RESET.toString());
+                ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET));
 
                 break;
         }

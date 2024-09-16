@@ -1,11 +1,35 @@
+/*
+ * This file is part of PlayerPasswords, licensed under the MIT License.
+ *
+ *  Copyright (c) JadedMC
+ *  Copyright (c) contributors
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ */
 package com.github.firewolf8385.playerpasswords.player;
 
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class PasswordPlayer {
-    SettingsManager settings = SettingsManager.getInstance();
-
+    private final PlayerPasswordsPlugin plugin;
     private final boolean required;
     private boolean verified;
     private final Player player;
@@ -16,11 +40,12 @@ public class PasswordPlayer {
      * Create a PasswordPlayer
      * @param player Player object.
      */
-    public PasswordPlayer(Player player) {
+    public PasswordPlayer(@NotNull final PlayerPasswordsPlugin plugin, @NotNull final Player player) {
+        this.plugin = plugin;
         this.player = player;
 
-        boolean optional = settings.getConfig().getBoolean("Optional");
-        boolean enabled = settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
+        boolean optional = plugin.getConfigManager().getConfig().getBoolean("Optional");
+        boolean enabled = plugin.getConfigManager().getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
         boolean requiredPerm = player.hasPermission("playerpasswords.required");
         boolean bypass = player.hasPermission("playerpasswords.bypass");
 
@@ -79,12 +104,12 @@ public class PasswordPlayer {
     public boolean hasPassword() {
 
         // If the player does not have any data, then they can't have a password.
-        if(!settings.getData().isSet("passwords." + player.getUniqueId() + ".password")) {
+        if(!plugin.getConfigManager().getData().isSet("passwords." + player.getUniqueId() + ".password")) {
             return false;
         }
 
         // If there is data, check if the data is empty.
-        return !settings.getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
+        return !plugin.getConfigManager().getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
     }
 
     /**
@@ -92,7 +117,7 @@ public class PasswordPlayer {
      * @return Whether the password is enabled.
      */
     public boolean hasPasswordEnabled() {
-        return settings.getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
+        return plugin.getConfigManager().getData().getBoolean("passwords." + player.getUniqueId() + ".enabled");
     }
 
     /**

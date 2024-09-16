@@ -1,0 +1,40 @@
+Messages:
+  Login:
+    LOGIN_TO_CONTINUE: "<color1><bold>Login</bold> <color3>» <gray>You must log in to continue! <color2>/login [password]<gray>."
+    LOGIN_USAGE: "<red><bold>Usage</bold> <dark_gray>» <red>/login [password]"
+    LOGGED_IN_SUCCESSFULLY: "<color1><bold>Login</bold> <color3>» <gray>You have logged in successfully."
+    ALREADY_LOGGED_IN: "<red><bold>Error</bold> <dark_gray>» <red>You are already logged in!"
+  Register:
+    REGISTER_TO_CONTINUE: "<color1><bold>Register</bold> <color3>» <gray>You must register to continue! <color2>/register [password]<gray>."
+    REGISTER_USAGE: "<red><bold>Usage</bold> <color3>» <red>/register [password]."
+    CONFIRM_REGISTER: "<color1><bold>Register</bold> <color3>» <gray>Confirm your password with <color2>/register confirm [password]<gray>."
+    REGISTER_CONFIRM_USAGE: "<red><bold>Usage</bold> <color3>» <red>/register confirm [password]."
+    ALREADY_REGISTERED: "<red><bold>Error</bold> <color3>» <red>You are already registered!"
+  Password:
+    PASSWORD_ENABLED: "<color1><bold>Password</bold> <color3>» <gray>You have <green>enabled <gray>password protection."
+    PASSWORD_DISABLED: "<color1><bold>Password</bold> <color3>» <gray>You have <red>disabled <gray>password protection."
+    PASSWORD_NOT_ENABLED: "<color1><bold>Password</bold> <color3>» <gray>Enable your password with <color2>/password enable<gray>."
+    PASSWORD_NOT_SET: "<red><bold>Error</bold> <color3>» <red>You do not have a password set. Set one with /password set [password]."
+    PASSWORD_SET_USAGE: "<red><bold>Usage</bold> <color3>» <red>/password set [password]"
+    PASSWORD_SET_SUCCESSFULLY: "<color1><bold>Password</bold> <color3>» <gray>You have successfully set your password."
+    CONFIRM_PASSWORD: "<color1><bold>Password</bold> <color3>» <gray>Confirm your password with <color2>/password confirm [password]<gray>."
+    PASSWORD_CONFIRM_USAGE: "<red><bold>Usage</bold> <color3>» <gray>/password confirm [password]"
+    OPTIONAL_PASSWORD_DISABLED: "<red><bold>Error</bold> <color3>» <red>Optional Passwords are disabled."
+    PASSWORD_OUT_OF_BOUNDS: "<red><bold>Error</bold> <color3>» <red>Password must be between <white>%minimum% <red>and <white>%maximum% <red>characters long."
+    PASSWORD_INCORRECT: "<red><bold>Error</bold> <color3>» <red>Password Is Incorrect. Try again."
+    HELP_PAGE: |
+      <reset>
+      <center><color3><st>        </st> <color1><bold>Passwords <color3><st>        </st>
+      <reset>
+      <color3>  » <color1>/password enable <color3>- <color2>Enables Your Password
+      <color3>  » <color1>/password disable <color3>- <color2>Disables Your Password
+      <color3>  » <color1>/password set [password] <color3>- <color2>Changes Your Password
+      <reset>
+  Misc:
+    NO_PERMISSION: "<red><bold>Error</bold> <color3>» <red>You do not have permission to do that."
+    NOT_A_PLAYER: "<red><bold>Error</bold> <color3>» <red>Only players can use that command."
+    PLAYER_DOES_NOT_EXIST: "<red><bold>Error</bold> <color3>» <red>That player does not exist!"
+    MUST_BE_LOGGED_IN: "<red><bold>Error</bold> <color3>» <red>You must be logged in to do that."
+    CONFIG_RELOADED: "<color1><bold>PlayerPasswords</bold> <color3>» <green>Configuration has been reloaded!"
+    PASSWORD_RESET: "<color1><bold>PlayerPasswords</bold> <color3>» <green>Password has been reset successfully!"
+    PASSWORD_RESET_USAGE: "<red><bold>Usage</bold> <color3>» <red>/password reset [player]"

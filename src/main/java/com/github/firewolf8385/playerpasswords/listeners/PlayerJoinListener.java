@@ -25,8 +25,7 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.Bukkit;
@@ -35,42 +34,41 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerJoinListener implements Listener {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
-    public PlayerJoinListener(PlayerPasswordsPlugin plugin) {
+    public PlayerJoinListener(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        String uuid = player.getUniqueId().toString();
+    public void onJoin(@NotNull final PlayerJoinEvent event) {
+        final Player player = event.getPlayer();
+        final String uuid = player.getUniqueId().toString();
 
         plugin.getPasswordPlayerManager().addPlayer(player);
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
-        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
 
         // Creates a new section if the player has not joined before.
-        if(!settings.getData().contains("passwords." + uuid)) {
-            settings.getData().set("passwords." + uuid + ".password", "");
-            settings.getData().set("passwords." + uuid + ".enabled", false);
-            settings.saveData();
-            settings.reloadData();
+        if(!plugin.getConfigManager().getData().contains("passwords." + uuid)) {
+            plugin.getConfigManager().getData().set("passwords." + uuid + ".password", "");
+            plugin.getConfigManager().getData().set("passwords." + uuid + ".enabled", false);
+            plugin.getConfigManager().saveData();
+            plugin.getConfigManager().reloadData();
         }
 
 
         // Run message tasks later to make plugin messages the most recent.
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             if(passwordPlayer.isRequired() && !passwordPlayer.isVerified()) {
-                if(settings.getData().getString("passwords." + uuid + ".password").equals("")) {
-                    ChatUtils.chat(player, PluginMessage.REGISTER.toString());
+                if(plugin.getConfigManager().getData().getString("passwords." + uuid + ".password").equals("")) {
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_REGISTER_TO_CONTINUE));
                 }
                 else {
-                    ChatUtils.chat(player, PluginMessage.LOGIN.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.LOGIN_LOGIN_TO_CONTINUE));
                 }
             }
         }, 5);

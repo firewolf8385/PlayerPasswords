@@ -25,23 +25,22 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerInteractListener implements Listener {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
-    public PlayerInteractListener(PlayerPasswordsPlugin plugin) {
+    public PlayerInteractListener(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
+    public void onInteract(@NotNull final PlayerInteractEvent event) {
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
         // Exit if player is verified.
         if(passwordPlayer.isVerified()) {
@@ -49,7 +48,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         // Exit if BlockInteract is disabled.
-        if(!settings.getConfig().getBoolean("BlockInteract")) {
+        if(!plugin.getConfigManager().getConfig().getBoolean("BlockInteract")) {
             return;
         }
 

@@ -25,8 +25,7 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,14 +39,13 @@ import org.jetbrains.annotations.NotNull;
  * This class runs the /register command, which allows the player to register a password when optional is set to false.
  */
 public class RegisterCMD implements CommandExecutor {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
     /**
      * To be able to access the configuration files, we need to pass an instance of the plugin to our listener.
      * @param plugin Instance of the plugin.
      */
-    public RegisterCMD(PlayerPasswordsPlugin plugin) {
+    public RegisterCMD(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -60,36 +58,37 @@ public class RegisterCMD implements CommandExecutor {
      * @return If the command was successful.
      */
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+    public boolean onCommand(@NotNull final CommandSender sender, @NotNull final Command cmd, @NotNull final String label, @NotNull final String[] args) {
 
         // Exit if not a player.
         if(!(sender instanceof Player)) {
-            ChatUtils.chat(sender, PluginMessage.NOT_A_PLAYER.toString());
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_NOT_A_PLAYER));
             return true;
         }
 
-        Player player = (Player) sender;
-        String uuid = player.getUniqueId().toString();
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
-        boolean enabled = settings.getData().getBoolean("passwords." + uuid + ".enabled");
-        int minimum = settings.getConfig().getInt("MinimumPasswordLength");
-        int maximum = settings.getConfig().getInt("MaximumPasswordLength");
+        final Player player = (Player) sender;
+        final String uuid = player.getUniqueId().toString();
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+
+        boolean enabled = plugin.getConfigManager().getData().getBoolean("passwords." + uuid + ".enabled");
+        int minimum = plugin.getConfigManager().getConfig().getInt("MinimumPasswordLength");
+        int maximum = plugin.getConfigManager().getConfig().getInt("MaximumPasswordLength");
 
         // If the player is already logged in, the command will end.
         if(passwordPlayer.isVerified()) {
-            ChatUtils.chat(player, PluginMessage.ALREADY_LOGGED_IN.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.LOGIN_ALREADY_LOGGED_IN));
             return true;
         }
 
         // If the player already set their password, the command will end.
         if(enabled) {
-            ChatUtils.chat(player, PluginMessage.ALREADY_REGISTERED.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_ALREADY_REGISTERED));
             return true;
         }
 
         // If the player did not enter a password, the command will end.
         if(args.length == 0) {
-            ChatUtils.chat(player, PluginMessage.REGISTER_USAGE.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_REGISTER_USAGE));
             return true;
         }
 
@@ -97,7 +96,7 @@ public class RegisterCMD implements CommandExecutor {
         if(args[0].equalsIgnoreCase("confirm")) {
             // If the cache is empty, then there is no password to confirm.
             if(passwordPlayer.getPassword().isEmpty()) {
-                ChatUtils.chat(player, PluginMessage.REGISTER_USAGE.toString());
+                ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_REGISTER_USAGE));
                 return true;
             }
 
@@ -106,27 +105,27 @@ public class RegisterCMD implements CommandExecutor {
                 // Check if the cache and confirmation are equal.
                 if(passwordPlayer.getPassword().equals(args[1])) {
                     // If so, saves the password.
-                    settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
-                    ChatUtils.chat(player, PluginMessage.SET_PASSWORD_SUCCESSFUL.toString());
+                    plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_SUCCESSFULLY));
 
                     if(!passwordPlayer.isVerified()) {
                         passwordPlayer.setVerified(true);
                     }
 
-                    if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
-                        settings.getData().set("passwords." + uuid + ".enabled", true);
+                    if(!(plugin.getConfigManager().getData().getBoolean("passwords." + uuid + ".enabled"))) {
+                        plugin.getConfigManager().getData().set("passwords." + uuid + ".enabled", true);
                     }
 
-                    settings.saveData();
-                    settings.reloadData();
+                    plugin.getConfigManager().saveData();
+                    plugin.getConfigManager().reloadData();
                 }
                 else {
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_INCORRECT));
                 }
                 return true;
             }
             else {
-                ChatUtils.chat(player, PluginMessage.REGISTER_CONFIRM_USAGE.toString());
+                ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_REGISTER_CONFIRM_USAGE));
             }
 
             return true;
@@ -134,7 +133,7 @@ public class RegisterCMD implements CommandExecutor {
 
         // Shows the player a message if their password does not fit the requirements.
         if(!(args[0].length() >= minimum && args[0].length() <= maximum)) {
-            ChatUtils.chat(player, PluginMessage.OUT_OF_BOUNDS.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_OUT_OF_BOUNDS));
             return true;
         }
 
@@ -142,14 +141,14 @@ public class RegisterCMD implements CommandExecutor {
         passwordPlayer.setPassword(args[0]);
 
         // Makes sure the player does not need to confirm the password.
-        if(settings.getConfig().getBoolean("RequireConfirmation")) {
-            ChatUtils.chat(player, PluginMessage.CONFIRM_REGISTER.toString());
+        if(plugin.getConfigManager().getConfig().getBoolean("RequireConfirmation")) {
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.REGISTER_CONFIRM_REGISTER));
             return true;
         }
 
         // Otherwise, processes the registration.
-        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
-        ChatUtils.chat(player, PluginMessage.SET_PASSWORD_SUCCESSFUL.toString());
+        plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
+        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_SUCCESSFULLY));
 
         // Sets the player to be verified.
         if(!passwordPlayer.isVerified()) {
@@ -157,13 +156,13 @@ public class RegisterCMD implements CommandExecutor {
         }
 
         // Enables the player's password.
-        if(!(settings.getData().getBoolean("passwords." + uuid + ".enabled"))) {
-            settings.getData().set("passwords." + uuid + ".enabled", true);
+        if(!(plugin.getConfigManager().getData().getBoolean("passwords." + uuid + ".enabled"))) {
+            plugin.getConfigManager().getData().set("passwords." + uuid + ".enabled", true);
         }
 
         // Updates the data file.
-        settings.saveData();
-        settings.reloadData();
+        plugin.getConfigManager().saveData();
+        plugin.getConfigManager().reloadData();
 
         return true;
     }

@@ -29,8 +29,8 @@ import com.github.firewolf8385.playerpasswords.commands.PlayerPasswordsCMD;
 import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
 import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
+import com.github.firewolf8385.playerpasswords.settings.ConfigManager;
 import com.github.firewolf8385.playerpasswords.settings.HookManager;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -45,9 +45,9 @@ import com.github.firewolf8385.playerpasswords.listeners.PlayerMoveListener;
 import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
 public class PlayerPasswordsPlugin extends JavaPlugin {
+    private ConfigManager configManager;
     private PasswordPlayerManager passwordPlayerManager;
     private HookManager hookManager;
-    private final SettingsManager settings = SettingsManager.getInstance();
 
     /**
      * This runs necessary tasks when the plugin is enabled.
@@ -56,7 +56,7 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
         // Enables bStats
         new Metrics(this, 5190);
 
-        settings.setup(this);
+        configManager = new ConfigManager(this);
 
         passwordPlayerManager = new PasswordPlayerManager(this);
 
@@ -75,6 +75,10 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
 
         // Initialize PlayerPasswords API.
         PlayerPasswords.initialize(this);
+    }
+
+    public ConfigManager getConfigManager() {
+        return this.configManager;
     }
 
     public HookManager getHookManager() {

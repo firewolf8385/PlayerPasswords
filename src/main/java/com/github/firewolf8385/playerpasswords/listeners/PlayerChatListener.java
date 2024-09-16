@@ -25,25 +25,24 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerChatListener implements Listener {
     private final PlayerPasswordsPlugin plugin;
-    private final SettingsManager settings = SettingsManager.getInstance();
 
-    public PlayerChatListener(PlayerPasswordsPlugin plugin) {
+    public PlayerChatListener(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onChat(AsyncPlayerChatEvent event) {
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
+    public void onChat(@NotNull final AsyncPlayerChatEvent event) {
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
         // Return if Verified
         if(passwordPlayer.isVerified()) {
@@ -51,12 +50,12 @@ public class PlayerChatListener implements Listener {
         }
 
         // Exit if BlockChat is false.
-        if(!settings.getConfig().getBoolean("BlockChat")) {
+        if(!plugin.getConfigManager().getConfig().getBoolean("BlockChat")) {
             return;
         }
 
         // Cancel Event.
-        ChatUtils.chat(event.getPlayer(), PluginMessage.MUST_BE_LOGGED_IN.toString());
+        ChatUtils.chat(event.getPlayer(), plugin.getConfigManager().getMessage(event.getPlayer(), ConfigMessage.MISC_MUST_BE_LOGGED_IN));
         event.setCancelled(true);
     }
 }

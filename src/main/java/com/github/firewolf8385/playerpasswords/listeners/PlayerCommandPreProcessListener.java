@@ -25,32 +25,31 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerCommandPreProcessListener implements Listener {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
-    public PlayerCommandPreProcessListener(PlayerPasswordsPlugin plugin) {
+    public PlayerCommandPreProcessListener(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent event) {
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
+    public void onCommand(@NotNull final PlayerCommandPreprocessEvent event) {
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
         // Exit if player is verified.
         if(passwordPlayer.isVerified()) {
             return;
         }
 
-        String[] args = event.getMessage().split(" ");
+        final String[] args = event.getMessage().split(" ");
 
         // Exit if command is /login or /register
         if(args[0].equalsIgnoreCase("/login") || args[0].equalsIgnoreCase("/register")) {
@@ -58,11 +57,11 @@ public class PlayerCommandPreProcessListener implements Listener {
         }
 
         // Exit if BlockCommands is disabled.
-        if(!settings.getConfig().getBoolean("BlockCommands")) {
+        if(!plugin.getConfigManager().getConfig().getBoolean("BlockCommands")) {
             return;
         }
 
-        ChatUtils.chat(event.getPlayer(), PluginMessage.MUST_BE_LOGGED_IN.toString());
+        ChatUtils.chat(event.getPlayer(), plugin.getConfigManager().getMessage(event.getPlayer(), ConfigMessage.MISC_MUST_BE_LOGGED_IN));
         event.setCancelled(true);
     }
 

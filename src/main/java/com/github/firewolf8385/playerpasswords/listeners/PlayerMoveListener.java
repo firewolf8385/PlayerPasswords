@@ -25,23 +25,22 @@
 package com.github.firewolf8385.playerpasswords.listeners;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerMoveListener implements Listener {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
-    public PlayerMoveListener(PlayerPasswordsPlugin plugin) {
+    public PlayerMoveListener(@NotNull final PlayerPasswordsPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onChat(PlayerMoveEvent event) {
-        PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
+    public void onChat(@NotNull final PlayerMoveEvent event) {
+        final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(event.getPlayer());
 
         // Exit if player is verified.
         if(passwordPlayer.isVerified()) {
@@ -49,7 +48,7 @@ public class PlayerMoveListener implements Listener {
         }
 
         // Exit if BlockMovement is disabled.
-        if(!settings.getConfig().getBoolean("BlockMovement")) {
+        if(!plugin.getConfigManager().getConfig().getBoolean("BlockMovement")) {
             return;
         }
 

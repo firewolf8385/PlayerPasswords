@@ -39,7 +39,7 @@ public class PasswordPlayerManager {
     }
 
     public void addPlayer(Player player) {
-        players.put(player, new PasswordPlayer(player));
+        players.put(player, new PasswordPlayer(plugin, player));
     }
 
     public PasswordPlayer getPlayer(Player player) {

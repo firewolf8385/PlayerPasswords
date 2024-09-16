@@ -25,7 +25,6 @@
 package com.github.firewolf8385.playerpasswords.utils;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
@@ -144,18 +143,30 @@ public class ChatUtils {
      */
     public static Component translate(@NotNull String message) {
         // Replace theme colors.
-        message = message.replace("<color1>", ThemeColor.GOLD.toString())
-                .replace("<color2>", ThemeColor.YELLOW.toString())
-                .replace("<color3>", ThemeColor.GRAY.toString());
+        message = message.replace("<color1>", plugin.getConfigManager().getConfig().getString("color1"))
+                .replace("<color2>", plugin.getConfigManager().getConfig().getString("color2"))
+                .replace("<color3>", plugin.getConfigManager().getConfig().getString("color3"));
 
         // Checks for the "<center>" tag, which centers a message.
-        if(message.startsWith("<center>")) {
-            message = centerText(message.replaceFirst("<center>", ""));
+        final String[] lines = message.replaceAll("\n", "<newline>").split("<newline>");
+        final StringBuilder builder = new StringBuilder();
+
+        for(final String line : lines) {
+            if(line.startsWith("<center>")) {
+                builder.append(centerText(line.replaceFirst("<center>", ""))).append("<newline>");
+            }
+            else {
+                builder.append(line).append("<newline>");
+            }
         }
 
-        message = message.replace("<color1>", ThemeColor.GOLD.toString()).replace("<color2>", ThemeColor.YELLOW.toString()).replace("<color3>", ThemeColor.GRAY.toString());
+        final String result = builder.toString();
 
-        return MiniMessage.miniMessage().deserialize(replaceLegacy(message));
+        if(result.contains("<newline>")) {
+            return MiniMessage.miniMessage().deserialize(replaceLegacy(result.substring(0, result.length() - 9)));
+        }
+
+        return MiniMessage.miniMessage().deserialize(replaceLegacy(result));
     }
 
     /**

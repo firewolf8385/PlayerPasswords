@@ -25,7 +25,6 @@
 package com.github.firewolf8385.playerpasswords;
 
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayer;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
  */
 public class PlayerPasswords {
     private static PlayerPasswordsPlugin plugin;
-    private static final SettingsManager settings = SettingsManager.getInstance();
 
     /**
      * Initializes the API.
@@ -51,12 +49,12 @@ public class PlayerPasswords {
      */
     public static boolean isChatBlocked() {
         // Disable the block if it's not set in config.yml.
-        if(!settings.getConfig().isSet("BlockChat")) {
+        if(!plugin.getConfigManager().getConfig().isSet("BlockChat")) {
             return false;
         }
 
         // Otherwise check config.yml.
-        return settings.getConfig().getBoolean("BlockChat");
+        return plugin.getConfigManager().getConfig().getBoolean("BlockChat");
     }
 
     /**
@@ -65,12 +63,12 @@ public class PlayerPasswords {
      */
     public static boolean isCommandsBlocked() {
         // Disable the block if it's not set in config.yml.
-        if(!settings.getConfig().isSet("BlockCommands")) {
+        if(!plugin.getConfigManager().getConfig().isSet("BlockCommands")) {
             return false;
         }
 
         // Otherwise check config.yml.
-        return settings.getConfig().getBoolean("BlockCommands");
+        return plugin.getConfigManager().getConfig().getBoolean("BlockCommands");
     }
 
     /**
@@ -79,12 +77,12 @@ public class PlayerPasswords {
      */
     public static boolean isInteractBlocked() {
         // Disable the block if it's not set in config.yml.
-        if(!settings.getConfig().isSet("BlockInteract")) {
+        if(!plugin.getConfigManager().getConfig().isSet("BlockInteract")) {
             return false;
         }
 
         // Otherwise check config.yml.
-        return settings.getConfig().getBoolean("BlockInteract");
+        return plugin.getConfigManager().getConfig().getBoolean("BlockInteract");
     }
 
     /**
@@ -93,12 +91,12 @@ public class PlayerPasswords {
      */
     public static boolean isItemDropBlocked() {
         // Disable the block if it's not set in config.yml.
-        if(!settings.getConfig().isSet("BlockItemDrop")) {
+        if(!plugin.getConfigManager().getConfig().isSet("BlockItemDrop")) {
             return false;
         }
 
         // Otherwise check config.yml.
-        return settings.getConfig().getBoolean("BlockItemDrop");
+        return plugin.getConfigManager().getConfig().getBoolean("BlockItemDrop");
     }
 
     /**
@@ -107,12 +105,12 @@ public class PlayerPasswords {
      */
     public static boolean isMovementBlocked() {
         // Disable the block if it's not set in config.yml.
-        if(!settings.getConfig().isSet("BlockMovement")) {
+        if(!plugin.getConfigManager().getConfig().isSet("BlockMovement")) {
             return false;
         }
 
         // Otherwise check config.yml.
-        return settings.getConfig().getBoolean("BlockMovement");
+        return plugin.getConfigManager().getConfig().getBoolean("BlockMovement");
     }
 
     /**

@@ -25,10 +25,9 @@
 package com.github.firewolf8385.playerpasswords.commands;
 
 import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
-import com.github.firewolf8385.playerpasswords.settings.PluginMessage;
-import com.github.firewolf8385.playerpasswords.settings.SettingsManager;
-import com.github.firewolf8385.playerpasswords.settings.ThemeColor;
+import com.github.firewolf8385.playerpasswords.settings.ConfigMessage;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
+import com.github.firewolf8385.playerpasswords.utils.Tuple;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -46,7 +45,6 @@ import java.util.List;
  * This class runs the /password command, which runs password related functions.
  */
 public class PasswordCMD implements CommandExecutor, TabCompleter {
-    private final SettingsManager settings = SettingsManager.getInstance();
     private final PlayerPasswordsPlugin plugin;
 
     /**
@@ -70,7 +68,7 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
 
         // Exit if not a player.
         if(!(sender instanceof Player)) {
-            ChatUtils.chat(sender, PluginMessage.NOT_A_PLAYER.toString());
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_NOT_A_PLAYER));
             return true;
         }
 
@@ -80,7 +78,7 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
 
         // Player cannot use command if they aren't logged in.
         if(!passwordPlayer.isVerified()) {
-            ChatUtils.chat(player, PluginMessage.MUST_BE_LOGGED_IN.toString());
+            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.MISC_MUST_BE_LOGGED_IN));
             return true;
         }
 
@@ -92,6 +90,8 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
         // Processes the sub command.
         switch(args[0].toLowerCase()) {
             default:
+                ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.PASSWORD_HELP_PAGE));
+                /*
                 ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>Passwords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
@@ -99,78 +99,82 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(player, "  <color3>» <color1>/password disable <color3>- <color2>Disables Your Password");
                 ChatUtils.chat(player, "  <color3>» <color1>/password set [password] <color3>- <color2>Changes Your Password");
                 ChatUtils.chat(sender, "");
+
+                 */
                 return true;
 
             case "enable":
                 if(!sender.hasPermission("playerpasswords.enable")) {
-                    ChatUtils.chat(sender, PluginMessage.NO_PERMISSION.toString());
+                    ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_NO_PERMISSION));
                     return true;
                 }
 
                 if(!passwordPlayer.hasPassword()) {
-                    ChatUtils.chat(sender, PluginMessage.PASSWORD_NOT_SET.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_NOT_SET));
                     return true;
                 }
 
-                settings.getData().set("passwords." + uuid + ".enabled", true);
-                settings.saveData();
-                settings.reloadData();
-                ChatUtils.chat(player, PluginMessage.PASSWORD_ENABLED.toString());
+                plugin.getConfigManager().getData().set("passwords." + uuid + ".enabled", true);
+                plugin.getConfigManager().saveData();
+                plugin.getConfigManager().reloadData();
+                ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_ENABLED));
                 return true;
 
             case "disable":
                 if(!sender.hasPermission("playerpasswords.disable")) {
-                    ChatUtils.chat(player, PluginMessage.NO_PERMISSION.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.MISC_NO_PERMISSION));
                     return true;
                 }
-                if(settings.getConfig().getBoolean("Optional")) {
-                    settings.getData().set("passwords." + uuid + ".enabled", false);
-                    settings.saveData();
-                    settings.reloadData();
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_DISABLED.toString());
+                if(plugin.getConfigManager().getConfig().getBoolean("Optional")) {
+                    plugin.getConfigManager().getData().set("passwords." + uuid + ".enabled", false);
+                    plugin.getConfigManager().saveData();
+                    plugin.getConfigManager().reloadData();
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_DISABLED));
                 }
                 else {
-                    ChatUtils.chat(player, PluginMessage.OPTIONAL_PASSWORD_DISABLED.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_OPTIONAL_PASSWORD_DISABLED));
                 }
                 return true;
 
             case "set":
                 if(!sender.hasPermission("playerpasswords.set")) {
-                    ChatUtils.chat(player, PluginMessage.NO_PERMISSION.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.MISC_NO_PERMISSION));
                     return true;
                 }
 
                 if(args.length > 1) {
                     // Gets the minimum and maximum allowed password length.
-                    int minimum = settings.getConfig().getInt("MinimumPasswordLength");
-                    int maximum = settings.getConfig().getInt("MaximumPasswordLength");
+                    int minimum = plugin.getConfigManager().getConfig().getInt("MinimumPasswordLength");
+                    int maximum = plugin.getConfigManager().getConfig().getInt("MaximumPasswordLength");
 
                     // Shows the player a message if their password does not fit the requirements.
                     if(!(args[1].length() >= minimum && args[1].length() <= maximum)) {
-                        ChatUtils.chat(player, PluginMessage.OUT_OF_BOUNDS.toString().replace("%minimum%", minimum + "").replace("%maximum%", ""));
+                        final Tuple<String, String> minimumPlaceholder = new Tuple<>("%minimum%", minimum + "");
+                        final Tuple<String, String> maximumPlaceholder = new Tuple<>("%maximum%", maximum + "");
+                        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_OUT_OF_BOUNDS, minimumPlaceholder, maximumPlaceholder));
                         return true;
                     }
 
                     passwordPlayer.setPassword(args[1]);
-                    if(settings.getConfig().getBoolean("RequireConfirmation")) {
-                        ChatUtils.chat(player, PluginMessage.CONFIRM_PASSWORD.toString());
+                    if(plugin.getConfigManager().getConfig().getBoolean("RequireConfirmation")) {
+                        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_CONFIRM_PASSWORD));
                     }
                     else {
-                        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
-                        settings.saveData();
-                        settings.reloadData();
-                        ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+                        plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
+                        plugin.getConfigManager().saveData();
+                        plugin.getConfigManager().reloadData();
+                        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_SUCCESSFULLY));
                     }
                 }
                 else {
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_SET_USAGE.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_USAGE));
                 }
                 return true;
 
             case "confirm":
                 // If the cache is empty, then there is no password to confirm.
                 if(passwordPlayer.getPassword().isEmpty()) {
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_SET.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_NOT_SET));
                     return true;
                 }
 
@@ -179,23 +183,23 @@ public class PasswordCMD implements CommandExecutor, TabCompleter {
                     // Check if the cache and confirmation are equal.
                     if(passwordPlayer.getPassword().equals(args[1])) {
                         // If so, saves the password.
-                        settings.getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
-                        settings.saveData();
-                        settings.reloadData();
-                        ChatUtils.chat(player, PluginMessage.PASSWORD_SET.toString().replace("%password%", args[1]));
+                        plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
+                        plugin.getConfigManager().saveData();
+                        plugin.getConfigManager().reloadData();
+                        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_SUCCESSFULLY));
 
                         // Remind the player to enable their password.
-                        if(settings.getConfig().getBoolean("Optional") && !passwordPlayer.hasPasswordEnabled()) {
-                            ChatUtils.chat(player, PluginMessage.PASSWORD_NOT_ENABLED.toString());
+                        if(plugin.getConfigManager().getConfig().getBoolean("Optional") && !passwordPlayer.hasPasswordEnabled()) {
+                            ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_NOT_ENABLED));
                         }
                     }
                     else {
-                        ChatUtils.chat(player, PluginMessage.PASSWORD_INCORRECT.toString());
+                        ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_INCORRECT));
                     }
                     return true;
                 }
                 else {
-                    ChatUtils.chat(player, PluginMessage.PASSWORD_CONFIRM_USAGE.toString());
+                    ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_CONFIRM_USAGE));
                 }
                 return true;
         }
