@@ -104,18 +104,32 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
                 ChatUtils.chat(sender, "");
                 break;
 
-            case "verified":
+            case "players":
                 ChatUtils.chat(sender, "");
                 ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
                 ChatUtils.chat(sender, "");
 
+                final StringBuilder builder = new StringBuilder();
+
                 for(final Player player : Bukkit.getOnlinePlayers()) {
                     final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
 
-                    if(passwordPlayer.isVerified()) {
-                        ChatUtils.chat(sender, "  <color3>» <color2>" + player.getName());
+                    if(player.hasPermission("playerpasswords.bypass")) {
+                        builder.append("<aqua>");
                     }
+                    else if(passwordPlayer.isVerified()) {
+                        builder.append("<green>");
+                    }
+                    else {
+                        builder.append("<red>");
+                    }
+
+                    builder.append(player.getName()).append("<color3>, ");
                 }
+
+                ChatUtils.chat(sender, builder.substring(0, builder.length() - 2));
+                ChatUtils.chat(sender, "");
+                ChatUtils.chat(sender, "<center><green>■ Verified <dark_gray>- <red>■ Not Verified <dark_gray>- <aqua>■ Exempt");
                 ChatUtils.chat(sender, "");
                 break;
 
@@ -169,7 +183,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         // Lists all subcommands if the player hasn't picked one yet.
         if(args.length < 2) {
-            return Arrays.asList("help", "info", "help", "reload", "reset", "verified", "version");
+            return Arrays.asList("help", "info", "help", "reload", "reset", "players", "version");
         }
 
         // Otherwise, send an empty list.
