@@ -136,8 +136,9 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
         ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
         ChatUtils.chat(sender, "");
         ChatUtils.chat(sender, "  <color3>» <color1>/pp info <color3>- <color2>Shows plugin info.");
+        ChatUtils.chat(sender, "  <color3>» <color1>/pp players <color3>- <color2>List all verified players.");
         ChatUtils.chat(sender, "  <color3>» <color1>/pp reload <color3>- <color2>Reload the plugin's config file.");
-        ChatUtils.chat(sender, "  <color3>» <color1>/pp verified <color3>- <color2>List all verified players.");
+        ChatUtils.chat(sender, "  <color3>» <color1>/pp reset [player] <color3>- <color2>Reset a player's password.");
         ChatUtils.chat(sender, "");
     }
 
