@@ -32,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
  * API Methods for the plugin.
  * Designed for external use.
  */
+@SuppressWarnings("unused")
 public class PlayerPasswords {
     private static PlayerPasswordsPlugin plugin;
 
