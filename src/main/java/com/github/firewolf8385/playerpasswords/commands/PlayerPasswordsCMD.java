@@ -172,6 +172,9 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
             if(player.hasPermission("playerpasswords.bypass")) {
                 builder.append("<aqua>");
             }
+            else if(!passwordPlayer.hasPasswordEnabled()) {
+                builder.append("<gray>");
+            }
             else if(passwordPlayer.isVerified()) {
                 builder.append("<green>");
             }
@@ -184,7 +187,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         ChatUtils.chat(sender, builder.substring(0, builder.length() - 2));
         ChatUtils.chat(sender, "");
-        ChatUtils.chat(sender, "<center><green>■ Verified <dark_gray>- <red>■ Not Verified <dark_gray>- <aqua>■ Exempt");
+        ChatUtils.chat(sender, "<center><green>■ Verified <dark_gray>- <red>■ Not Verified <dark_gray>- <aqua>■ Exempt <dark_gray>- <gray>■ No Password");
         ChatUtils.chat(sender, "");
     }
 
