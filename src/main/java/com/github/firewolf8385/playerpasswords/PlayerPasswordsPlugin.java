@@ -28,21 +28,14 @@ import com.github.firewolf8385.playerpasswords.commands.LoginCMD;
 import com.github.firewolf8385.playerpasswords.commands.PlayerPasswordsCMD;
 import com.github.firewolf8385.playerpasswords.commands.PasswordCMD;
 import com.github.firewolf8385.playerpasswords.commands.RegisterCMD;
+import com.github.firewolf8385.playerpasswords.listeners.*;
 import com.github.firewolf8385.playerpasswords.player.PasswordPlayerManager;
 import com.github.firewolf8385.playerpasswords.settings.ConfigManager;
 import com.github.firewolf8385.playerpasswords.settings.HookManager;
 import com.github.firewolf8385.playerpasswords.utils.ChatUtils;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerChatListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerCommandPreProcessListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerDropItemListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerInteractListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerJoinListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerMoveListener;
-import com.github.firewolf8385.playerpasswords.listeners.PlayerQuitListener;
 
 public class PlayerPasswordsPlugin extends JavaPlugin {
     private ConfigManager configManager;
@@ -65,7 +58,7 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
 
         // Adds all online players to the verified list.
         // This fixes issues with reloading.
-        for(Player player : Bukkit.getOnlinePlayers()) {
+        for(final Player player : getServer().getOnlinePlayers()) {
             passwordPlayerManager.addPlayer(player);
             passwordPlayerManager.getPlayer(player).setVerified(true);
         }
@@ -103,12 +96,13 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
      * This registers events the plugin uses.
      */
     private void registerEvents() {
-        Bukkit.getPluginManager().registerEvents(new PlayerChatListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerCommandPreProcessListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerDropItemListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerChatListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerMoveListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerCommandPreProcessListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerDropItemListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
     }
 }

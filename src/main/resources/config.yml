@@ -58,6 +58,9 @@ BlockCommands: true
 # Block interactions with items and blocks while not logged in.
 BlockInteract: true
 
+# Block players from clicking items in their inventory when not logged in.
+BlockInventoryClick: true
+
 # Block item drop when not logged in.
 BlockItemDrop: true
 

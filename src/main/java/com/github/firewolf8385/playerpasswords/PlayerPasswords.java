@@ -68,6 +68,14 @@ public class PlayerPasswords {
     }
 
     /**
+     * Check if inventory click is configured to be blocked for unverified players.
+     * @return True if blocked, false if not.
+     */
+    public static boolean isInventoryClickBlocked() {
+        return plugin.getConfigManager().isInventoryClickBlocked();
+    }
+
+    /**
      * Check if item dropping is configured to be blocked for unverified players.
      * @return True if blocked, false if not.
      */

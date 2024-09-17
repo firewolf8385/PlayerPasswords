@@ -188,6 +188,20 @@ public class ConfigManager {
     }
 
     /**
+     * Check if inventory click is configured to be blocked for unverified players.
+     * @return True if blocked, false it not.
+     */
+    public boolean isInventoryClickBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockInventoryClick")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockInventoryClick");
+    }
+
+    /**
      * Check if item dropping is configured to be blocked for unverified players.
      * @return True if blocked, false if not.
      */
