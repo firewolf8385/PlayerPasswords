@@ -91,6 +91,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
             case "list":
             case "players":
+            case "verified":
                 playersCMD(sender);
                 break;
 
@@ -119,7 +120,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         // Lists all subcommands if the player hasn't picked one yet.
         if(args.length < 2) {
-            return Arrays.asList("info", "help", "reload", "reset", "players", "version", "list");
+            return Arrays.asList("info", "help", "list", "players", "reload", "reset", "verified", "version");
         }
 
         // Otherwise, send an empty list.
