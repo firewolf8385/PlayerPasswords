@@ -1,27 +1,39 @@
-![PlayerPasswords Logo](https://proxy.spigotmc.org/06eca31a69961f737c07ba958f00f513d1269c8a?url=https%3A%2F%2Fi.imgur.com%2Fk8IZjhu.png)
-# PlayerPasswords &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/firewolf8385/flameperms/blob/master/LICENSE)
-> Allow Players To Optionally Protect Their Account
+<p align="center">
+    <img alt="banner" src="https://i.imgur.com/heMg3eW.png" style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
+</p>
+<br/>
+<p align="center">
+    <a href="https://modrinth.com/project/playerpasswords"><img alt="modrinth" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a>
+    <a href="https://www.spigotmc.org/resources/playerpasswords.70520/"><img alt="spigot" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/spigot_vector.svg"></a>
+    <a href="https://hangar.papermc.io/JadedMC/JAutoPickup"><img alt="hangar" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/hangar_vector.svg"></a>
+</p>
+<br/>
 
-PlayerPasswords is a lightweight security plugin for the latest versions of Spigot and Paper. It allows players to optionally set a password to protect their account when joining your server. Passwords can be made required in the config.
+PlayerPasswords is an easy-to-use authentication plugin for Spigot/Paper servers running Minecraft 1.8 or later. It allows players to optionally set a password that they have to enter before being allowed to do anything on your server. You can also require specific players to have a password with a permission, or force all players to set a password.
 
-<a href="https://www.spigotmc.org/resources/70520/">![download-on-spigot](https://user-images.githubusercontent.com/17748923/187102011-b72e0f1d-ba74-4cb2-a69e-46f48cb364b5.png)</a> <a href="https://hangar.papermc.io/firewolf8385/PlayerPasswords">![download-on-hangar](https://user-images.githubusercontent.com/17748923/187102194-00e910e6-ee8e-42cb-bfe1-d2f9e657ef4b.png)</a>
+## Features
+- [MiniMessage](https://docs.advntr.dev/minimessage/format.html) and [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) support.
+- Allow players the option to set passwords.
+- Ability to force specific players to set passwords.
+- Ability to Force all players to set passwords.
+- Ability to allow some players to bypass password requirements.
+- Configure commands that can be executed when the player gets the password wrong.
 
-## Useful Links
-  * Spigot Page: (https://www.spigotmc.org/resources/playerpasswords.70520/)
-  * bStats: (https://bstats.org/plugin/bukkit/PlayerPasswords/5190)
-## Installing
-### Requirements
+## Requirements
   * Java 8 JDK or newer
   * Server Software with Bukkit API.
-  
-## Configuration
-PlayerPasswords is designed to be customizable. All cusotmization options can be found [`here`](https://github.com/firewolf8385/PlayerPasswords/blob/master/src/main/resources/config.yml).
-
-## Wiki
-Coming Soon.
-
-## API
-PlayerPasswords allows developers to interact with the plugin using an API. More information coming soon.
 
 ## License
 PlayerPasswords is licensed under the MIT license. See [`LICENSE.txt`](https://github.com/firewolf8385/PlayerPasswords/blob/master/LICENSE.txt) for more info.
+
+## Support
+Discord support is finally available. Join us with the link below.
+
+<p align="center">
+    <a href="https://discord.gg/kUzpQ9fE"><img alt="discord-plural" height="64" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg" style="display: block; margin-left: auto; margin-right: auto;"></a>
+</p>
+
+## bStats
+<p align="center">
+    <a href="https://bstats.org/plugin/bukkit/PlayerPasswords/5190"><img src="https://bstats.org/signatures/bukkit/PlayerPasswords.svg"/></a>
+</p>
