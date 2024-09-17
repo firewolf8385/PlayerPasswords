@@ -82,88 +82,24 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
         // Process the sub commands.
         switch(args[0]) {
             default:
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "  <color3>» <color1>/pp info <color3>- <color2>Shows plugin info.");
-                ChatUtils.chat(sender, "  <color3>» <color1>/pp reload <color3>- <color2>Reload the plugin's config file.");
-                ChatUtils.chat(sender, "  <color3>» <color1>/pp verified <color3>- <color2>List all verified players.");
-                ChatUtils.chat(sender, "");
+                helpCMD(sender);
                 break;
 
             case "info":
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "  <color3>» <color1>Author <color3>- <color2>firewolf8385");
-                ChatUtils.chat(sender, "  <color3>» <color1>Version <color3>- <color2>" + plugin.getDescription().getVersion());
-                ChatUtils.chat(sender, "  <color3>» <color1>GitHub <color3>- <color2><click:open_url:'https://www.github.com/firewolf8385/PlayerPasswords'>github.com/firewolf8385/PlayerPasswords</click>");
-                ChatUtils.chat(sender, "  <color3>» <color1>Modrinth <color3>- <color2><click:open_url:'https://www.modrinth.com/project/playerpasswords'>modrinth.com/project/playerpasswords</click>");
-                ChatUtils.chat(sender, "");
+                infoCMD(sender);
                 break;
 
             case "list":
             case "players":
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
-                ChatUtils.chat(sender, "");
-
-                final StringBuilder builder = new StringBuilder();
-
-                for(final Player player : Bukkit.getOnlinePlayers()) {
-                    final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
-
-                    if(player.hasPermission("playerpasswords.bypass")) {
-                        builder.append("<aqua>");
-                    }
-                    else if(passwordPlayer.isVerified()) {
-                        builder.append("<green>");
-                    }
-                    else {
-                        builder.append("<red>");
-                    }
-
-                    builder.append(player.getName()).append("<color3>, ");
-                }
-
-                ChatUtils.chat(sender, builder.substring(0, builder.length() - 2));
-                ChatUtils.chat(sender, "");
-                ChatUtils.chat(sender, "<center><green>■ Verified <dark_gray>- <red>■ Not Verified <dark_gray>- <aqua>■ Exempt");
-                ChatUtils.chat(sender, "");
+                playersCMD(sender);
                 break;
 
             case "reload":
-                plugin.getConfigManager().reloadConfig();
-                plugin.getConfigManager().reloadData();
-                plugin.getConfigManager().reloadMessages();
-                ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_CONFIG_RELOADED));
+                reloadCMD(sender);
                 break;
 
             case "reset":
-                // Makes sure the command is being used properly.
-                if(args.length != 2) {
-                    ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET_USAGE));
-                    return true;
-                }
-
-                // Get the player to reset the password of.
-                final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
-
-                // Makes sure the player exists.
-                if(!plugin.getConfigManager().getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
-                    ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PLAYER_DOES_NOT_EXIST));
-                    return true;
-                }
-
-                plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".enabled", false);
-                plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".password", "");
-
-                // Reload the data file after updating it.
-                plugin.getConfigManager().saveData();
-                plugin.getConfigManager().reloadData();
-
-                ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET));
-
+                resetCMD(sender, args);
                 break;
         }
 
@@ -188,5 +124,109 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
 
         // Otherwise, send an empty list.
         return Collections.emptyList();
+    }
+
+    /**
+     * Processes the help command, which displays main plugin commands.
+     * @param sender Command Sender.
+     */
+    private void helpCMD(@NotNull final CommandSender sender) {
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "  <color3>» <color1>/pp info <color3>- <color2>Shows plugin info.");
+        ChatUtils.chat(sender, "  <color3>» <color1>/pp reload <color3>- <color2>Reload the plugin's config file.");
+        ChatUtils.chat(sender, "  <color3>» <color1>/pp verified <color3>- <color2>List all verified players.");
+        ChatUtils.chat(sender, "");
+    }
+
+    /**
+     * Processes the info command, which displays plugin info.
+     * @param sender Command Sender.
+     */
+    private void infoCMD(@NotNull final CommandSender sender) {
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "  <color3>» <color1>Author <color3>- <color2>firewolf8385");
+        ChatUtils.chat(sender, "  <color3>» <color1>Version <color3>- <color2>" + plugin.getDescription().getVersion());
+        ChatUtils.chat(sender, "  <color3>» <color1>GitHub <color3>- <color2><click:open_url:'https://www.github.com/firewolf8385/PlayerPasswords'>github.com/firewolf8385/PlayerPasswords</click>");
+        ChatUtils.chat(sender, "  <color3>» <color1>Modrinth <color3>- <color2><click:open_url:'https://www.modrinth.com/project/playerpasswords'>modrinth.com/project/playerpasswords</click>");
+        ChatUtils.chat(sender, "");
+    }
+
+    /**
+     * Processes the players command, which displays all online players and their verification status.
+     * @param sender Command Sender.
+     */
+    public void playersCMD(@NotNull final CommandSender sender) {
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "<center><color3><st>        </st> <color1><bold>PlayerPasswords <color3><st>        </st> ");
+        ChatUtils.chat(sender, "");
+
+        final StringBuilder builder = new StringBuilder();
+
+        for(final Player player : Bukkit.getOnlinePlayers()) {
+            final PasswordPlayer passwordPlayer = plugin.getPasswordPlayerManager().getPlayer(player);
+
+            if(player.hasPermission("playerpasswords.bypass")) {
+                builder.append("<aqua>");
+            }
+            else if(passwordPlayer.isVerified()) {
+                builder.append("<green>");
+            }
+            else {
+                builder.append("<red>");
+            }
+
+            builder.append(player.getName()).append("<color3>, ");
+        }
+
+        ChatUtils.chat(sender, builder.substring(0, builder.length() - 2));
+        ChatUtils.chat(sender, "");
+        ChatUtils.chat(sender, "<center><green>■ Verified <dark_gray>- <red>■ Not Verified <dark_gray>- <aqua>■ Exempt");
+        ChatUtils.chat(sender, "");
+    }
+
+    /**
+     * Processes the reload command, reloads the plugin's configuration.
+     * @param sender Command Sender.
+     */
+    private void reloadCMD(@NotNull final CommandSender sender) {
+        plugin.getConfigManager().reloadConfig();
+        plugin.getConfigManager().reloadData();
+        plugin.getConfigManager().reloadMessages();
+        ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_CONFIG_RELOADED));
+    }
+
+    /**
+     * Processes the reset command, which resets a player's password.
+     * @param sender Command Sender.
+     * @param args Command Arguments.
+     */
+    private void resetCMD(@NotNull final CommandSender sender, @NotNull final String[] args) {
+        // Makes sure the command is being used properly.
+        if(args.length != 2) {
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET_USAGE));
+            return;
+        }
+
+        // Get the player to reset the password of.
+        final OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
+
+        // Makes sure the player exists.
+        if(!plugin.getConfigManager().getData().isSet("passwords." + target.getUniqueId() + ".enabled")) {
+            ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PLAYER_DOES_NOT_EXIST));
+            return;
+        }
+
+        plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".enabled", false);
+        plugin.getConfigManager().getData().set("passwords." + target.getUniqueId() + ".password", "");
+
+        // Reload the data file after updating it.
+        plugin.getConfigManager().saveData();
+        plugin.getConfigManager().reloadData();
+
+        ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_PASSWORD_RESET));
     }
 }
