@@ -70,6 +70,11 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
         PlayerPasswords.initialize(this);
     }
 
+    @Override
+    public void onDisable() {
+        ChatUtils.disable();
+    }
+
     public ConfigManager getConfigManager() {
         return this.configManager;
     }
