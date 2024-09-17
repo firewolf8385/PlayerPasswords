@@ -50,7 +50,7 @@ public class PlayerChatListener implements Listener {
         }
 
         // Exit if BlockChat is false.
-        if(!plugin.getConfigManager().getConfig().getBoolean("BlockChat")) {
+        if(!plugin.getConfigManager().isChatBlocked()) {
             return;
         }
 

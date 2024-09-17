@@ -48,13 +48,7 @@ public class PlayerPasswords {
      * @return True if blocked, false if not.
      */
     public static boolean isChatBlocked() {
-        // Disable the block if it's not set in config.yml.
-        if(!plugin.getConfigManager().getConfig().isSet("BlockChat")) {
-            return false;
-        }
-
-        // Otherwise check config.yml.
-        return plugin.getConfigManager().getConfig().getBoolean("BlockChat");
+        return plugin.getConfigManager().isChatBlocked();
     }
 
     /**
@@ -62,13 +56,7 @@ public class PlayerPasswords {
      * @return True if blocked, false if not.
      */
     public static boolean isCommandsBlocked() {
-        // Disable the block if it's not set in config.yml.
-        if(!plugin.getConfigManager().getConfig().isSet("BlockCommands")) {
-            return false;
-        }
-
-        // Otherwise check config.yml.
-        return plugin.getConfigManager().getConfig().getBoolean("BlockCommands");
+        return plugin.getConfigManager().isCommandsBlocked();
     }
 
     /**
@@ -76,13 +64,7 @@ public class PlayerPasswords {
      * @return True if blocked, false it not.
      */
     public static boolean isInteractBlocked() {
-        // Disable the block if it's not set in config.yml.
-        if(!plugin.getConfigManager().getConfig().isSet("BlockInteract")) {
-            return false;
-        }
-
-        // Otherwise check config.yml.
-        return plugin.getConfigManager().getConfig().getBoolean("BlockInteract");
+        return plugin.getConfigManager().isInteractBlocked();
     }
 
     /**
@@ -90,13 +72,7 @@ public class PlayerPasswords {
      * @return True if blocked, false if not.
      */
     public static boolean isItemDropBlocked() {
-        // Disable the block if it's not set in config.yml.
-        if(!plugin.getConfigManager().getConfig().isSet("BlockItemDrop")) {
-            return false;
-        }
-
-        // Otherwise check config.yml.
-        return plugin.getConfigManager().getConfig().getBoolean("BlockItemDrop");
+        return plugin.getConfigManager().isItemDropBlocked();
     }
 
     /**
@@ -104,13 +80,7 @@ public class PlayerPasswords {
      * @return True if blocked, false if not.
      */
     public static boolean isMovementBlocked() {
-        // Disable the block if it's not set in config.yml.
-        if(!plugin.getConfigManager().getConfig().isSet("BlockMovement")) {
-            return false;
-        }
-
-        // Otherwise check config.yml.
-        return plugin.getConfigManager().getConfig().getBoolean("BlockMovement");
+        return plugin.getConfigManager().isMovementBlocked();
     }
 
     /**

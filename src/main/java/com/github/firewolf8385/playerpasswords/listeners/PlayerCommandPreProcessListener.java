@@ -57,12 +57,11 @@ public class PlayerCommandPreProcessListener implements Listener {
         }
 
         // Exit if BlockCommands is disabled.
-        if(!plugin.getConfigManager().getConfig().getBoolean("BlockCommands")) {
+        if(!plugin.getConfigManager().isCommandsBlocked()) {
             return;
         }
 
         ChatUtils.chat(event.getPlayer(), plugin.getConfigManager().getMessage(event.getPlayer(), ConfigMessage.MISC_MUST_BE_LOGGED_IN));
         event.setCancelled(true);
     }
-
 }

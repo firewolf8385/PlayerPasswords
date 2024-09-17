@@ -48,7 +48,7 @@ public class PlayerInteractListener implements Listener {
         }
 
         // Exit if BlockInteract is disabled.
-        if(!plugin.getConfigManager().getConfig().getBoolean("BlockInteract")) {
+        if(!plugin.getConfigManager().isInteractBlocked()) {
             return;
         }
 

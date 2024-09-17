@@ -48,7 +48,7 @@ public class PlayerDropItemListener implements Listener {
         }
 
         // Exit if BlockItemDrop is disabled.
-        if(!plugin.getConfigManager().getConfig().getBoolean("BlockItemDrop")) {
+        if(!plugin.getConfigManager().isItemDropBlocked()) {
             return;
         }
 

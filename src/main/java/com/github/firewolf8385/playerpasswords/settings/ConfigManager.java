@@ -146,6 +146,76 @@ public class ConfigManager {
     }
 
     /**
+     * Check if chat is configured to be blocked for unverified players.
+     * @return True if blocked, false if not.
+     */
+    public boolean isChatBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockChat")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockChat");
+    }
+
+    /**
+     * Check if commands are configued to be blocked for unverified players.
+     * @return True if blocked, false if not.
+     */
+    public boolean isCommandsBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockCommands")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockCommands");
+    }
+
+    /**
+     * Check if item interaction is configured to be blocked for unverified players.
+     * @return True if blocked, false it not.
+     */
+    public boolean isInteractBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockInteract")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockInteract");
+    }
+
+    /**
+     * Check if item dropping is configured to be blocked for unverified players.
+     * @return True if blocked, false if not.
+     */
+    public boolean isItemDropBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockItemDrop")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockItemDrop");
+    }
+
+    /**
+     * Check if movement is configured to be blocked for unverified players.
+     * @return True if blocked, false if not.
+     */
+    public boolean isMovementBlocked() {
+        // Disable the block if it's not set in config.yml.
+        if(!config.isSet("BlockMovement")) {
+            return false;
+        }
+
+        // Otherwise check config.yml.
+        return config.getBoolean("BlockMovement");
+    }
+
+    /**
      * This updates the config in case changes are made.
      */
     public void reloadConfig() {

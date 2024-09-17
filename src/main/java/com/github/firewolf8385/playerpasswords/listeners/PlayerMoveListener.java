@@ -48,7 +48,7 @@ public class PlayerMoveListener implements Listener {
         }
 
         // Exit if BlockMovement is disabled.
-        if(!plugin.getConfigManager().getConfig().getBoolean("BlockMovement")) {
+        if(!plugin.getConfigManager().isMovementBlocked()) {
             return;
         }
 
