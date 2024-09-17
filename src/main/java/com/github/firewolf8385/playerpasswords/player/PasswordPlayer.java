@@ -109,7 +109,7 @@ public class PasswordPlayer {
         }
 
         // If there is data, check if the data is empty.
-        return !plugin.getConfigManager().getData().getString("passwords." + player.getUniqueId() + ".password").equals("");
+        return !plugin.getConfigManager().getData().getString("passwords." + player.getUniqueId() + ".password").isEmpty();
     }
 
     /**

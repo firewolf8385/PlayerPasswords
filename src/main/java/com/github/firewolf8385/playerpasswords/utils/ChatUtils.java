@@ -73,7 +73,7 @@ public class ChatUtils {
      */
     public static String centerText(String message) {
 
-        if(message.equals("")) {
+        if(message.isEmpty()) {
             return message;
         }
 
