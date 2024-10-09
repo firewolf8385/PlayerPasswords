@@ -50,6 +50,7 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
         new Metrics(this, 5190);
 
         configManager = new ConfigManager(this);
+        hookManager = new HookManager(this);
 
         passwordPlayerManager = new PasswordPlayerManager(this);
 
@@ -63,7 +64,6 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
             passwordPlayerManager.getPlayer(player).setVerified(true);
         }
 
-        hookManager = new HookManager();
         ChatUtils.initialize(this);
 
         // Initialize PlayerPasswords API.
@@ -109,5 +109,8 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerCommandPreProcessListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDropItemListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
+
+        // Supports BetterReload if installed.
+        if(this.hookManager.useBetterReload()) getServer().getPluginManager().registerEvents(new ReloadListener(this), this);
     }
 }

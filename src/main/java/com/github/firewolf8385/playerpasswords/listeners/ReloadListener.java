@@ -22,40 +22,37 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
  */
-package com.github.firewolf8385.playerpasswords.settings;
+package com.github.firewolf8385.playerpasswords.listeners;
 
-import org.bukkit.plugin.Plugin;
+import better.reload.api.ReloadEvent;
+import com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 
-public class HookManager {
-    private final boolean hasBetterReload;
-    private final boolean hasPlaceholderAPI;
+/**
+ * Listens to the ReloadEvent, which runs every time the server is "reloaded" using the BetterReload plugin.
+ * <a href="https://github.com/amnoah/BetterReload">BetterReload GitHub</a>
+ */
+public class ReloadListener implements Listener {
+    private final PlayerPasswordsPlugin plugin;
 
     /**
-     * Creates the hook manager.
+     * Creates the listener.
      * @param plugin Instance of the plugin.
      */
-    public HookManager(@NotNull final Plugin plugin) {
-        this.hasBetterReload = plugin.getServer().getPluginManager().isPluginEnabled("BetterReload");
-        if(this.hasBetterReload) plugin.getLogger().info("BetterReload detected. Enabling hook...");
-
-        this.hasPlaceholderAPI = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
-        if(this.hasBetterReload) plugin.getLogger().info("PlaceholderAPI detected. Enabling hook...");
+    public ReloadListener(@NotNull final PlayerPasswordsPlugin plugin) {
+        this.plugin = plugin;
     }
 
     /**
-     * Get if the plugin should use BetterReload.
-     * @return Whether the plugin should interface with BetterReload.
+     * Runs when the server is "reloaded".
+     * @param event ReloadEvent.
      */
-    public boolean useBetterReload() {
-        return this.hasBetterReload;
-    }
-
-    /**
-     * Get if the plugin should use PlaceholderAPI.
-     * @return Whether the plugin should interface with PlaceholderAPI.
-     */
-    public boolean usePlaceholderAPI() {
-        return this.hasPlaceholderAPI;
+    @EventHandler
+    public void onReload(@NotNull final ReloadEvent event) {
+        plugin.getConfigManager().reloadConfig();
+        plugin.getConfigManager().reloadData();
+        plugin.getConfigManager().reloadMessages();
     }
 }

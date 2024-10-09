@@ -18,6 +18,7 @@ PlayerPasswords is an easy-to-use authentication plugin for Spigot/Paper servers
 - Ability to Force all players to set passwords.
 - Ability to allow some players to bypass password requirements.
 - Configure commands that can be executed when the player gets the password wrong.
+- BetterReload support.
 
 ## Requirements
   * Java 8 JDK or newer

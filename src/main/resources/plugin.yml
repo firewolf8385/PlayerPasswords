@@ -19,6 +19,10 @@ author: firewolf8385
 main: com.github.firewolf8385.playerpasswords.PlayerPasswordsPlugin
 api-version: 1.13
 
+softdepend:
+  - BetterReload
+  - PlaceholderAPI
+
 #####
 #     #  ####  #    # #    #   ##   #    # #####   ####
 #       #    # ##  ## ##  ##  #  #  ##   # #    # #
