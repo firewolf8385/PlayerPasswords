@@ -113,4 +113,13 @@ public class PlayerPasswordsPlugin extends JavaPlugin {
         // Supports BetterReload if installed.
         if(this.hookManager.useBetterReload()) getServer().getPluginManager().registerEvents(new ReloadListener(this), this);
     }
+
+    /**
+     * Reloads the plugin configuration and updates important values.
+     */
+    public void reload() {
+        this.configManager.reloadConfig();
+        this.configManager.reloadData();
+        this.configManager.reloadMessages();
+    }
 }

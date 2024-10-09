@@ -198,9 +198,7 @@ public class PlayerPasswordsCMD implements CommandExecutor, TabCompleter {
      * @param sender Command Sender.
      */
     private void reloadCMD(@NotNull final CommandSender sender) {
-        plugin.getConfigManager().reloadConfig();
-        plugin.getConfigManager().reloadData();
-        plugin.getConfigManager().reloadMessages();
+        plugin.reload();
         ChatUtils.chat(sender, plugin.getConfigManager().getMessage(ConfigMessage.MISC_CONFIG_RELOADED));
     }
 
