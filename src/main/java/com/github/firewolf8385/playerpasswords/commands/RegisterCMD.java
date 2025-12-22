@@ -105,7 +105,7 @@ public class RegisterCMD implements CommandExecutor {
                 // Check if the cache and confirmation are equal.
                 if(passwordPlayer.getPassword().equals(args[1])) {
                     // If so, saves the password.
-                    plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[0]));
+                    plugin.getConfigManager().getData().set("passwords." + uuid + ".password", StringUtils.hash(args[1]));
                     ChatUtils.chat(player, plugin.getConfigManager().getMessage(player, ConfigMessage.PASSWORD_PASSWORD_SET_SUCCESSFULLY));
 
                     if(!passwordPlayer.isVerified()) {
